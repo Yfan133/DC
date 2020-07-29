@@ -1,0 +1,2 @@
+C:\Users\dell\source\repos\栈和队列\Debug\栈和队列.exe
+C:\Users\dell\source\repos\栈和队列\Debug\栈和队列.pdb
