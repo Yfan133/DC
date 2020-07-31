@@ -2,20 +2,122 @@
 #define _BINTREE_H_
 
 #include"common.h"
+
 typedef struct BinTreeNode
 {
-	BTElemType data;
+	BinTreeElemType data;
 	struct BinTreeNode* leftChild;
 	struct BinTreeNode* rightChild;
 }BinTreeNode;
+
 typedef BinTreeNode* BinTree;
+typedef BinTreeNode* LinkQueueElemType;
+
+//////////////////////////////////////////////////////////
+typedef struct LinkQueueNode
+{
+	LinkQueueElemType data;
+	struct LinkQueueNode* link;
+}LinkQueueNode;
+
+typedef struct LinkQueue
+{
+	LinkQueueNode* head; // 队头指针
+	LinkQueueNode* tail; // 队尾指针
+}LinkQueue;
+
+void LinkQueueInit(LinkQueue* pq);
+void LinkQueueEn(LinkQueue* pq, LinkQueueElemType x);
+void LinkQueueDe(LinkQueue* pq);
+LinkQueueElemType LinkQueueFront(LinkQueue* pq);
+int LinkQueueSize(LinkQueue* pq);
+bool LinkQueueEmpty(LinkQueue* pq);
+void LinkQueueDestroy(LinkQueue* pq);
+////////////////////////////////////////////////////////////////////
+void LinkQueueInit(LinkQueue* pq)
+{
+	assert(pq != NULL);
+	pq->head = pq->tail = NULL;
+}
+
+void LinkQueueEn(LinkQueue* pq, LinkQueueElemType x)
+{
+	assert(pq != NULL);
+	LinkQueueNode* node = (LinkQueueNode*)malloc(sizeof(LinkQueueNode));
+	assert(node != NULL);
+	node->data = x;
+	node->link = NULL;
+	if (pq->head == NULL)
+		pq->head = pq->tail = node;
+	else
+	{
+		pq->tail->link = node;
+		pq->tail = node;
+	}
+}
+void LinkQueueDe(LinkQueue* pq)
+{
+	assert(pq != NULL);
+	if (pq->head != NULL)
+	{
+		LinkQueueNode* p = pq->head;
+		if (pq->head == pq->tail)
+			pq->head = pq->tail = NULL;
+		else
+			pq->head = p->link;
+		free(p);
+	}
+}
+LinkQueueElemType LinkQueueFront(LinkQueue* pq)
+{
+	assert(pq != NULL);
+	assert(pq->head != NULL);
+	return pq->head->data;  //return pq->tail->data
+}
+int LinkQueueSize(LinkQueue* pq)
+{
+	assert(pq != NULL);
+	int size = 0;
+	LinkQueueNode* p = pq->head;
+	while (p != NULL)
+	{
+		size++;
+		p = p->link;
+	}
+	return size;
+}
+bool LinkQueueEmpty(LinkQueue* pq)
+{
+	assert(pq != NULL);
+	return pq->head == NULL;
+}
+
+void LinkQueueDestroy(LinkQueue* pq)
+{
+	assert(pq != NULL);
+	LinkQueueNode* p = pq->head;
+	while (p != NULL)
+	{
+		pq->head = p->link;
+		free(p);
+		p = pq->head;
+	}
+}
 ///////////////////////////////////////////////////////////////////////////////
+//typedef struct BinTreeNode
+//{
+//	BinTreeElemType data;
+//	struct BinTreeNode* leftChild;
+//	struct BinTreeNode* rightChild;
+//}BinTreeNode;
+//
+//typedef BinTreeNode* BinTree;
 
 //二叉树的创建
 void BinTreeInit(BinTree* t);
 void BinTreeCreate(BinTree* t);
-BinTree BinTreeCreate_1();
-BinTree BinTreeCreate_2(const char* s, int* i);
+//BinTree BinTreeCreate_1();
+//BinTree BinTreeCreate_2(const char* s, int* i);
 //BinTree BinTreeCreate_3(const char* vlr, const char* lvr, int n);
 //BinTree BinTreeCreate_4(const char* lvr, const char* lrv, int n);
 
@@ -48,7 +150,7 @@ void BinTreeInit(BinTree* t)
 void BinTreeCreate(BinTree* t)
 {
 	assert(t != NULL);
-	BTElemType item;
+	BinTreeElemType item;
 	scanf("%c", &item);
 	if (item == '#')
 		*t = NULL;
@@ -63,7 +165,7 @@ void BinTreeCreate(BinTree* t)
 }
 BinTree BinTreeCreate_1()
 {
-	BTElemType item;
+	BinTreeElemType item;
 	scanf("%c", &item);
 	if (item == '#')
 		return NULL;
@@ -123,7 +225,28 @@ void BinTreeLRV(BinTree t)
 		printf("%c", t->data);
 	}
 }
-void BinTreeLevel(BinTree t);
+void BinTreeLevel(BinTree t)
+{
+	if (t != NULL)
+	{
+		LinkQueue Q;
+		LinkQueueInit(&Q);
+
+		LinkQueueEn(&Q, t);
+		while (!LinkQueueEmpty(&Q))
+		{
+			BinTreeNode* p = LinkQueueFront(&Q);
+			LinkQueueDe(&Q);
+			printf("%c ", p->data);
+			if (p->leftChild != NULL)
+				LinkQueueEn(&Q, p->leftChild);
+			if (p->rightChild != NULL)
+				LinkQueueEn(&Q, p->rightChild);
+		}
+
+		LinkQueueDestroy(&Q);
+	}
+}
 //int Height(BinTree t)
 //{
 //	if (t == NULL)

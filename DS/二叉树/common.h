@@ -8,6 +8,6 @@
 #include<memory.h>
 #pragma warning(disable:4996)
 
-typedef char BTElemType;
+typedef char BinTreeElemType;
 
 #endif
