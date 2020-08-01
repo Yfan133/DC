@@ -9,7 +9,6 @@ typedef struct BinTreeNode
 	struct BinTreeNode* leftChild;
 	struct BinTreeNode* rightChild;
 }BinTreeNode;
-
 typedef BinTreeNode* BinTree;
 typedef BinTreeNode* LinkQueueElemType;
 
@@ -19,13 +18,11 @@ typedef struct LinkQueueNode
 	LinkQueueElemType data;
 	struct LinkQueueNode* link;
 }LinkQueueNode;
-
 typedef struct LinkQueue
 {
 	LinkQueueNode* head; // 队头指针
 	LinkQueueNode* tail; // 队尾指针
 }LinkQueue;
-
 void LinkQueueInit(LinkQueue* pq);
 void LinkQueueEn(LinkQueue* pq, LinkQueueElemType x);
 void LinkQueueDe(LinkQueue* pq);
@@ -39,7 +36,6 @@ void LinkQueueInit(LinkQueue* pq)
 	assert(pq != NULL);
 	pq->head = pq->tail = NULL;
 }
-
 void LinkQueueEn(LinkQueue* pq, LinkQueueElemType x)
 {
 	assert(pq != NULL);
@@ -91,7 +87,6 @@ bool LinkQueueEmpty(LinkQueue* pq)
 	assert(pq != NULL);
 	return pq->head == NULL;
 }
-
 void LinkQueueDestroy(LinkQueue* pq)
 {
 	assert(pq != NULL);
@@ -116,10 +111,10 @@ void LinkQueueDestroy(LinkQueue* pq)
 //二叉树的创建
 void BinTreeInit(BinTree* t);
 void BinTreeCreate(BinTree* t);
-//BinTree BinTreeCreate_1();
-//BinTree BinTreeCreate_2(const char* s, int* i);
-//BinTree BinTreeCreate_3(const char* vlr, const char* lvr, int n);
-//BinTree BinTreeCreate_4(const char* lvr, const char* lrv, int n);
+BinTree BinTreeCreate_1();
+BinTree BinTreeCreate_2(const char* s, int* i);
+BinTree BinTreeCreate_3(const char* vlr, const char* lvr, int n);
+BinTree BinTreeCreate_4(const char* lvr, const char* lrv, int n);
 
 //二叉树的遍历
 void BinTreeVLR(BinTree t);
@@ -196,8 +191,23 @@ BinTree BinTreeCreate_2(const char* s, int* i)
 		return p;
 	}
 }
-//BinTree BinTreeCreate_3(const char* vlr, const char* lvr, int n);
-//BinTree BinTreeCreate_4(const char* lvr, const char* lrv, int n);
+BinTree BinTreeCreate_3(const char* vlr, const char* lvr, int n)
+{
+	if (n == 0)
+		return NULL;
+	int k = 0;
+	while (vlr[0] != lvr[k])
+		++k;
+	BinTreeNode* p = (BinTreeNode*)malloc(sizeof(BinTreeNode));
+	p->data = lvr[k];
+	p->leftChild = BinTreeCreate_3(vlr + 1, lvr, k);
+	p->rightChild = BinTreeCreate_3(vlr + k + 1, lvr + k + 1, n - k - 1);
+	return p;
+}
+BinTree BinTreeCreate_4(const char* lrv, const char* lvr, int n)
+{
+	
+}
 void BinTreeVLR(BinTree t)
 {
 	if (t != NULL)
