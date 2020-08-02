@@ -127,15 +127,17 @@ void BinTreeLevel(BinTree t);
 //void BinTreeLVR_Nor(BinTree t);
 //void BinTreeLRV_Nor(BinTree t);
 //
-////二叉树的算法
-//int Size(BinTree t);
-//int Height(BinTree t);
-//BinTreeNode* Left(BinTreeNode* p);
-//BinTreeNode* Right(BinTreeNode* p);
-//BinTreeNode* BinTreeFind(BinTree t, BTElemType key);
-//BinTreeNode* BinTreeParent(BinTree t, BinTreeNode* p);
-//BinTreeNode* BinTreeClone(BinTree t);
-//bool         Equal(BinTree t1, BinTree t2);
+//二叉树的算法
+int Size(BinTree t);
+int Height(BinTree t);
+BinTreeNode* Left(BinTreeNode* p);
+BinTreeNode* Right(BinTreeNode* p);
+BinTreeNode* BinTreeFind(BinTree t, BinTreeElemType key);
+BinTreeNode* BinTreeParent(BinTree t, BinTreeNode* p);
+BinTreeNode* BinTreeClone(BinTree t);
+bool         Equal(BinTree t1, BinTree t2);
+void BinTreeDestory(BinTree* t);
+int BinTreeLeafSize(BinTree t);
 //////////////////////////////////////////////////////////////////////////////////
 void BinTreeInit(BinTree* t)
 {
@@ -253,20 +255,65 @@ void BinTreeLevel(BinTree t)
 			if (p->rightChild != NULL)
 				LinkQueueEn(&Q, p->rightChild);
 		}
-
 		LinkQueueDestroy(&Q);
 	}
 }
-//int Height(BinTree t)
-//{
-//	if (t == NULL)
-//		return 0;
-//	else
-//	{
-//		int left_h = Height(t->leftChild);
-//		int right_h = Height(t->rightChild);
-//		return (left_h > right_h ? left_h : right_h) + 1;
-//	}
-//}
+void BinTreeDestory(BinTree* t)
+{
+	BinTreeNode* tmp = *t;
+	if (tmp != NULL)
+	{
+		LinkQueue Q;
+		LinkQueueInit(&Q);
+		LinkQueueEn(&Q, tmp);
+		while (!LinkQueueEmpty(&Q))
+		{
+			BinTreeNode* p = LinkQueueFront(&Q);
+			LinkQueueDe(&Q);
+			if (p->leftChild != NULL)
+				LinkQueueEn(&Q, p->leftChild);
+			if (p->rightChild != NULL)
+				LinkQueueEn(&Q, p->rightChild);
+			free(p);
+		}
+		LinkQueueDestroy(&Q);
+	}
+}
+int Size(BinTree t)
+{
+	if (t == NULL)
+		return 0;
+	else
+		return Size(t->leftChild) + Size(t->rightChild) + 1;
+}
+int Height(BinTree t)
+{
+	if (t == NULL)
+		return 0;
+	else
+	{
+		int left_h = Height(t->leftChild);
+		int right_h = Height(t->rightChild);
+		return (left_h > right_h ? left_h : right_h) + 1;
+	}
+}
+int BinTreeLeafSize(BinTree t)
+{
+	if (t == NULL)
+		return 0;
+	int leaves = BinTreeLeafSize(t->leftChild);
+	if (t->leftChild == NULL && t->rightChild == NULL)
+		return leaves + 1;
+	return BinTreeLeafSize(t->rightChild);
+}
+BinTreeNode* BinTreeFind(BinTree t, BinTreeElemType key)
+{
+	if (t == NULL || t->data == key)
+		return t;
+	BinTreeNode* p = BinTreeFind(t->leftChild, key);
+	if (p != NULL)
+		return p;
+	return BinTreeFind(t->rightChild, key);
+}
 #endif
 
