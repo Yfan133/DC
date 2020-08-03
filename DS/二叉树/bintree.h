@@ -315,5 +315,17 @@ BinTreeNode* BinTreeFind(BinTree t, BinTreeElemType key)
 		return p;
 	return BinTreeFind(t->rightChild, key);
 }
+BinTreeNode* BinTreeParent(BinTree t, BinTreeNode* p)
+{
+	if (t == NULL || p == NULL || t == p)
+		return NULL;
+	if (t->leftChild == p || t->rightChild == p)
+		return t;
+	BinTreeNode* q = BinTreeParent(t->leftChild, p);
+	if (q != NULL)
+		return q;
+	return BinTreeParent(t->rightChild, p);
+}
+BinTreeNode* BinTreeClone(BinTree t);
 #endif
 
