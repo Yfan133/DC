@@ -138,6 +138,7 @@ BinTreeNode* BinTreeClone(BinTree t);
 bool         Equal(BinTree t1, BinTree t2);
 void BinTreeDestory(BinTree* t);
 int BinTreeLeafSize(BinTree t);
+int BinTreeLevelKSize(BinTree t, int k);
 //////////////////////////////////////////////////////////////////////////////////
 void BinTreeInit(BinTree* t)
 {
@@ -260,7 +261,7 @@ void BinTreeLevel(BinTree t)
 }
 void BinTreeDestory(BinTree* t)
 {
-	BinTreeNode* tmp = *t;
+	/*BinTreeNode* tmp = *t;
 	if (tmp != NULL)
 	{
 		LinkQueue Q;
@@ -277,6 +278,13 @@ void BinTreeDestory(BinTree* t)
 			free(p);
 		}
 		LinkQueueDestroy(&Q);
+	}*/
+	if (*t != NULL)
+	{
+		BinTreeDestory(&(*t)->leftChild);
+		BinTreeDestory(&(*t)->rightChild);
+		free(*t);
+		*t = NULL;
 	}
 }
 int Size(BinTree t)
@@ -299,12 +307,19 @@ int Height(BinTree t)
 }
 int BinTreeLeafSize(BinTree t)
 {
-	if (t == NULL)
-		return 0;
-	int leaves = BinTreeLeafSize(t->leftChild);
-	if (t->leftChild == NULL && t->rightChild == NULL)
-		return leaves + 1;
-	return BinTreeLeafSize(t->rightChild);
+	static int count = 0;
+	if (t != NULL)
+	{
+		if ((t->leftChild == NULL) && (t->rightChild == NULL))
+			count++;
+		BinTreeLeafSize(t->leftChild);
+		BinTreeLeafSize(t->rightChild);
+	}
+	return count;
+}
+int BinTreeLevelKSize(BinTree t, int k)
+{
+
 }
 BinTreeNode* BinTreeFind(BinTree t, BinTreeElemType key)
 {
