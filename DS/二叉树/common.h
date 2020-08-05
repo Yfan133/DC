@@ -8,7 +8,12 @@
 #include<stdbool.h>
 #include<memory.h>
 #pragma warning(disable:4996)
-
+void Swap(int* a, int* b)
+{
+	*a ^= *b;
+	*b ^= *a;
+	*a ^= *b;
+}
 typedef char BinTreeElemType;
 
 #endif
