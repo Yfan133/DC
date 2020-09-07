@@ -1,0 +1,113 @@
+Lesson 1 栈和队列
+1、https://leetcode-cn.com/problems/valid-parentheses/  [括号匹配问题]
+
+typedef char ElemType;
+typedef struct LinkStackNode
+{
+	ElemType data;
+	struct LinkStackNode *link;
+}LinkStackNode;
+
+typedef LinkStackNode* LinkStack;
+void LinkStackInit(LinkStack *pst);
+void LinkStackPush(LinkStack *pst, ElemType x);
+void LinkStackPop(LinkStack *pst);
+ElemType LinkStackTop(LinkStack *pst);
+int LinkStackSize(LinkStack *pst);
+bool LinkStackEmpty(LinkStack *pst);
+void LinkStackDestroy(LinkStack *pst);
+/////////////////////////////////////////////////////
+
+void LinkStackInit(LinkStack *pst)
+{
+	assert(pst != NULL);
+	*pst = NULL;
+}
+
+void LinkStackPush(LinkStack *pst, ElemType x)
+{
+	assert(pst != NULL);
+	LinkStackNode *node = (LinkStackNode*)malloc(sizeof(LinkStackNode));
+	assert(node != NULL);
+	node->data = x;
+
+	node->link = *pst;
+	*pst = node;
+}
+void LinkStackPop(LinkStack *pst)
+{
+	assert(pst != NULL);
+	if(*pst != NULL)
+	{
+		LinkStackNode *p = *pst;
+		*pst = p->link;
+		free(p);
+	}
+}
+ElemType LinkStackTop(LinkStack *pst)
+{
+	assert(pst != NULL && *pst != NULL);
+	return (*pst)->data;
+}
+
+int LinkStackSize(LinkStack *pst)
+{
+	assert(pst != NULL);
+	int size = 0;
+	LinkStackNode *p = *pst;
+	while(p != NULL)
+	{
+		size++;
+		p = p->link;
+	}
+	return size;
+}
+
+bool LinkStackEmpty(LinkStack *pst)
+{
+    assert(pst != NULL);
+    return *pst == NULL;
+}
+
+void LinkStackDestroy(LinkStack *pst)
+{
+	assert(pst != NULL);
+	LinkStackNode *p = *pst;
+	while(p != NULL)
+	{
+		*pst = p->link;
+		free(p);
+		p = *pst;
+	}
+}
+//////////////////////////////////////////////////////////////
+
+bool isValid(char * s)
+{
+    if(s == NULL)
+        return false;
+    if(*s == '\0')
+        return true;
+
+    LinkStack st;
+    LinkStackInit(&st);
+
+    while(*s != '\0')
+    {
+        if(*s=='{' || *s=='[' || *s=='(')
+            LinkStackPush(&st, *s);
+        else
+        {
+            if(LinkStackEmpty(&st))
+				return false;
+            char top = LinkStackTop(&st);
+            if((*s=='}'&&top!='{') || (*s==']'&&top!='[') || (*s==')'&&top!='('))
+                return false;
+            LinkStackPop(&st);
+        }
+        s++;
+    }
+    bool flag = LinkStackEmpty(&st);
+    LinkStackDestroy(&st);
+    return flag;
+}
