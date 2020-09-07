@@ -111,3 +111,53 @@ bool isValid(char * s)
     LinkStackDestroy(&st);
     return flag;
 }
+2.https://www.nowcoder.com/practice/fc533c45b73a41b0b44ccba763f866ef?tpId=13&&tqId=11209&rp=1&ru=/activity/oj&qru=/ta/coding-interviews/question-ranking
+[删除重复的节点]
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    ListNode* deleteDuplication(ListNode* pHead)
+    {
+        if(pHead==NULL)
+            return pHead;
+        ListNode *pre=NULL;
+        ListNode *p=pHead;
+        ListNode *next_node=p->next;
+        
+        while(next_node!=NULL)
+        {
+            if(next_node->val!=p->val)
+            {
+                pre=p;
+                p=next_node;
+                next_node=p->next;
+            }
+            else
+            {
+                while(next_node!=NULL&&next_node->val==p->val)
+                    next_node=next_node->next;
+                if(pre==NULL)
+                    pHead=next_node;
+                else
+                    pre->next=next_node;
+                while(p!=next_node)
+                {
+                    ListNode* tmp=p;
+                    p=p->next;
+                    free(tmp);
+                }
+                if(next_node!=NULL)
+                    next_node=p->next;
+            }
+        }
+        return pHead;
+    }
+};
