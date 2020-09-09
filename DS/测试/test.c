@@ -124,12 +124,12 @@ void main()
     };
     enum ENUM_A enumA = Y1;
     enum ENUM_A enumB = B1;*/
-    int j = 4;
+    /*int j = 4;
     int m = 1;
     int k;
     k = fun(j, m);
     printf("%d,", k);
     k = fun(j, m);
-    printf("%d/n", k);
-}
+    printf("%d/n", k)*/
+ }
 //#pragma pack()
