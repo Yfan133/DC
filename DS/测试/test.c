@@ -1,26 +1,18 @@
 #include"test.h"
-char* delete_space(char s[],int lenth)
+void delete_space(char *arr1,char *arr2)
 {
-    int count = 0;
-    for (int i = 0; i < lenth; i++)
+    while (*arr1)
     {
-        if (s[i] == ' ')
-            count++;
-    }
-    count = count * 2 + lenth - 1;
-    char arr[100];
-    for (int i = lenth - 1; i >= 0; --i)
-    {
-        if (s[i] == ' ')
+        if (*arr1 == ' ')
         {
-            arr[count--] = '0';
-            arr[count--] = '2';
-            arr[count--] = '%';
+            strcpy(arr2, "%20");
+            arr1++;
+            arr2 += 3;
         }
         else
-            arr[count--] = s[i];
+            *arr2++ = *arr1++;
     }
-    return arr;
+    *arr2 = '\0';
 }
 int Find_Data(int arr[4][4],int bow,int line,int target)
 {
@@ -40,24 +32,26 @@ int Find_Data(int arr[4][4],int bow,int line,int target)
 }
 int count_theone(unsigned int target)
 {
-    unsigned int tmp = 1;
     int count = 0;
-    for (int i = 0; i < 32; i++)
+    while (target > 0)
     {
-        if ((tmp & target) == 1)
-            ++count;
-        target = target >> 1;
+        if (target % 2)
+            count++;
+        target /= 2;
     }
     return count;
 }
 int count_fab_value(int target)
 {
+    if (target < 3)
+        return 1;
     int p1 = 1, p2 = 1, p3 = 0;
-    for (int i = 0; i < target - 2; ++i)
+    while (target > 2)
     {
         p3 = p1 + p2;
         p1 = p2;
         p2 = p3;
+        --target;
     }
     return p3;
 }
@@ -79,16 +73,26 @@ int fun(int x, int y)
     m = i + x + y;
     return m;
 }
+int x = 1;
+int func()
+{
+    static int x = 2;
+}
 void main()
 {
+    func();
+    printf("%d", x);
+    /*char arr1[] = "abc defgx yz";
+    char arr2[20];
+    delete_space(arr1, arr2);*/
     //ab s;
     //int a = 10;
     //int arr[4][4] = { 1,2,8,9, 2,4,9,12, 4,7,10,13, 6,8,11,15 };
     //printf("%d\n", Find_Data(arr,4,4,15));
     //printf("%d", 5 - 10);
-    //unsigned int data = -123;
+    //unsigned int data = 123;
     //printf("%d", count_theone(data));
-    //printf("%d", count_fab_value(10));
+    //printf("%d", count_fab_value(5));
     /*struct tagTest1
     {
         short a;
