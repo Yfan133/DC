@@ -1,2 +1,4 @@
 C:\Users\dell\source\repos\链表\Debug\链表.exe
 C:\Users\dell\source\repos\链表\Debug\链表.pdb
+D:\vs2019file\DS\链表\Debug\链表.exe
+D:\vs2019file\DS\链表\Debug\链表.pdb

@@ -1,2 +1,4 @@
 D:\vs2019file\顺序表\Debug\顺序表.exe
 D:\vs2019file\顺序表\Debug\顺序表.pdb
+D:\vs2019file\DS\顺序表\Debug\顺序表.exe
+D:\vs2019file\DS\顺序表\Debug\顺序表.pdb

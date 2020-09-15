@@ -73,15 +73,70 @@ int fun(int x, int y)
     m = i + x + y;
     return m;
 }
-int x = 1;
-int func()
+typedef struct SListNode
 {
-    static int x = 2;
+    int data;
+    struct SlistNode* next;
+}SListNode;
+typedef SListNode* SList;
+void SListInit(SList* phead)
+{
+    assert(phead != NULL);
+    *phead = NULL;
+}
+void SListPushBack(SList *phead,int data)
+{
+    assert(phead != NULL);
+    SListNode* s = (SListNode*)malloc(sizeof(SListNode));
+    s->data = data;
+    s->next = NULL;
+    SListNode* p = *phead;
+    if (p == NULL)
+        *phead = s;
+    else
+    {
+        while (p->next != NULL)
+            p = p->next;
+        p->next = s;
+    }
+}
+void SListReverse(SList* phead)
+{
+    assert(phead != NULL);
+    if (*phead == NULL)
+        return;
+    SListNode* p = *phead;
+    SListNode* next = p->next;
+    p->next = NULL;
+    while (next != NULL)
+    {
+        p = next;
+        next = p->next;
+        p->next = *phead;
+        *phead = p;
+    }
+}
+void SListShow(SList phead)
+{
+    assert(phead != NULL);
+    SListNode* p = phead;
+    while (p != NULL)
+    {
+        printf("%d ", p->data);
+        p = p->next;
+    }
 }
 void main()
 {
-    func();
-    printf("%d", x);
+    SListNode* phead;
+    SListInit(&phead);
+    SListPushBack(&phead, 1);
+    SListPushBack(&phead, 2);
+    SListPushBack(&phead, 3);
+    SListReverse(&phead);
+    SListShow(phead);
+    //func();
+    //printf("%d", x);
     /*char arr1[] = "abc defgx yz";
     char arr2[20];
     delete_space(arr1, arr2);*/

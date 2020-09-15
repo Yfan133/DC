@@ -1,3 +1,8 @@
 ﻿  test.c
-D:\vs2019file\DS\测试\test.c(80): warning C4716: “func”: 必须返回一个值
+D:\vs2019file\DS\测试\test.c(99,24): warning C4133: “=”: 从“SlistNode *”到“SListNode *”的类型不兼容
+D:\vs2019file\DS\测试\test.c(100,20): warning C4133: “=”: 从“SListNode *”到“SlistNode *”的类型不兼容
+D:\vs2019file\DS\测试\test.c(114,23): warning C4133: “=”: 从“SlistNode *”到“SListNode *”的类型不兼容
+D:\vs2019file\DS\测试\test.c(115,25): warning C4133: “=”: 从“SList”到“SlistNode *”的类型不兼容
+D:\vs2019file\DS\测试\test.c(109,1): warning C4133: “初始化”: 从“SlistNode *”到“SListNode *”的类型不兼容
+D:\vs2019file\DS\测试\test.c(126,20): warning C4133: “=”: 从“SlistNode *”到“SListNode *”的类型不兼容
   测试.vcxproj -> D:\vs2019file\DS\测试\Debug\测试.exe
