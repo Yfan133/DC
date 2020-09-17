@@ -1,37 +1,51 @@
 #include"main.h"
-//C语言文件 .c
-//C++文件   .cpp
-void TestFun()	//C语言中可以传很多参数  Fun(); Fun(1,2,3,4);
-{				//C++中该函数不能传参数
+//可以编译，不能链接(预处理,编译,汇编,链接)
+//链接阶段，链接器在工程中找实现体(函数定义),
 
-}
-//C语言中不设置函数返回类型，默认为int类 Fun()
-//C++必须设置函数返回类型
 
-//C语言参数不可设置初始值	(缺省参数)
-//C++参数可以设置默认值 int Fun(int a=10)
-//半缺省参数:缺省的参数必须在不缺省的右边，Fun(int a,int b,int c=1)
-//因为传参默认先给最左边的赋值
-//声明和定义中，缺省参数不能同时给出  例：Fun(int a=10);声明
-										//Fun(int a = 10)定义
-										//{				
-										//}
-//函数重载 概念：函数名相同，参数列表必须(数量，类型，次序)不同，则构成重载，根据传参类型调用
-//         注意：如果两个函数仅仅是返回类型不同，则不能构成重载
-//函数重载的调用原理:编译阶段会对函数实参类型进行推演，根据推演的实际结果找类型匹配的函数进行调用
-//有完全匹配的：直接调用  
-//没有与匹配的：1.先隐式转化  2.隐式转化后没有合适的或无法隐式转换直接报错
-//例：有Fun(int a,int b)和Fun(double a,double b) 使用Fun(1,5.2)就会报错
-int Add(int a,int b)
+//C语言编译函数时,修饰函数名只会在函数名前加_(_Add)，所以无法进行函数重载
+//C++编译时会将函数定义名修改(将参数列表添加进去),?Add@@HHH@Z(H:int型,N:double型)
+//Linux中
+//函数重载概念:作用域相同,返回值和参数列表不同(C++编译时修饰函数名(?Add@@XXX@Z)和C语言不同(_Add:重定义),因此可以重载)
+//C++写的代码,按C语言方式进行引用,函数前加extern "C",即可按C语言方式进行编译(修饰函数名为_Add)
+//extern "C"{函数1;函数2;函数3;}多个函数进行按C语言方式引用
+//C++和C语言混合编程怎么处理？---采用条件编译可以处理
+//有歧义的函数重载
+//void Func(int data = 10)
+//{
+//
+//}
+//void Func()
+//{
+//
+//}			当不传参数时,报错
+//引用(类型名& +引用变量名):给已知变量取一个别名,使用的同一内存空间(类似不带*的指针)
+//引用类型必须和引用实体类型一致，且定义时必须初始化,引用一个实体后就不能引用其他实体了
+//const 常量 不能引用,系统直接报错
+void Swap(int& left, int& right)
 {
-	return a + b;
+	int tmp = left;
+	left = right;
+	right = tmp;
 }
-double Add(double a, double b)
+namespace add1
 {
-	return a + b;
+	int a;
 }
-void main()
+int& Add(int left, int right)
 {
-	cout << 1 << endl << "hello,world";
-	TestFun();
+	int ret = 0;
+	ret = left + right;
+	return ret;
+}
+int main()
+{
+	int& r = Add(1, 2);
+	Add(3, 4);
+	Add(5, 6);
+	return 0;
+}
+int Func(int left,int right)
+{
+	return left + right;
 }
