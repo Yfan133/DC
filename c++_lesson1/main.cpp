@@ -38,14 +38,20 @@ int& Add(int left, int right)
 	ret = left + right;
 	return ret;
 }
+void Func()
+{
+	int flag = 1;
+	int& ra = flag;
+	cout << flag << endl << ra;
+}
 int main()
 {
-	int& r = Add(1, 2);
+	int a = 1;
+	int b = 2;
+	Swap(a, b);
+	//Func();
+	/*int& r = Add(1, 2);
 	Add(3, 4);
-	Add(5, 6);
+	Add(5, 6);*/
 	return 0;
-}
-int Func(int left,int right)
-{
-	return left + right;
 }
