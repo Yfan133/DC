@@ -1,0 +1,4 @@
+C:\Users\dell\source\repos\学校代码\Debug\学校代码.exe
+C:\Users\dell\source\repos\学校代码\Debug\学校代码.pdb
+D:\vs2019file\学校代码\Debug\学校代码.exe
+D:\vs2019file\学校代码\Debug\学校代码.pdb
