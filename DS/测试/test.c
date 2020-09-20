@@ -126,15 +126,15 @@ void SListShow(SList phead)
         p = p->next;
     }
 }
-void main()
+int main()
 {
-    SListNode* phead;
+    /*SListNode* phead;
     SListInit(&phead);
     SListPushBack(&phead, 1);
     SListPushBack(&phead, 2);
     SListPushBack(&phead, 3);
     SListReverse(&phead);
-    SListShow(phead);
+    SListShow(phead);*/
     //func();
     //printf("%d", x);
     /*char arr1[] = "abc defgx yz";
