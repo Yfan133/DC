@@ -2,10 +2,10 @@
 typedef char* ElemType;
 typedef struct StudentIn
 {
-	ElemType no;
+	int      no;
 	ElemType name;
-	ElemType depno;
-	int		 score;
+	int      depno;
+	float	 score;
 }StudentIn;
 typedef struct SListNode
 {
@@ -22,7 +22,7 @@ void SListInit(SList* phead)
 	s->next = NULL;
 	*phead = s;
 }
-void SListPushBack(SList* phead, ElemType No, ElemType Name, ElemType Depno, int Score)
+void SListPushBack(SList* phead, int No, ElemType Name, int Depno, float Score)
 {
 	assert(*phead != NULL);
 	SListNode* s = (SListNode*)malloc(sizeof(SListNode));
@@ -43,7 +43,7 @@ void SListShowByNo(SList phead)
 	SListNode* p = phead->next;
 	while (p != NULL)
 	{
-		printf("%s   %s   %s   %d\n", p->student->no,p->student->name,p->student->depno,p->student->score);
+		printf("%d   %s   %d   %.1f\n", p->student->no,p->student->name,p->student->depno,p->student->score);
 		p = p->next;
 	}
 }
@@ -68,7 +68,8 @@ void SListSort(SList* phead)
 		}
 		if (prev == NULL) {
 			p->next = tmp;
-			tmp = *phead = p;
+			tmp =  p;
+			(*phead)->next = p;
 		}
 		else {
 			p->next = tmp;
@@ -83,7 +84,7 @@ void SListShowByScore(SList* phead)
 	assert(*phead != NULL);
 	SListSort(phead);
 }
-void SListDeleByNo(SList* phead, ElemType No)
+void SListDeleByNo(SList* phead, int No)
 {
 	assert(*phead != NULL);
 	SListNode* p = *phead;
