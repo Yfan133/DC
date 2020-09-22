@@ -41,10 +41,7 @@ int main()
 			}
 			break;
 		case 2:
-			printf("请输入要插入的数据<以-1结束>:");
-			//while (scanf("%d", &item), item != -1) {
-				//DCListPushFront(&list, item);
-			//}
+			
 			break;
 		case 3:
 			SListShowByNo(head);

@@ -37,7 +37,7 @@ void SListPushBack(SList* phead, int No, ElemType Name, int Depno, float Score)
 		p = p->next;
 	p->next = s;
 }
-void SListShowByNo(SList phead)
+void SListShow(SList phead)
 {
 	assert(phead != NULL);
 	SListNode* p = phead->next;
@@ -100,20 +100,18 @@ void SListDeleByNo(SList* phead, int No)
 	free(s);
 	s = NULL;
 }
-void SListShow(SList phead,int way)
+void SListShowWay(SList* phead,int way)
 {
-	assert(phead != NULL);
+	assert(*phead != NULL);
 	switch (way)
 	{
 	case 1:
-
+		SListSort(phead);
+		SListShow(*phead);
 		break;
 	case 2:
 		break;
 	case 3:
-		break;
-	default:
-		printf("输入有误,请重新输入...\n");
 		break;
 	}
 }

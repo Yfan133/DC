@@ -3,8 +3,8 @@ int main()
 {
 	int arr[] = { 49,38,65,97,76,13,27,49 };
 	int length = sizeof(arr) / sizeof(arr[1]);
-	//TestSort(arr, 0, length);
-	//PrintList(arr, length);
-	TestSortEfficiency(arr, 0, length);
+	TestSort(arr, 0, length);
+	PrintList(arr, 0, length);
+	//TestSortEfficiency();
 	return 0;
 }
