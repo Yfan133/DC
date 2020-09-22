@@ -128,6 +128,8 @@ void SListShow(SList phead)
 }
 int main()
 {
+   
+    return 0;
     /*SListNode* phead;
     SListInit(&phead);
     SListPushBack(&phead, 1);
