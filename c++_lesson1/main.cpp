@@ -1,59 +1,44 @@
 #include"main.h"
-//引用(类型名& +引用变量名):给已知变量取一个别名,使用的同一内存空间(类似不带*的指针)
-//引用类型必须和引用实体类型一致，且定义时必须初始化,引用一个实体后就不能引用其他实体了
-//const 常量 不能引用,系统直接报错
-//思考题:
-//在C语言中,写一个函数
+//C++中被const修饰的变量称为常量,而且被const修饰的常量还具有类似宏替换的作用
+//C语言中被const修饰的不是常量(而是变量只是不能修改)
+//例子：数组的定义时  int ar[a];C语言报错,C++编译通过
 
-//注意:以引用方式作为函数返回值时,不能返回栈空间(局部变量)
-//Add函数结束ret不存在,但是result引用ret(共用一个空间),栈帧并没有清理,所以&result的结果没变(仍然指向ret的地址)
-//继续使用Add函数,栈帧内容会被新数据覆盖,因此result的内容被修改
-//_cdecl是函数默认的调用约定(函数在调用期间所做的一些约定)
-//传值:效率较低
-//传地址:效率高,通过形参可以改变实参
-//传引用:效率高,可达到类似指针的效果
-//代码
-
-//引用和指针的区别:反汇编中底层代码完全相同---引用就是指针,不同点:空间大小不同(指针4字节,引用和实体一致,例如:代码),没有多级引用但是可以多级指针
-//反汇编图片
-//int&等价于int* const(指针指向不能修改)(引用只能和一个实体结合,不能修改)
-//const int&等价于const int* const
-
-void Swap(int* a, int* b)
+//宏函数的缺点：1.意想不到的副作用 2.在预处理替换，少了类型检测 3.不能调试
+//内联函数(吸收宏的优点)
+//debug模式下内联函数默认是不会展开,可以调试，如果想展开
+//release模式下
+//在其他文件中调用Add函数则会发生链接错误，因为编译器
+//inline函数具有文件作用域(跨文件用不了)
+//内联函数和宏的共同缺点：会使代码膨胀(本来就一句call,现在是替换成多条语句)
+//在C语言中aoto用来修饰局部变量,表明该变量是自动变量,函数结束,变量自动销毁
+//C++中auto：自动类型推断,定义变量时必须初始化.例：auto e;系统报错
+inline int  Add(int left, int right)
 {
-	int tmp = *a;
-	*a = *b;
-	*b = tmp;
+	return left + right;
 }
-void Swap(int& a, int& b)
-{
-	int tmp = a;
-	a = b;
-	b = tmp;
-}
-int& Add(int left, int right)
-{
-	int ret = left + right;
-	return ret;
-}
-//int& result = Add(1, 2);	
-	//cout << result << endl;				//输出结果为3(函数结束局部变量ret被释放,但&result指向的栈帧空间未被清理)
-	//Add(3, 4);							//result的内容被修改为7
-	/*int a = 1, b = 2;
-	Swap(&a, &b);
-	Swap(a, b);*/
-	/*int a = 10;
-
-	int& ra = a;
-	ra = 20;
-
-	int* pa = &a;
-	*pa = 20;*/
 int main()
 {
 	char a = 'a';
-	char& ra = a;
-	char* pa = &a;
-	cout << sizeof(ra) << endl << sizeof(pa);
+	int b = 1;
+	float c = 1.0;
+	double d = 1.2;
+	auto e = a * b + c + d;
+
+	/*int a = 1; int b = 2;
+	Add(a, b);*/
 	return 0;
+	//看回放为啥const int*
+	//const int a = 10;
+	//int* pa = (int*)&a;//&a ---> const int*
+	//*pa = 100;
+	//cout << a << endl << *pa << endl;//a在编译时被替换成常量10,其实不是宏替换但效果一样,宏替换是在预处理阶段，const是在编译阶段替换
+	//宏和const底层代码一样，为什么一个是编译阶段一个是预处理阶段
+	//例子：两个替换报错位置不同,宏在使用位置报错,const在定义时报错
+	/*
+	#define PI "3.14";
+	const char pi ="3.14";
+	b=PI*2*3;在这一行报错但式子并没有问题，原因：预处理之后PI被替换为"3.14"看不到PI了，因此在此处报错
+	b=pi*2*3;在const处报错，编译时报错
+	*/
+	//因此C++中更建议用const取代C语言的宏,因为const修饰的已经是常量,而且会进行类型检测
 }
