@@ -1,9 +1,8 @@
 #include"main.h"
-typedef char* ElemType;
 typedef struct StudentIn
 {
 	int      no;
-	ElemType name;
+	char	 name[20];
 	int      depno;
 	float	 score;
 }StudentIn;
@@ -12,8 +11,7 @@ typedef struct SListNode
 	struct StudentIn* student;
 	struct SListNode* next;
 }SListNode, * SList;
-
-/////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 void SListInit(SList* phead)
 {
 	assert(phead != NULL);
@@ -22,13 +20,14 @@ void SListInit(SList* phead)
 	s->next = NULL;
 	*phead = s;
 }
-void SListPushBack(SList* phead, int No, ElemType Name, int Depno, float Score)
+void SListPushBack(SList* phead, int No, char* Name, int Depno, float Score)
 {
 	assert(*phead != NULL);
 	SListNode* s = (SListNode*)malloc(sizeof(SListNode));
 	s->student = (StudentIn*)malloc(sizeof(StudentIn));
 	s->student->no = No;
-	s->student->name = Name;
+	memset(s->student->name, 0, sizeof(s->student->name));
+	memcpy(s->student->name, Name,strlen(Name));
 	s->student->depno = Depno;
 	s->student->score = Score;
 	s->next = NULL;
@@ -47,7 +46,71 @@ void SListShow(SList phead)
 		p = p->next;
 	}
 }
-void SListSort(SList* phead)
+void SListSortByNo(SList* phead)
+{
+	assert((*phead)->next != NULL);
+	SListNode* p = (*phead)->next;
+	SListNode* q = p->next;
+	SListNode* prev = NULL;
+	SListNode* tmp = (*phead)->next;
+	if (q == NULL)
+		return;
+	p->next = NULL;
+	while (q != NULL)
+	{
+		p = q;
+		q = q->next;
+		while (tmp != NULL && p->student->no > tmp->student->no)
+		{
+			prev = tmp;
+			tmp = tmp->next;
+		}
+		if (prev == NULL) {
+			p->next = tmp;
+			tmp = p;
+			(*phead)->next = p;
+		}
+		else {
+			p->next = tmp;
+			prev->next = p;
+		}
+		prev = NULL;
+		tmp = (*phead)->next;
+	}
+}
+void SListSortByDepon(SList* phead)
+{
+	assert((*phead)->next != NULL);
+	SListNode* p = (*phead)->next;
+	SListNode* q = p->next;
+	SListNode* prev = NULL;
+	SListNode* tmp = (*phead)->next;
+	if (q == NULL)
+		return;
+	p->next = NULL;
+	while (q != NULL)
+	{
+		p = q;
+		q = q->next;
+		while (tmp != NULL && p->student->depno > tmp->student->depno)
+		{
+			prev = tmp;
+			tmp = tmp->next;
+		}
+		if (prev == NULL) {
+			p->next = tmp;
+			tmp = p;
+			(*phead)->next = p;
+		}
+		else {
+			p->next = tmp;
+			prev->next = p;
+		}
+		prev = NULL;
+		tmp = (*phead)->next;
+	}
+}
+void SListSortByScore(SList* phead)
 {
 	assert((*phead)->next != NULL);
 	SListNode* p = (*phead)->next;
@@ -82,7 +145,7 @@ void SListSort(SList* phead)
 void SListShowByScore(SList* phead)
 {
 	assert(*phead != NULL);
-	SListSort(phead);
+	
 }
 void SListDeleByNo(SList* phead, int No)
 {
@@ -106,12 +169,16 @@ void SListShowWay(SList* phead,int way)
 	switch (way)
 	{
 	case 1:
-		SListSort(phead);
+		SListSortByNo(phead);
 		SListShow(*phead);
 		break;
 	case 2:
+		SListSortByDepon(phead);
+		SListShow(*phead);
 		break;
 	case 3:
+		SListSortByScore(phead);
+		SListShow(*phead);
 		break;
 	}
 }

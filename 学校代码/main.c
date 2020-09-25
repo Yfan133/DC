@@ -12,10 +12,10 @@ int main()
 	while (Select) 
 	{
 		printf("**********************************************\n");
-		printf("*  [0]Quit_System           [1]Push_Back     *\n");
-		printf("*  [2]Show_All_Score        [3]Show_By_No    *\n");
-		printf("*  [4]Show_By_Depon         [5]Show_By_Score *\n");
-		printf("*  [6]Dele_By_No            [7]Write_toFile  *\n");
+		printf("*  [1]Push_Back          [2]Show_By_No       *\n");
+		printf("*  [3]Show_By_Depon      [4]Show_By_Score    *\n");
+		printf("*  [5]Dele_By_No         [6]Write_to_File    *\n");
+		printf("*  [0]Quit_System                            *\n");
 		printf("**********************************************\n");
 		printf("请选择:>");
 		scanf("%d", &Select);
@@ -24,8 +24,6 @@ int main()
 		switch (Select)
 		{
 		case 1:
-			while (item != -1) 
-			{
 				printf("学号< ");
 				scanf("%d", &No);
 				printf("姓名< ");
@@ -36,25 +34,22 @@ int main()
 				scanf("%f", &Score);
 				SListPushBack(&head, No, Name, Depon, Score);
 				printf("尾部插入数据成功...\n");
-				printf("是否结束,结束输入-1,否则输入1...\n请输入<");
-				scanf("%d", &item);
-			}
 			break;
 		case 2:
-			
+			SListShowWay(&head, 1);
 			break;
 		case 3:
-			SListShowByNo(head);
+			SListShowWay(&head, 2);
 			break;
 		case 4:
-			
+			SListShowWay(&head, 3);
 			break;
 		case 5:
-			
+			printf("No:");
+			scanf("%d", &No);
+			SListDeleByNo(&head, No);
 			break;
 		case 6:
-			break;
-		case 7:
 			break;
 		}
 		system("pause");
