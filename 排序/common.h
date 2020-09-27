@@ -11,9 +11,9 @@
 
 void Swap(int* a, int* b)
 {
-	*a ^= *b;
-	*b ^= *a;
-	*a ^= *b;
+	int tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
 #endif // !_COMMON_H_
 

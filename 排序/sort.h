@@ -4,6 +4,8 @@
 //内部排序：直接在内存中排序
 //排序分类：1)按手段：插入(O(n^1.3)---O(n^2)),交换,选择(O(n^2)),归并,计数
 //			2)按时间：简单排序 o(n^2),先进排序 o(log),基数排序 o()
+//快速排序并不是单纯的快速排序，数据量小的时候用直接插入排序较好，多一点用堆排序，更多一些用快速排序较好（快排在数据量非常大的时候很高效）
+//三路划分排序
 void PrintList(int* ar, int left, int right)
 {
 	for (int i = left; i < right; ++i)
@@ -161,6 +163,62 @@ void BubbleSort_1(int* ar, int left, int right)//冒泡改进
 			quit = true;
 	}
 }
+//快速排序
+//hoare版本
+int _Partition_1(int* ar, int left, int right)
+{
+	int key = ar[left];
+	while (left < right)
+	{
+		while (left < right && ar[right] >= key)
+			right--;
+		Swap(&ar[left], &ar[right]);
+		while (left < right && ar[left] < key)
+			left++;
+		Swap(&ar[left], &ar[right]);
+	}
+	return left;
+}
+//挖坑法
+int _Partition_2(int* ar, int left, int right)
+{
+	int key = ar[left];
+	while (left < right)
+	{
+		while (left < right && ar[right] >= key)
+			right--;
+		ar[left] = ar[right];
+		while (left < right && ar[left] < key)
+			left++;
+		ar[right] = ar[left];
+	}
+	ar[left] = key;
+	return left;
+}
+//前后指针法
+int _Partition_3(int* ar, int left, int right)
+{
+	int key = ar[left];
+	while (left < right)
+	{
+		while (left < right && ar[right] >= key)
+			right--;
+		ar[left] = ar[right];
+		while (left < right && ar[left] < key)
+			left++;
+		ar[right] = ar[left];
+	}
+	ar[left] = key;
+	return left;
+}
+void QuickSort(int* ar, int left, int right)
+{
+	if (left >= right-1)
+		return;
+	int pos = _Partition_2(ar, left, right - 1);
+	QuickSort(ar, left, pos);
+	QuickSort(ar, pos + 1, right);
+}
 void TestSort(int* ar, int left, int right)
 {
 	//InsertSort(ar, left, right);
@@ -168,8 +226,9 @@ void TestSort(int* ar, int left, int right)
 	//BinInsertSort(ar, left, right);
 	//SelectSort(ar, left, right);
 	//BubbleSort(ar, left, right);
-	BubbleSort_1(ar, left, right);
+	//BubbleSort_1(ar, left, right);
 	//ShellInsert(ar, left, right);
+	QuickSort(ar, left, right);
 }
 void TestSortEfficiency()
 {
