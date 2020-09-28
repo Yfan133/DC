@@ -199,25 +199,111 @@ int _Partition_2(int* ar, int left, int right)
 int _Partition_3(int* ar, int left, int right)
 {
 	int key = ar[left];
-	while (left < right)
+	int pos = left;
+	for (int i = left + 1; i <= right; ++i)
 	{
-		while (left < right && ar[right] >= key)
-			right--;
-		ar[left] = ar[right];
-		while (left < right && ar[left] < key)
-			left++;
-		ar[right] = ar[left];
+		if (ar[i] < key)
+		{
+			++pos;
+			if (pos != i)
+				Swap(&ar[pos], &ar[i]);
+		}
 	}
-	ar[left] = key;
-	return left;
+	ar[left] = ar[pos];
+	ar[pos] = key;
+	return pos;
 }
 void QuickSort(int* ar, int left, int right)
 {
 	if (left >= right-1)
 		return;
-	int pos = _Partition_2(ar, left, right - 1);
+	int pos = _Partition_3(ar, left, right - 1);
 	QuickSort(ar, left, pos);
 	QuickSort(ar, pos + 1, right);
+}
+//归并排序(二路归并)
+void _MergeSort(int* ar, int left, int right, int* tmp)
+{
+	if (left >= right)
+		return;
+	//先分解
+	int mid = (left + right) / 2;
+	_MergeSort(ar, left, mid, tmp);
+	_MergeSort(ar, mid + 1, right, tmp);
+	//再并归
+	int begin1 = left, end1 = mid;
+	int begin2 = mid + 1, end2 = right;
+	int i = 0;
+	while (begin1 <= end1 && begin2 <= end2)
+	{
+		if (ar[begin1] <= ar[begin2])
+			tmp[i++] = ar[begin1++];
+		else
+			tmp[i++] = ar[begin2++];
+	}
+	while (begin1 <= end1)
+		tmp[i++] = ar[begin1++];
+	while (begin2 <= end2)
+		tmp[i++] = ar[begin2++];
+	memcpy(ar + left, tmp, sizeof(int) * (right - left + 1));
+}
+void MergeSort(int* ar, int left, int right)
+{
+	int n = right - left;
+	int* tmp = (int*)malloc(sizeof(int) * n);
+	assert(tmp != NULL);
+	_MergeSort(ar, left, right - 1, tmp);
+	free(tmp);
+	tmp = NULL;
+}
+//基数排序
+#include"slist.h"
+#define RADIX 10
+SList list[RADIX];	//保存3位数据
+#define K 3		//最高位3
+int GetValue(int value, int k)//获取每一位的值
+{
+	int key = 0;
+	while (k >= 0)
+	{
+		key = value % 10;
+		value /= 10;
+		--k;
+	}
+	return key;
+}
+void Contribute(int* ar, int left, int right, int k)//分发
+{
+	for (int i = left; i <= right; ++i)
+	{
+		int index = GetValue(ar[i], k);
+		SListPushBack(&list[index], ar[i]);
+	}
+}
+void Collect(int* ar)//回收
+{
+	int k = 0;
+	for (int i = 0; i < RADIX; ++i)
+	{
+		while (!IsEmpty(list[i]))
+		{
+			ar[k++] = list[i]->data;
+			SListPopFront(&list[i]);
+		}
+	}
+}
+void RadixSort(int* ar, int left, int right)
+{
+	for (int i = 0; i < RADIX; ++i)
+		SListInit(&list[i]);
+	for (int i = 0; i < K; ++i)
+	{
+		//分发
+		Contribute(ar, left, right - 1, i);
+		
+		//回收
+		Collect(ar);
+	}
 }
 void TestSort(int* ar, int left, int right)
 {
@@ -228,7 +314,9 @@ void TestSort(int* ar, int left, int right)
 	//BubbleSort(ar, left, right);
 	//BubbleSort_1(ar, left, right);
 	//ShellInsert(ar, left, right);
-	QuickSort(ar, left, right);
+	//QuickSort(ar, left, right);
+	//MergeSort(ar, left, right);
+	RadixSort(ar, left, right);
 }
 void TestSortEfficiency()
 {
@@ -241,6 +329,7 @@ void TestSortEfficiency()
 	int* a5 = (int*)malloc(sizeof(int) * n);
 	int* a6 = (int*)malloc(sizeof(int) * n);
 	int* a7 = (int*)malloc(sizeof(int) * n);
+	int* a8 = (int*)malloc(sizeof(int) * n);
 	srand(time(0));
 	for (int i = 0; i < n; ++i)
 	{
@@ -252,6 +341,7 @@ void TestSortEfficiency()
 		a5[i] = a[i];
 		a6[i] = a[i];
 		a7[i] = a[i];
+		a8[i] = a[i];
 	}
 	time_t start = clock();
 	InsertSort(a, 0, n);
@@ -288,5 +378,14 @@ void TestSortEfficiency()
 	end = clock();
 	printf("ShellInsert: %u\n", end - start);
 
+	start = clock();
+	QuickSort(a7, 0, n);
+	end = clock();
+	printf("QuickSort: %u\n", end - start);
+
+	start = clock();
+	RadixSort(a7, 0, n);
+	end = clock();
+	printf("RadixSort: %u\n", end - start);
 }
 

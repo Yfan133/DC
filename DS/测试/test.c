@@ -135,14 +135,16 @@ typedef struct student
 }student;
 int main()
 {
-    student* peter = (student*)malloc(sizeof(student));
-    memset(peter->name, 0, sizeof(peter->name));
-    FILE* pfile;
-    pfile = fopen("D:\\myfile.txt", "r+");
-    fscanf(pfile, "%d,%s,%d,%f", peter->No, peter->name,peter->depno,peter->score);
-    //fscanf(pfile, "%d,%s,%d,%f\n", peter->No, peter->name, peter->depno, peter->score);
-    fclose(pfile);
-    return 0;
+    int* ar = "acdef";
+    int* br
+    //student* peter = (student*)malloc(sizeof(student));
+    //memset(peter->name, 0, sizeof(peter->name));
+    //FILE* pfile;
+    //pfile = fopen("D:\\myfile.txt", "r+");
+    //fscanf(pfile, "%d,%s,%d,%f", peter->No, peter->name,peter->depno,peter->score);
+    ////fscanf(pfile, "%d,%s,%d,%f\n", peter->No, peter->name, peter->depno, peter->score);
+    //fclose(pfile);
+    //return 0;
     /*SListNode* phead;
     SListInit(&phead);
     SListPushBack(&phead, 1);
