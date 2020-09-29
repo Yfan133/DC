@@ -17,11 +17,11 @@
 //类：主要是对实体(对象)来进行描述的,描述实体都有哪些属性(类:成语变量)
 
 
-int main()
-{
-	int a = 10;
-	auto b = &a;
-	auto* c = &a;
-	auto& d = a;
-	return 0;
-}
+//int main()
+//{
+//	int a = 10;
+//	auto b = &a;
+//	auto* c = &a;
+//	auto& d = a;
+//	return 0;
+//}

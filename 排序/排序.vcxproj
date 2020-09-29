@@ -145,6 +145,7 @@
     <ClInclude Include="common.h" />
     <ClInclude Include="slist.h" />
     <ClInclude Include="sort.h" />
+    <ClInclude Include="stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -89,7 +89,7 @@ void ShellInsert(int* ar, int left, int right)
 	int dk = right - left;
 	while(dk > 1)
 	{
-		dk = dk / 3 + 1;
+		dk = dk / 3 + 1;			//如果写成dk/=3+1;错误
 		for (int i = left + dk; i < right; ++i)
 		{
 			if (ar[i] < ar[i - dk])
@@ -213,13 +213,45 @@ int _Partition_3(int* ar, int left, int right)
 	ar[pos] = key;
 	return pos;
 }
+#define MAXNUM 25
 void QuickSort(int* ar, int left, int right)
 {
-	if (left >= right-1)
-		return;
-	int pos = _Partition_3(ar, left, right - 1);
-	QuickSort(ar, left, pos);
-	QuickSort(ar, pos + 1, right);
+	if (right - left <= MAXNUM)
+		InsertSort(ar, left, right);
+	else
+	{
+		if (left >= right - 1)
+			return;
+		int pos = _Partition_3(ar, left, right - 1);
+		QuickSort(ar, left, pos);
+		QuickSort(ar, pos + 1, right);
+	}
+}
+#include"stack.h"
+void QuickSortNoR(int* ar, int left, int right)//不用递归实现快速排序
+{
+	SeqStack st;
+	SeqStackInit(&st);
+	SeqStackPush(&st, left);
+	SeqStackPush(&st, right);
+	while (!SeqStackIsEmpty(&st))
+	{
+		int end = SeqStackTop(&st);
+		SeqStackPop(&st);
+		int begin = SeqStackTop(&st);
+		SeqStackPop(&st);
+		int pos = _Partition_2(ar, begin, end - 1);
+		if (begin < pos - 1)
+		{
+			SeqStackPush(&st, begin);
+			SeqStackPush(&st, pos);
+		}
+		if (end > pos + 1)
+		{
+			SeqStackPush(&st, pos + 1);
+			SeqStackPush(&st, end);
+		}
+	}
 }
 //归并排序(二路归并)
 void _MergeSort(int* ar, int left, int right, int* tmp)
@@ -313,10 +345,11 @@ void TestSort(int* ar, int left, int right)
 	//SelectSort(ar, left, right);
 	//BubbleSort(ar, left, right);
 	//BubbleSort_1(ar, left, right);
-	//ShellInsert(ar, left, right);
+	ShellInsert(ar, left, right);
 	//QuickSort(ar, left, right);
 	//MergeSort(ar, left, right);
-	RadixSort(ar, left, right);
+	//RadixSort(ar, left, right);
+	//QuickSortNoR(ar, left, right);
 }
 void TestSortEfficiency()
 {

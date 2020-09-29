@@ -1,2 +1,30 @@
 ﻿  sort.cpp
+D:\vs2019file\排序\sort.h(366,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+D:\vs2019file\排序\sort.h(382,9): warning C4477: “printf”: 格式字符串“%u”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“time_t”
+D:\vs2019file\排序\sort.h(382,9): message : 请考虑在格式字符串中使用“%llu”
+D:\vs2019file\排序\sort.h(382,9): message : 请考虑在格式字符串中使用“%I64u”
+D:\vs2019file\排序\sort.h(387,9): warning C4477: “printf”: 格式字符串“%u”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“time_t”
+D:\vs2019file\排序\sort.h(387,9): message : 请考虑在格式字符串中使用“%llu”
+D:\vs2019file\排序\sort.h(387,9): message : 请考虑在格式字符串中使用“%I64u”
+D:\vs2019file\排序\sort.h(392,9): warning C4477: “printf”: 格式字符串“%u”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“time_t”
+D:\vs2019file\排序\sort.h(392,9): message : 请考虑在格式字符串中使用“%llu”
+D:\vs2019file\排序\sort.h(392,9): message : 请考虑在格式字符串中使用“%I64u”
+D:\vs2019file\排序\sort.h(397,9): warning C4477: “printf”: 格式字符串“%u”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“time_t”
+D:\vs2019file\排序\sort.h(397,9): message : 请考虑在格式字符串中使用“%llu”
+D:\vs2019file\排序\sort.h(397,9): message : 请考虑在格式字符串中使用“%I64u”
+D:\vs2019file\排序\sort.h(402,9): warning C4477: “printf”: 格式字符串“%u”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“time_t”
+D:\vs2019file\排序\sort.h(402,9): message : 请考虑在格式字符串中使用“%llu”
+D:\vs2019file\排序\sort.h(402,9): message : 请考虑在格式字符串中使用“%I64u”
+D:\vs2019file\排序\sort.h(407,9): warning C4477: “printf”: 格式字符串“%u”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“time_t”
+D:\vs2019file\排序\sort.h(407,9): message : 请考虑在格式字符串中使用“%llu”
+D:\vs2019file\排序\sort.h(407,9): message : 请考虑在格式字符串中使用“%I64u”
+D:\vs2019file\排序\sort.h(412,9): warning C4477: “printf”: 格式字符串“%u”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“time_t”
+D:\vs2019file\排序\sort.h(412,9): message : 请考虑在格式字符串中使用“%llu”
+D:\vs2019file\排序\sort.h(412,9): message : 请考虑在格式字符串中使用“%I64u”
+D:\vs2019file\排序\sort.h(417,9): warning C4477: “printf”: 格式字符串“%u”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“time_t”
+D:\vs2019file\排序\sort.h(417,9): message : 请考虑在格式字符串中使用“%llu”
+D:\vs2019file\排序\sort.h(417,9): message : 请考虑在格式字符串中使用“%I64u”
+D:\vs2019file\排序\sort.h(422,9): warning C4477: “printf”: 格式字符串“%u”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“time_t”
+D:\vs2019file\排序\sort.h(422,9): message : 请考虑在格式字符串中使用“%llu”
+D:\vs2019file\排序\sort.h(422,9): message : 请考虑在格式字符串中使用“%I64u”
   排序.vcxproj -> D:\vs2019file\排序\Debug\排序.exe
