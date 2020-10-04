@@ -299,3 +299,96 @@ public:
         return slow;
     }
 };
+5、https://leetcode-cn.com/problems/insertion-sort-list/submissions/[对链表进行插入排序]
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+
+struct ListNode* insertionSortList(struct ListNode* head)
+{
+    if(head==NULL||head->next==NULL)
+        return head;
+    struct ListNode* pre=head;
+    struct ListNode* p=pre->next;
+    pre->next=NULL;
+    while(p!=NULL)
+    {
+        pre=p;
+        p=p->next;
+        if(head->val>pre->val)
+        {
+            pre->next=head;
+            head=pre;
+        }
+        else
+        {
+            struct ListNode* pos=head;
+            while(pos->next!=NULL&&pos->next->val<pre->val)
+                pos=pos->next;
+            pre->next=pos->next;
+            pos->next=pre;
+        }
+        
+    }
+    return head;
+}
+6、https://leetcode-cn.com/problems/copy-list-with-random-pointer/description/[复制带随机指针的链表]
+/**
+ * Definition for a Node.
+ * struct Node {
+ *     int val;
+ *     struct Node *next;
+ *     struct Node *random;
+ * };
+ */
+
+struct Node* copyRandomList(struct Node* head) 
+{
+	if(head==NULL)
+        return NULL;
+    struct Node* p=head;
+    struct Node* s=NULL;
+    while(p!=NULL)
+    {
+        s=(struct Node*)malloc(sizeof(struct Node));
+        if(s==NULL)
+            return NULL;
+        s->val=p->val;
+        s->random=p->random;
+        s->next=p->next;
+        
+        p->next=s;
+        p=s->next;
+    }
+    p=head;
+    while(p!=NULL)
+    {
+        if(p->next!=NULL)
+        {
+            s=p->next;
+            if(s->random!=NULL)
+                s->random=s->random->next;
+        }
+        p=p->next;
+    }
+    struct Node* phead=head->next;
+    p=head;
+    s=p->next;
+    while(p!=NULL&&s!=NULL)
+    {
+        p->next=s->next;
+        p=p->next;
+        if(p!=NULL)
+        {
+            s->next=p->next;
+            s=s->next;
+        }
+    }
+    return phead;
+}
+7、https://leetcode-cn.com/problems/linked-list-cycle-ii/description/[环形链表]

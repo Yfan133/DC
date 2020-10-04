@@ -133,10 +133,15 @@ typedef struct student
     int depno;
     float score;
 }student;
+struct list
+{
+    int val;
+    struct list* next;
+};
 int main()
 {
-    int* ar = "acdef";
-    int* br
+    struct list* p;
+    return 0;
     //student* peter = (student*)malloc(sizeof(student));
     //memset(peter->name, 0, sizeof(peter->name));
     //FILE* pfile;

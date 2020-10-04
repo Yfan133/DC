@@ -5,7 +5,5 @@ D:\vs2019file\DS\测试\test.c(114,23): warning C4133: “=”: 从“SlistNode 
 D:\vs2019file\DS\测试\test.c(115,25): warning C4133: “=”: 从“SList”到“SlistNode *”的类型不兼容
 D:\vs2019file\DS\测试\test.c(109,1): warning C4133: “初始化”: 从“SlistNode *”到“SListNode *”的类型不兼容
 D:\vs2019file\DS\测试\test.c(126,20): warning C4133: “=”: 从“SlistNode *”到“SListNode *”的类型不兼容
-D:\vs2019file\DS\测试\test.c(142,19): warning C4477: “fscanf”: 格式字符串“%d”需要类型“int *”的参数，但可变参数 1 拥有了类型“int”
-D:\vs2019file\DS\测试\test.c(142,19): warning C4477: “fscanf”: 格式字符串“%d”需要类型“int *”的参数，但可变参数 3 拥有了类型“int”
-D:\vs2019file\DS\测试\test.c(142,19): warning C4477: “fscanf”: 格式字符串“%f”需要类型“float *”的参数，但可变参数 4 拥有了类型“double”
+D:\vs2019file\DS\测试\test.c(143,18): warning C4101: “p”: 未引用的局部变量
   测试.vcxproj -> D:\vs2019file\DS\测试\Debug\测试.exe
