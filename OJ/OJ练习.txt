@@ -392,3 +392,24 @@ struct Node* copyRandomList(struct Node* head)
     return phead;
 }
 7、https://leetcode-cn.com/problems/linked-list-cycle-ii/description/[环形链表]
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+bool hasCycle(struct ListNode *head) {
+    if(head == NULL)
+        return false;
+    struct ListNode *fast, *slow;
+    fast = slow = head;
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+        if(fast == slow)
+            return true;
+    }
+    return false;
+}
