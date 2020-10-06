@@ -138,10 +138,17 @@ struct list
     int val;
     struct list* next;
 };
+
 int main()
 {
-    struct list* p;
+    printf("%c", 58);
     return 0;
+}
+//int main()
+//{
+//    struct list* p;
+//    return 0;
+//}
     //student* peter = (student*)malloc(sizeof(student));
     //memset(peter->name, 0, sizeof(peter->name));
     //FILE* pfile;
@@ -212,5 +219,4 @@ int main()
     printf("%d,", k);
     k = fun(j, m);
     printf("%d/n", k)*/
- }
 //#pragma pack()
