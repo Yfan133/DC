@@ -139,9 +139,18 @@ struct list
     struct list* next;
 };
 
+
 int main()
 {
-    printf("%c", 58);
+    int a;
+    scanf("%d", &a);
+    int way = 1;
+    while (way <= 1000)
+    {
+        printf("%d", a / way);
+        a %= way;
+        way *= 10;
+    }
     return 0;
 }
 //int main()
