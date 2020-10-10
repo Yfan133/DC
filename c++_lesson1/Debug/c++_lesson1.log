@@ -1,2 +1,2 @@
 ﻿  929.cpp
-  c++_lesson1.vcxproj -> D:\vs2019file\c++_lesson1\Debug\c++_lesson1.exe
+D:\vs2019file\c++_lesson1\929.cpp : fatal error C1041: 无法打开程序数据库“D:\vs2019file\c++_lesson1\Debug\vc142.pdb”；如果要将多个 CL.EXE 写入同一个 .PDB 文件，请使用 /FS

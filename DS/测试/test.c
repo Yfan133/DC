@@ -140,16 +140,45 @@ struct list
 };
 
 
+int fun1(int n)
+{
+    if (n == 1)
+        return 10;
+    return 10 * fun1(n - 1);
+}
+void merge(int* A, int ASize, int m, int* B, int BSize, int n)
+{
+    int* arr = (int*)malloc(sizeof(int) * ASize);
+    int i = 0, j = 0, pos = 0;
+    while (i < m && j < n)
+    {
+        if (A[i] <= B[j])
+            arr[pos++] = A[i++];
+        else
+            arr[pos++] = B[j++];
+    }
+    if (j == n)
+        while (i < m)
+            arr[pos++] = A[i++];
+    if (i == m)
+        while (j < n)
+            arr[pos++] = B[j++];
+    pos = 0;
+    while (pos < ASize)
+    {
+        A[pos] = arr[pos];
+        pos++;
+    }
+}
+#define ¦Ð 3.1415926
 int main()
 {
-    int a;
-    scanf("%d", &a);
-    int way = 1;
-    while (way <= 1000)
+    char ch;
+    while ((ch=getchar())!= EOF)
     {
-        printf("%d", a / way);
-        a %= way;
-        way *= 10;
+        //getchar();
+        printf("%c\n", ch + 32);
+        
     }
     return 0;
 }
