@@ -1,0 +1,2 @@
+D:\vs2019file\测试2\Debug\测试2.exe
+D:\vs2019file\测试2\Debug\测试2.pdb
