@@ -1,11 +1,21 @@
 #include"main.h"
-
-
-//int main()
-//{
-//	int a = 10;
-//	auto b = &a;
-//	auto* c = &a;
-//	auto& d = a;
-//	return 0;
-//}
+class Date
+{
+public:
+	void SetDate(int year, int month, int day)
+	{
+		_year = year;
+		_month = month;
+		_day = day;
+	}
+private:
+	int _year; // Äê
+	int _month; // ÔÂ
+	int _day; // ÈÕ
+};
+int main()
+{
+	Date d1, d2;
+	d1.SetDate(2018, 5, 1);
+	return 0;
+}
