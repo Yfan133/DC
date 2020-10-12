@@ -3,24 +3,20 @@ using namespace std;
 #pragma warning (disable:4996)
 int main()
 {
-    float price, pay;
-    int month, date, coupon;
-    scanf("%f %d %d %d", &price, &month, &date, &coupon);
-    if (month == 11 && date == 11)
+    char target;
+    int sum_a = 0, sum_b = 0;
+    while ((target = getchar()) != '0')
     {
-        pay = price * 0.7;
-        if (coupon)
-            pay -= 50;
+        if (target == 'A')
+            sum_a++;
+        else if (target == 'B')
+            sum_b++;
     }
-    else if (month == 12 && date == 12)
-    {
-        pay = price * 0.8;
-        if (coupon)
-            pay -= 50;
-    }
-    if (pay < 0)
-        cout << 0.00;
+    if (sum_a > sum_b)
+        cout << 'A';
+    else if (sum_a < sum_b)
+        cout << 'B';
     else
-        cout << pay;
+        cout << 'E';
     return 0;
 }
