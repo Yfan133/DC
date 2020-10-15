@@ -3,14 +3,8 @@ using namespace std;
 #pragma warning (disable:4996)
 int main()
 {
-    char data;
-    while (scanf("%c", &data) != EOF)
-    {
-        //getchar();
-        if (data == 'A' || data == 'a' || data == 'E' || data == 'e' || data == 'I' || data == 'i' || data == 'O' || data == 'o' || data == 'U' || data == 'u')
-            cout << "Vowel" << endl;
-        else
-            cout << "Consonant" << endl;
-    }
+    float x1 = 92.0000, x2 = 22.3;
+    double x3 = 92.0000, x4 = 22.3;
+    printf("%.4f %.4lf", x1 * x2, x3 * x4);
     return 0;
 }

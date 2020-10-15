@@ -291,4 +291,28 @@ getpid()获取调用进程的标识符pid
 //代码操作：char *getenv(char *key)
 //在终端中运行的程序，父进程都是bash，也就是shell程序
 //在终端中运行一个程序，其实是shell创建了一个进程，让这个进程去调度我们要运行的程序
-//
+
+//环境变量可以1.配置系统运行环境参数 2.向子程序传递一些数据
+//环境变量一直都存在，可以在main函数参数列表中写出来，用于接收环境变量，一般嫌麻烦而省略了main函数的参数列表(不定参函数)
+//main函数的三个参数：int main(int argc, char *argv[], char *env[])
+//extern char **environ; 库中的全局变量，每个节点指向一个环境变量，但是使用时需要声明，告诉编译器有这个变量
+//课后调研：设置环境变量  setenv()/putenv()
+/*
+通过代码查看(获取)环境变量
+argc-->程序运行参数个数
+argv[]-->用于执行程序中各个环境变量的一个字符串指针数组
+./env -l -a  [./env]是第0个参数，[-l]是第一个参数，[-a]是第二个参数
+env[]用于指向程序各个环境变量的一个字符串指针数组
+1.
+int main(int argc, char *argv[], char *env[])
+{
+	int i;
+	for(i=0;env[i]!=NULL;i++)
+		printf("environment:[%s]\n",env[i]);
+}
+2.
+extern char **environ;
+int i;
+for(i=0;env[i]!=NULL;i++)
+	printf("environment:[%s]\n",env[i]);
+*/
