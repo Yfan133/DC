@@ -1,23 +1,35 @@
 #include"main.h"
 //this指针的生命周期比函数要长
-class Data
+class Date
 {
 public:
-	bool operator==(const Data& d)	//运算符重载
+	Date(int year = 1999, int month = 11, int day = 2)	//构造
+		:_year(year)
+		, _month(month)
+		, _day(day)
 	{
-		return _year == d._year &&
-			_month == d._month &&
-			_day == d._day;
+		cout << "Date(int,int,int):" << this << endl;
 	}
-	Data& operator+=(const Data& d)
+	Date(const Date& temp)								//拷贝构造
+		:_year(temp._year)
+		, _month(temp._month)
+		, _day(temp._day)
 	{
-
+		cout << "Date(const Date&):" << this << endl;
 	}
-	Data operator+(/*Data* const this,*/int days)
+	~Date()												//析构,先析构最后创建的对象
 	{
-		Data temp(*this);
-		temp._day += days;
-		return temp;
+		cout << "~Date():" << this << endl;
+	}
+	Date& operator=(const Date& temp)					//函数运算符重载
+	{
+		if (this != &temp)
+		{
+			_year = temp._year;
+			_month = temp._month;
+			_day = temp._day;
+		}
+		return *this;
 	}
 private:
 	int _year;
@@ -25,18 +37,54 @@ private:
 	int _day;
 };
 
-Data operator-(const Data& d, int days)  //全局运算符重载，全局的没有this指针，所以必须给const Data& d,类似Data* const this
-{
-	Data temp(d);
-
-}
+//Date operator-(const Date& d, int days)  //全局运算符重载，全局的没有this指针，所以必须给const Data& d,类似Data* const this
+//{
+//	Date temp(d);
+//
+//}
 //operator不能重载
 void Test()
 {
-
+	Date d1(2020, 10, 19);
+	Date d2(2020, 10, 20);
+	Date d3(d2);
+	d2 = d1;
+	//d1 = d2 = d3;			不能这样写,可以用下面方式
+	d1.operator=(d2.operator=(d3));
 }
+Date TestDate3(Date d)
+{
+	return d;
+}
+void TestDate()
+{
+	Date d1(2020, 10, 14);
+	Date d2(2020, 10, 15);
+	d1 = TestDate3(TestDate3(d2));
+}
+//int main()
+//{
+//	TestDate();
+//	return 0;
+//}
+
 int main()
 {
-	Test();
+	int data;
+	while (scanf("%d", &data) != EOF)
+	{
+		for (int i = data; i > 0; i--)
+		{
+			for (int j = 0; j <= i; j++)
+				printf("* ");
+			cout << endl;
+		}
+		for (int i = 0; i <= data; i++)
+		{
+			for (int j = 0; j <= i; j++)
+				printf("* ");
+			cout << endl;
+		}
+	}
 	return 0;
 }
