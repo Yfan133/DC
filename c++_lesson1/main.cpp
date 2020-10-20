@@ -62,29 +62,36 @@ void TestDate()
 	Date d2(2020, 10, 15);
 	d1 = TestDate3(TestDate3(d2));
 }
-//int main()
-//{
-//	TestDate();
-//	return 0;
-//}
-
 int main()
 {
-	int data;
-	while (scanf("%d", &data) != EOF)
-	{
-		for (int i = data; i > 0; i--)
-		{
-			for (int j = 0; j <= i; j++)
-				printf("* ");
-			cout << endl;
-		}
-		for (int i = 0; i <= data; i++)
-		{
-			for (int j = 0; j <= i; j++)
-				printf("* ");
-			cout << endl;
-		}
-	}
+	TestDate();
 	return 0;
 }
+//class String
+//{
+//public:
+//	String(int capicity)
+//	{
+//		_arr = (int*)malloc(sizeof(int) * capicity);
+//	}
+//	~String()
+//	{
+//		if (_arr)
+//		{
+//			free(_arr);
+//			_arr = nullptr;
+//		}
+//	}
+//private:
+//	int* _arr;
+//};
+//void Test()
+//{
+//	String d1(10);
+//	String d2 = d1;	//编译器调用拷贝构造函数，构造d2
+//}
+//int main()
+//{
+//	Test();
+//	return 0;
+//}
