@@ -37,34 +37,67 @@ private:
 	int _day;
 };
 
+class A
+{
+public:
+	A(int data)							//构造			
+		:_data(data)
+	{}
+	A(const A& temp)					//拷贝构造
+		:_data(temp._data)
+	{}
+	A& operator=(const A& temp)			//赋值运算符重载
+	{
+		if (this != &temp)
+		{
+			_data = temp._data;
+		}
+		return *this;
+	}
+	A operator++(int)
+	{
+		A temp(*this);
+		_data++;
+		return temp;
+	}
+	A& operator++()
+	{
+		_data++;
+		return *this;
+	}
+private:
+	int _data;
+};
 //Date operator-(const Date& d, int days)  //全局运算符重载，全局的没有this指针，所以必须给const Data& d,类似Data* const this
 //{
 //	Date temp(d);
 //
 //}
 //operator不能重载
-void Test()
-{
-	Date d1(2020, 10, 19);
-	Date d2(2020, 10, 20);
-	Date d3(d2);
-	d2 = d1;
-	//d1 = d2 = d3;			不能这样写,可以用下面方式
-	d1.operator=(d2.operator=(d3));
-}
-Date TestDate3(Date d)
-{
-	return d;
-}
-void TestDate()
-{
-	Date d1(2020, 10, 14);
-	Date d2(2020, 10, 15);
-	d1 = TestDate3(TestDate3(d2));
-}
+//void Test()
+//{
+//	Date d1(2020, 10, 19);
+//	Date d2(2020, 10, 20);
+//	Date d3(d2);
+//	d2 = d1;
+//	//d1 = d2 = d3;			不能这样写,可以用下面方式
+//	d1.operator=(d2.operator=(d3));
+//}
+//Date TestDate3(Date d)
+//{
+//	return d;
+//}
+//void TestDate()
+//{
+//	Date d1(2020, 10, 14);
+//	Date d2(2020, 10, 15);
+//	d1 = TestDate3(TestDate3(d2));
+//}
 int main()
 {
-	TestDate();
+	A d1(10);
+	A d2(20);
+	d2 = d1++;
 	return 0;
 }
 //class String
