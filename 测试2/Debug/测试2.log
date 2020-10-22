@@ -1,3 +1,2 @@
 ﻿  main.cpp
-D:\vs2019file\测试2\main.cpp(6,34): warning C4305: “初始化”: 从“double”到“float”截断
   测试2.vcxproj -> D:\vs2019file\测试2\Debug\测试2.exe
