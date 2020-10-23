@@ -171,17 +171,7 @@ void merge(int* A, int ASize, int m, int* B, int BSize, int n)
     }
 }
 #define ¦Ð 3.1415926
-int main()
-{
-    char ch;
-    while ((ch=getchar())!= EOF)
-    {
-        //getchar();
-        printf("%c\n", ch + 32);
-        
-    }
-    return 0;
-}
+
 //int main()
 //{
 //    struct list* p;
