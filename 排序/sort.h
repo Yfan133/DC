@@ -59,7 +59,7 @@ void BinInsertSort(int* ar, int left, int right)
 	for (int i = left + 1; i < right; ++i)
 	{
 		int tmp = ar[i];
-		int target = i;
+		int pos = i;
 		int low = left;
 		int high = i - 1;
 		while(low <= high)
@@ -70,10 +70,10 @@ void BinInsertSort(int* ar, int left, int right)
 			else
 				low = mid + 1;
 		}
-		while (target > low)
+		while (pos > low)
 		{
-			ar[target] = ar[target - 1];
-			--target;
+			ar[pos] = ar[pos - 1];
+			--pos;
 		}
 		ar[low] = tmp;
 	}
