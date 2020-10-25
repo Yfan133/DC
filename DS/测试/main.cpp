@@ -54,14 +54,45 @@ bool exist(char** board, int boardSize, int* boardColSize, char* word)
     }
     return false;
 }
+/*
+二级指针指向二维字符数组方法：    
+    char* str1=(char*)"ABC";
+    char* str2=(char*)"DEF";
+    char* op[2]={str1,str2};
+    char** p=str;
+    void fun(char** p){}
+    往函数传二级指针时fun(op);
+用一维指针数组指向二维数组：
+    char arr[3][5]= { "ABCE","SFCS","ADEE" };
+    char(*p)[5] = &arr[0];
+
+    p[0][0]可实现二维数组访问
+字符数组初始化方法：
+char arr[]="ABCDEF";
+教训：有一个数组arr，对它arr[]相当于降了一个*，对它取地址&arr相当于升了一个*
+*/
+void fun(char** pp)
+{
+    printf("666%c",pp[1][2]);
+}
+void fun1(char(*p)[5])
+{
+    printf("666%c", p[1][2]);
+}
 int main()
 {
+    
     char arr[3][5]= { "ABCE","SFCS","ADEE" };
-    char** p = c;
+    char(*p)[5] = &arr[0];  //p++相当于加了一行，换到第二行去了(SFCS)
+    char* op = (char*)"ABCE";
+    char* oo = (char*)"SFCS";
+    char* str[2]={ op,oo };
+    char** pp = str;        //pp++相当于加了一行，换到第二行去了(SFCS)
+    pp++;
     char word[] = "ABBCCED";
-    int b = 4;
-    int* a = &b;
-    exist(p, 3, a, word);
+    char a = p[1][0];
+    fun(str);
+    fun1(&arr[0]);
    /* char* s = (char*)malloc(sizeof(char) * 5);
     s[0] = 'a';
     s[1] = ' ';
