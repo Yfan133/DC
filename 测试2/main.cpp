@@ -79,16 +79,56 @@ SQNode* SQcreat()
     SQInit(p);
     return p;
 }
+
+
+class A
+{
+public:
+    A()
+    {
+        _count++;
+        _sum += _count;
+    }
+    static void Reset()
+    {
+        _count = 0;
+        _sum = 0;
+    }
+    static int GetSum()
+    {
+        return _sum;
+    }
+    static int _count;
+    static int _sum;
+};
+int A::_count = 0;
+int A::_sum = 0;
+int Sum_Solution1(int n)
+{
+    int sum = n;
+    n && (sum += Sum_Solution1(n - 1));
+    return sum;
+}
+int Sum_Solution(int n)
+{
+    A a;
+    n > 1 && Sum_Solution(n - 1);
+    return a._sum;
+}
 int main()
 {
-    SQNode* p = SQcreat();
-    SQPush(p, 1);
-    SQPush(p, 2);
-    SQPop(p);
-    SQPop(p);
-    SQPop(p);
-    return 0;
+    printf("%d", Sum_Solution(3));
 }
+//int main()
+//{
+//    SQNode* p = SQcreat();
+//    SQPush(p, 1);
+//    SQPush(p, 2);
+//    SQPop(p);
+//    SQPop(p);
+//    SQPop(p);
+//    return 0;
+//}
 
 //#define CapacityInit 2
 //typedef struct Stack
