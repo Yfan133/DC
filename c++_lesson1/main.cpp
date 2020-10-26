@@ -25,12 +25,36 @@
 //	int a = Sum_Solution(5);
 //	return 0;
 //}
+class A
+{
+public:
+	A()
+		:p(new int(10))
+	{
+		cout << "¹¹ÔìA()" << endl;
+	}
+	~A()
+	{
+		delete p;
+		cout << "Îö¹¹A()" << endl;
+	}
+	void print()
+	{
+		printf("666\n");
+	}
+
+	int* p;
+};
 int main()
 {
-	int year = 0, month = 0, day = 0;
-	while (cin >> year >> month >> day)
-	{
-		cout << year << "-" << month << "-" << day << endl;
-	}
+	A* a = (A*)malloc(sizeof(A));
+	int data = 10;
+	a->p = &data;
+	a->print();
+	free(a);
+	//new(a) A();
+	//a->~A();
+	//free(a);
+	//delete a;
 	return 0;
 }

@@ -83,7 +83,7 @@ int main()
 {
     
     char arr[3][5]= { "ABCE","SFCS","ADEE" };
-    char(*p)[5] = &arr[0];  //p++相当于加了一行，换到第二行去了(SFCS)
+    char(*p)[5] = arr;  //p++相当于加了一行，换到第二行去了(SFCS)
     char* op = (char*)"ABCE";
     char* oo = (char*)"SFCS";
     char* str[2]={ op,oo };
@@ -92,7 +92,7 @@ int main()
     char word[] = "ABBCCED";
     char a = p[1][0];
     fun(str);
-    fun1(&arr[0]);
+    fun1(arr);
    /* char* s = (char*)malloc(sizeof(char) * 5);
     s[0] = 'a';
     s[1] = ' ';

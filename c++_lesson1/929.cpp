@@ -87,4 +87,47 @@ calloc(num,size);并会给内容初始化成0
 realloc(*p,size);将p指向的堆空间大小调整到size字节(扩容或缩小)，如果p指针为NULL，则realloc功能和malloc相似，直接申请空间并返回void*
 若扩容很大，且新空间会占用其它未释放的内存空间，编译器会新开一个空间并把原空间数据拷贝过来，然后释放原空间
 
+C++中用malloc在堆上创建的对象，并不是真正的对象因为没有调用构造函数，而是与类空间大小相同的，在free是
+C++动态内存管理方式：申请单个类型的空间：new   释放单个类型空间：delete
+					 申请连续类型的空间：new[] 释放连续类型空间：delete[]
+int* p1=new int(10);					 用10初始化
+int* p2=new int[10]{1,2,3,4,5,6,7,8,9,0};申请连续空间并初始化
+delete p1；A
+delete[] p2;
+new是C++中的一个关键字，malloc是库函数内的，因此要头文件引入
+new不需要判空，malloc必须判空
+Test* p1=new Test(100);					//会调用构造函数(类内成员t被初始化成1)，因此生成的为对象
+Test* p2=(Test*)malloc(sizeof(Test));	//不会调用(类内成员t没有初始化)，因此只能称为和类类型大小相同的堆空间
+delete p1;								//会调用析构函数，清理
+free(p2);								//只会释放开辟的空间
+new/delete  new/delete[]  malloc/free  一定要匹配使用，否则程序可能会崩溃或者内存泄露
+写博客有没有内存泄露，如何检测内存泄露在哪，为什么自定义类型(类)没有匹配使用会崩溃
+new的工作方式：
+1.申请堆空间（为什么new申请的空间不用判空）
+	调用void* operator new(size_t size)申请空间--->内部使用了malloc，失败(内存资源占满)则调用_callnewh(size)函数(用户提供的解决内存不足措施)，用户实现了执行，失败则抛出bad_alloc异常
+2.调用构造函数对申请的空间进行初始化
+delete的工作方式：
+1.调用析构函数，清理对象中资源
+2.调用void operator delete(void* p);内部使用--->free()
+new T[N]
+1.申请空间，调用void* operator new[](size_t size);申请空间
+operator new[] --->内部调用了operator new函数
+2.调用N次构造函数，初始化N个对象
+delete[] p
+1.调用N次析构函数对p所指向的空间资源进行清理
+2.调用void operator delete[](void* p)对p所指向的空间进行释放 --->内部调用了operator delete函数
+
+问题：既调用了析构函数释放空间，又调用delete释放空间，不会因为释放同一空间两次而崩溃吗？
+析构是清理N个对象内部的资源(成员变量)，delete是释放空间（清除对象）
+
+new/delete 是关键字，也可以成为操作符--new 操作符
+在C++中一般不对四个operator进行重载，除非特殊要求
+用malloc开辟的类空间不能称为对象，可以用new(pt) Test(100)去用构造初始化
+但不能直接用free()释放
+pt->~Test();
+free(pt);		先析构再释放就可以完成工作了
+也就是说new 相当于---> 先malloc 再new+构造
+	 delete 相当于---> 先析构   再free()
 */
+//快捷键alt+鼠标拖动
+//编译器中显示指针空间,监视p1,10
