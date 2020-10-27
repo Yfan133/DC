@@ -29,32 +29,30 @@ class A
 {
 public:
 	A()
-		:p(new int(10))
 	{
-		cout << "构造A()" << endl;
+		_count++;
 	}
-	~A()
+	A(const A& tmp)
 	{
-		delete p;
-		cout << "析构A()" << endl;
+		_count++;
 	}
-	void print()
-	{
-		printf("666\n");
-	}
-
-	int* p;
+	//static int GetACount()	//static修饰的成员函数
+	//{
+	//	return _count;
+	//}
+//private:
+	static int _count;		//static修饰的成员变量
 };
+int A::_count = 0;
 int main()
 {
-	A* a = (A*)malloc(sizeof(A));
-	int data = 10;
-	a->p = &data;
-	a->print();
-	free(a);
-	//new(a) A();
-	//a->~A();
-	//free(a);
-	//delete a;
+	cout << A::_count << endl;
+	//cout << A::GetACount() << endl;
+	A a1, a2;
+	A a3(a1);
+	cout << A::_count << endl;
+	cout << a1._count << endl;
+	//cout << A::GetACount() << endl;
+	cout << sizeof(A);
 	return 0;
 }

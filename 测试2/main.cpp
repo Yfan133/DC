@@ -115,9 +115,37 @@ int Sum_Solution(int n)
     n > 1 && Sum_Solution(n - 1);
     return a._sum;
 }
+void Move(int* A, int* B, int* ASize, int* BSize)
+{
+    B[*BSize] = A[*ASize - 1];
+    (*ASize)--;
+    (*BSize)++;
+}
+void Han(int n, int* A, int* B, int* C, int* ASize, int* BSize, int* CSize)
+{
+    if (n == 1)
+        Move(A, C, ASize, CSize);
+    else 
+    {
+        Han(n - 1, A, C, B, ASize, CSize, BSize);
+        Move(A, C, ASize, CSize);
+        Han(n - 1, B, A, C, BSize, ASize, CSize);
+    }
+}
+void hanota(int* A, int ASize, int* B, int BSize, int* C, int CSize)
+{
+    Han(ASize, A, B, C, &ASize, &BSize, &CSize);
+}
 int main()
 {
-    printf("%d", Sum_Solution(3));
+    int* A = new int[3]{ 2,1,0 };
+    int* B = new int[3];
+    int* C = new int[3];
+    int Asize = 3;
+    int Bsize = 0;
+    int Csize = 0;
+    hanota(A, Asize, B, Bsize, C, Csize);
+    return 0;
 }
 //int main()
 //{

@@ -79,20 +79,49 @@ void fun1(char(*p)[5])
 {
     printf("666%c", p[1][2]);
 }
+int getPosCount(int target)
+{
+    int count = 0;
+    while (target)
+    {
+        count += (target % 10);
+        target /= 10;
+    }
+    return count;
+}
+int movingCount(int m, int n, int k)
+{
+    int count = 0;
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if ((getPosCount(i) + getPosCount(j)) > k)
+                break;
+            count++;
+        }
+    }
+    return count;
+}
+void fun(char(*p)[5])
+{
+    p[0][0]='O';
+}
 int main()
 {
-    
     char arr[3][5]= { "ABCE","SFCS","ADEE" };
     char(*p)[5] = arr;  //p++相当于加了一行，换到第二行去了(SFCS)
-    char* op = (char*)"ABCE";
-    char* oo = (char*)"SFCS";
-    char* str[2]={ op,oo };
-    char** pp = str;        //pp++相当于加了一行，换到第二行去了(SFCS)
-    pp++;
-    char word[] = "ABBCCED";
-    char a = p[1][0];
-    fun(str);
-    fun1(arr);
+    fun(p);
+    return 0;
+    //char* op = (char*)"ABCE";
+    //char* oo = (char*)"SFCS";
+    //char* str[2]={ op,oo };
+    //char** pp = str;        //pp++相当于加了一行，换到第二行去了(SFCS)
+    //pp++;
+    //char word[] = "ABBCCED";
+    //char a = p[1][0];
+    //fun(str);
+    //fun1(arr);
    /* char* s = (char*)malloc(sizeof(char) * 5);
     s[0] = 'a';
     s[1] = ' ';
