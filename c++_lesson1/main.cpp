@@ -5,54 +5,52 @@
 //public:
 //	A()
 //	{
-//		_sum += _count;
-//		++_count;
+//		_count++;
 //	}
-//	static int _count;
-//	static int _sum;
+//	A(const A& tmp)
+//	{
+//		_count++;
+//	}
+//	//static int GetACount()	//static修饰的成员函数
+//	//{
+//	//	return _count;
+//	//}
+////private:
+//	static int _count;		//static修饰的成员变量
 //};
 //int A::_count = 0;
-//int A::_sum = 0;
-//
-//int Sum_Solution(int n) 
-//{
-//	A d1;
-//	n > 0 && Sum_Solution(n - 1);
-//	return d1._sum;
-//}
 //int main()
 //{
-//	int a = Sum_Solution(5);
+//	cout << A::_count << endl;
+//	//cout << A::GetACount() << endl;
+//	A a1, a2;
+//	A a3(a1);
+//	cout << A::_count << endl;
+//	cout << a1._count << endl;
+//	//cout << A::GetACount() << endl;
+//	cout << sizeof(A);
 //	return 0;
 //}
-class A
+int* printNumbers(int n, int* returnSize)
 {
-public:
-	A()
-	{
-		_count++;
-	}
-	A(const A& tmp)
-	{
-		_count++;
-	}
-	//static int GetACount()	//static修饰的成员函数
-	//{
-	//	return _count;
-	//}
-//private:
-	static int _count;		//static修饰的成员变量
-};
-int A::_count = 0;
+    *returnSize = 1;
+    int* arr = (int*)malloc(4);
+    for (int i = 0; i < n; i++)
+    {
+        (*returnSize) *= 10;
+        arr = (int*)realloc(arr, sizeof(int) * (*returnSize));
+        for (int i = (*returnSize) / 10; i < *returnSize; i++)
+        {
+            arr[i - 1] = i;
+        }
+    }
+    (*returnSize) -= 1;
+    return arr;
+}
 int main()
 {
-	cout << A::_count << endl;
-	//cout << A::GetACount() << endl;
-	A a1, a2;
-	A a3(a1);
-	cout << A::_count << endl;
-	cout << a1._count << endl;
-	//cout << A::GetACount() << endl;
-	cout << sizeof(A);
-	return 0;
+    int a = 3;
+    int size;
+    int* p = printNumbers(a, &size);
+
 }

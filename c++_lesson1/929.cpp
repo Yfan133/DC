@@ -20,9 +20,8 @@ Data(int year = 1900, int month = 1, int day = 1)
 1.必须在构造函数初始化列表位置进行初始化的成员：引用类型的成员，const类型的成员，A中包含B的对象，并且B只具有非全缺省构造函数
 2.初始化顺序必须和声明时，成员变量的顺序一致
 
-
+static修饰的成员变量在程序开始执行就被创建出来了，识别类时就创建出来，static具有文件作用域，必须在类外进行初始化
 不创建对象访问静态成员变量:cout<<Date::_count<<endl; (->等价于) cout<<d1._count<<endl;
-
 count一般设置为private
 那怎么在类外调用count：static int GetCount(){return _count;}  静态成员函数
 通过调用成员函数Date::GetCount();返回count
@@ -48,6 +47,7 @@ cout<<d1;   -> operator(_cout,d1);
 friend ostream& operator<<(ostream& _cout,const Date& d);
 友元函数可以访问类的私有和受保护成员
 友元函数不是类的成员函数
+友元函数是在类外的函数所以没有this指针
 友元类不是相互的，也不具有传递性
 内部类和外部类没有关系
 sizeof(外部类)大小跟内部类没关系
