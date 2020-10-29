@@ -20,21 +20,8 @@ Data(int year = 1900, int month = 1, int day = 1)
 1.必须在构造函数初始化列表位置进行初始化的成员：引用类型的成员，const类型的成员，A中包含B的对象，并且B只具有非全缺省构造函数
 2.初始化顺序必须和声明时，成员变量的顺序一致
 
-static修饰的成员变量在程序开始执行就被创建出来了，识别类时就创建出来，static具有文件作用域，必须在类外进行初始化
-不创建对象访问静态成员变量:cout<<Date::_count<<endl; (->等价于) cout<<d1._count<<endl;
-count一般设置为private
-那怎么在类外调用count：static int GetCount(){return _count;}  静态成员函数
-通过调用成员函数Date::GetCount();返回count
-静态成员函数内没有隐藏的this指针，因此函数体内不能有非静态成员变量和成员函数(普通成员变量在成员函数内访问都是通过this指针)
-静态成员函数默认调用约定_cdecl	默认调用约定_thiscall
-静态成员函数内不能访问非静态的，但非静态成员函数内可以访问静态的
 
-输出运算符<<重载后调用是反的，因为第一个参数为隐藏的this指针，因此不能重载为成员函数，左操作数和右操作数
-void operator<<(Date* const this,ostream& _cout)
-{
-	_cout<<_year;
-}
-d1<<cout;  -> d1.operator(cout);
+
 运算符重载为全局函数
 ostream& operator<<(ostream& _cout,const Date& d)
 {
