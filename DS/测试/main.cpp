@@ -2,8 +2,8 @@
 using namespace std;
 
 
-int main()
-{
-	char arr[] = "asd";
-	return 0;
-}
+//int main()
+//{
+//	char arr[] = "asd";
+//	return 0;
+//}

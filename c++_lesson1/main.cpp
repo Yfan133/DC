@@ -1,28 +1,29 @@
 #include"main.h"
 //this指针的生命周期比函数要长
-class A
+
+class Date
 {
 public:
-	A(int data)				//构造函数
+	Date(int year, int month,int day,int time)
+		:_year(year)
+		,_month(month)
+		,_day(day)
+		,_time(time)
 	{
-		_data = data;
+		/*_year = year;
+		_month = month;
+		_day = day;
+		_time = time;*/
 	}
-	ostream& operator<<(ostream& _cout)const	//在类内重载<<操作符，cout是右操作数，隐藏的this为左操作数
-	{
-		cout << _data;
-		return _cout;
-	}
-	int _data;
+
+private:
+	int _year;
+	int _month;
+	const int _day;
+	int& _time;
 };
-ostream& operator<<(ostream& _cout,const A& tmp)
-{
-	cout << tmp._data;
-	return _cout;
-}
 int main()
 {
-	A a1(1);
-	cout << a1 << 1 << endl << a1;
-	a1 << cout;
+	Date A(2020, 10, 30, 10);
 	return 0;
 }

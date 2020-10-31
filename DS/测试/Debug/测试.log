@@ -1,2 +1,35 @@
-﻿  main.cpp
-  测试.vcxproj -> D:\vs2019file\DS\测试\Debug\测试.exe
+﻿  test.c
+D:\vs2019file\DS\测试\test.c(12,5): error C2061: 语法错误: 标识符“LinkQueueNode”
+D:\vs2019file\DS\测试\test.c(13,1): error C2059: 语法错误:“}”
+D:\vs2019file\DS\测试\test.c(16,5): error C2061: 语法错误: 标识符“LinkQueueNode”
+D:\vs2019file\DS\测试\test.c(17,18): error C2143: 语法错误: 缺少“{”(在“*”的前面)
+D:\vs2019file\DS\测试\test.c(18,1): error C2059: 语法错误:“}”
+D:\vs2019file\DS\测试\test.c(19,25): error C2143: 语法错误: 缺少“)”(在“*”的前面)
+D:\vs2019file\DS\测试\test.c(19,25): error C2143: 语法错误: 缺少“{”(在“*”的前面)
+D:\vs2019file\DS\测试\test.c(19,28): error C2059: 语法错误:“)”
+D:\vs2019file\DS\测试\test.c(20,1): error C2054: 在“Q”之后应输入“(”
+D:\vs2019file\DS\测试\test.c(24,23): error C2143: 语法错误: 缺少“)”(在“*”的前面)
+D:\vs2019file\DS\测试\test.c(24,23): error C2143: 语法错误: 缺少“{”(在“*”的前面)
+D:\vs2019file\DS\测试\test.c(24,43): error C2059: 语法错误:“类型”
+D:\vs2019file\DS\测试\test.c(24,46): error C2059: 语法错误:“)”
+D:\vs2019file\DS\测试\test.c(40,36): error C2143: 语法错误: 缺少“)”(在“*”的前面)
+D:\vs2019file\DS\测试\test.c(40,36): error C2143: 语法错误: 缺少“{”(在“*”的前面)
+D:\vs2019file\DS\测试\test.c(40,39): error C2059: 语法错误:“)”
+D:\vs2019file\DS\测试\test.c(41,1): error C2054: 在“Q”之后应输入“(”
+D:\vs2019file\DS\测试\test.c(57,26): error C2143: 语法错误: 缺少“)”(在“*”的前面)
+D:\vs2019file\DS\测试\test.c(57,26): error C2143: 语法错误: 缺少“{”(在“*”的前面)
+D:\vs2019file\DS\测试\test.c(57,29): error C2059: 语法错误:“)”
+D:\vs2019file\DS\测试\test.c(58,1): error C2054: 在“Q”之后应输入“(”
+D:\vs2019file\DS\测试\test.c(62,32): error C2143: 语法错误: 缺少“)”(在“*”的前面)
+D:\vs2019file\DS\测试\test.c(62,32): error C2143: 语法错误: 缺少“{”(在“*”的前面)
+D:\vs2019file\DS\测试\test.c(62,36): error C2059: 语法错误:“)”
+D:\vs2019file\DS\测试\test.c(63,1): error C2054: 在“pq”之后应输入“(”
+D:\vs2019file\DS\测试\test.c(77,19): error C2065: “LinkQueue”: 未声明的标识符
+D:\vs2019file\DS\测试\test.c(77,19): error C2146: 语法错误: 缺少“;”(在标识符“Q”的前面)
+D:\vs2019file\DS\测试\test.c(78,18): warning C4013: “QueueInit”未定义；假设外部返回 int
+D:\vs2019file\DS\测试\test.c(79,16): warning C4013: “QueueEn”未定义；假设外部返回 int
+D:\vs2019file\DS\测试\test.c(80,27): warning C4013: “QueueEmpty”未定义；假设外部返回 int
+D:\vs2019file\DS\测试\test.c(82,35): warning C4013: “QueuePop”未定义；假设外部返回 int
+D:\vs2019file\DS\测试\test.c(85,28): warning C4013: “LinkQueueEn”未定义；假设外部返回 int
+D:\vs2019file\DS\测试\test.c(89,25): warning C4013: “LinkQueueDestroy”未定义；假设外部返回 int
+D:\vs2019file\DS\测试\test.c(82,1): warning C4047: “初始化”:“TreeNode *”与“int”的间接级别不同
