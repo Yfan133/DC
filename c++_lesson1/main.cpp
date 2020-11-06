@@ -58,21 +58,8 @@
 //}
 int main()
 {
-	string s1("asdfc");
-	char* p = (char*)s1.c_str();
-	*p = 'p';
-	cout << s1.rfind('c');
-	printf("%d", sizeof(s1));
-	s1.clear();
-	string s2 = "ABCD";
-	string s3(10, 'a');
-	string s4(s1);
-	string s5 = s1;
-	cout << s1.size() << endl;
-	cout << s1.length() << endl;
-	cout << s1.capacity() << endl;
-	cout << s1.empty() << endl;
-	cout << s1.size() << endl;
+	string s("asdf");
+	s.erase(s.begin());	
 	return 0;
 }
 

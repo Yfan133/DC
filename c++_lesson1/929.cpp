@@ -192,5 +192,7 @@ substr：从某个位置开始截取后面n个字符串（子字符串）
 erase
 问题：再C语言中"qwer"是const类型的字符常量，为什么这里可以直接传
 个人猜测：编译器会强转成char*类型
-
+循环接收一行
+while（getline（cin，s））；
+while（cin>>s）；
 */
