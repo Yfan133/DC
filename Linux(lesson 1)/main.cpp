@@ -702,56 +702,119 @@ key(标识符) shmid(操作句柄) 拥有者 权限 空间大小 附加进程数量 状态
 
 进程信号，信号概念，产生，注册，注销，捕捉处理，自定义信号处理函数
 概念：
+	查看信号列表：kill -l
 	1.信号是一个软件中断，打断当前正在运行的进程，让该进程去处理信号的事件
 	2.信号的种类：
 		1-31：非可靠信号，当前信号可能会丢失(例：多个2号信号进入，可能只处理一个2号信号) 
 		34-64可靠信号，该信号不会丢失
 	3.信号产生：
 	硬件产生：ctrl + c (退出一个进程)：SIGINT(2号信号)，这是发送给前台进程的。
-			  ctrl + Z：SIGTSTP（20）
-			  ctrl + |：SIGQUIT（3），会产生核心转储文件coredump
+			  ctrl + Z：SIGTSTP（20号信号）
+			  ctrl + |：SIGQUIT（3号信号），会产生核心转储文件coredump
 			  核心转储：core dumped，存储程序崩溃之后错误的原因
-		执行并查看：gdb 可执行程序 coredump文件
+		执行并查看：gdb+可执行程序+coredump文件
 		产生coredump文件条件：
 			1.ulimit -a中没有限制coredump文件大小，且磁盘空间大小够用
-			2.崩溃条件：解引用空指针，内存访问越界，且越界的位置别的进程正在占用，崩溃就会收到（11号信号），并产生coredump
-			3.崩溃条件：多次free释放空间（6号信号），free（NULL）不会崩溃
+			2.崩溃条件：解引用空指针，内存访问越界，且越界的位置别的进程正在占用，崩溃就会收到（11号信号SIGSEGV），并产生coredump
+			3.崩溃条件：多次free释放空间（6号信号SIGABRT），free（NULL）不会崩溃
 	软件产生信号：
-		int kill(pid_t pid,int signo)或在bash中输入kill -2+pid
+		int kill(pid_t pid,int signo)或在bash中输入kill -信号种类+pid
 		例：kill(getpid(),2);给当前进程发送一个2号信号，2号信号中断
 			pid：进程标识符
-			sig：信号
-		abort函数：调用这个函数就会收到6号信号(double free)，底层封装了kill(getpid(),6);
+			signo：信号种类
+		abort(pid_t pid)函数：当进程调用到这个函数时就会收到6号信号SIGABRT(double free)，底层封装了kill(getpid(),6);
 		man手册中2是系统调用函数，3是库函数
 		echo &？：上次如何退出进程的
 		alarm定时器函数，alarm(int sec) SIGALRM 时间到了结束进程
 		11号信号：SIGSEGV 段错误信号--->可能访问了空指针或访问越界
 	4.信号注册的过程
 	1个位图(sig[]的比特位)+1个sigqueue队列
-	创建进程，task_struct结构体下有一个struct sigpending结构体叫pending，里有一个双向链表list和signal结构体保存着数组sig[]，数组中的都是无符号长整型，每个比特位都表示不同的信号。
-	sig数组不是按照long类型来使用的，而是按照bit位来使用，每一个信号在该位图中都存在一个比特位对应，为1则表示收到信号
+	内核源码：find /usr -name sched.h，找到一个include\linux里面有task_struct结构体，ctrl+]可以跳转，task_struct大概在1300行
+	创建一个进程则task_struct结构体下有一个struct sigpending结构体叫pending，里有一个双向链表list和sigset_t结构体内部，保存着数组sig[]，数组中的都是无符号长整型long，每个比特位都表示不同的信号。
+	位图sig数组不是按照long类型来使用的，而是按照bit位来使用，每一个信号在该位图中都存在一个比特位对应，为1则表示收到信号
+	位图sig数组里有两个元素，代表两个无符号长整型一共128位，从0位开始，但没有0号信号
 	非可靠信号：1-31
-		第一次：更改sig位图中对应的比特位为1
-		第二次：先检查发现sig位图中对应bit位已经置1了，则丢弃第二次的信号，不增加sigqueue队列节点
+		第一次：更改数组sig[]位图中对应的比特位为1，在sigqueue队列中增加sigqueue节点
+		第二次：先更改数组sig[]位图中对应的比特位为1，原本也为1，检查发现sigqueue中已经有该类型的信号了，则丢弃第二次的信号，不增加sigqueue队列节点。
 	可靠信号：34-64，
 		第一次：更改sig位图当中对应的比特位为1，并且在sigqueue队列中增加对应信号的节点
-		第二次：当多次收到同样信号时，先判断sig位图当中的比特位是否为1，若为1则不更改，并且在sigqueue队列中增加对应信号的节点
+		第二次：当多次收到同样信号时，先更改数组sig[]位图中对应的比特位为1，原本也为1，并且在sigqueue队列中增加对应信号的节点
 	5.信号注销的过程
 	非可靠信号：
-		将sigqueue队列当中的节点去除，并将sig位图中对应比特位置0，操作系统是拿着节点去处理信号的
+		操作系统先将sigqueue队列当中信号对应的节点拿出来，再将sig位图中对应比特位置0，操作系统是拿着节点去处理信号的。
+		注意：这里是先删除再拿着信号节点去处理信号
 	可靠信号：
-		先检查sigqueue队列是否还有同类型节点，有则不改变sig位图对应比特位的1，等待下次处理。无则直接将sig位图对应比特位置0
+		先将sigqueue队列当中信号对应的节点拿出来，再检查sigqueue队列是否还有同类型节点，有则不改变sig位图对应比特位的1，等待下次处理，无则直接将sig位图对应比特位置0。再拿着sigqueue节点处理信号
 	6.信号捕捉处理
 	信号有哪些处理方式？
 	默认处理方式：SIG_DEL --->执行一个动作(函数)
-	忽略：SIG_IGN --->不干任何事
-		为什么僵尸进程？-->子进程退出时，会给父进程发送一个SIGCHID信号，而操作系统对SIGCHID的信号处理方式为忽略
-	自定义：程序员自字定义信号的处理函数
-	signal(int signum，sighd)
-		signum:需要自定义哪一个信号
-		handler：函数指针类型的参数
-*/
+	忽略处理：SIG_IGN --->不干任何事
+		为什么僵尸进程？-->子进程退出时，会给父进程发送一个SIGCHLD（17号）信号，而操作系统对SIGCHLD的信号处理方式为忽略
+		面试技巧：僵尸进程 扯到--> 信号(忽略处理)--->继续扯到 解决(进程等待、信号处理、信号各种点等等)
+	自定义处理：自定义信号的处理函数
+	sighandler_t signal(int signum，sighandler)：内部也调用了sigaction函数
+			signum:需要自定义哪一个信号
+			handler：函数指针类型的参数，函数名，该函数可以改变信号处理的方式
+	程序运行完这条语句之后，就会记录下，当收到signum号信号时，调用该函数(称为回调函数)
+	返回值：sighandler_t：函数指针
+	详细说如何更改信号的处理方式：
+	task_struct下有一个结构体指针struct sighand_struct叫*sighand，struct sighand_struct结构体里有结构体数组action[_NSIG]，数组中每个都是struct k_sigaction结构体，里又有结构体struct action，里有_sighandler _t sa_handler。_sighandler _t就是函数指针void(*sighandler_t)(int)类型，sa_handler原始指向--->默认处理方式SIG_DEL，修改之后就指向我们自定义的函数了
+	signal修改的就是函数指针sa_handler的指向
+	问题：多个信号修改，怎么都会有效呢？？
+	比特位！！！多个信号所表示的比特位不同，只要在相应比特位中改成1就行了
+	并不是！
+	那是谁调用的回调函数呢？
+	目前这段代码只有一个主线程，主线程执行main函数中的，当收到2号信号时，执行回调函数的是内核执行流。
 
+	sigaction函数
+	int sigaction(int signum,const struct sigaction *act,struct sigaction *oldact)
+	signum：待更改信号的值
+	struct sigaction
+	{
+		void  (*sa_handler)(int):函数指针，保存了内核对信号的处理方式
+		void  (*as_sigaction)(int,siginfo_t*,void*);
+		sigset_t sa_mask 保存的是当进程在处理信号时，收到的信号
+		int   sa_flags:要怎么修改
+			SA_SIGINFO，操作系统在处理信号时，调用的就是sa_sigaction函数指针中保存的值
+			0在处理信号的时候，调用sa_handler保存的函数
+		void  (*sa_restorer)(void)预留信息		
+	}
+	act：将信号处理函数改变为act
+	oldact：信号之前的处理方式
+	位图操作函数：
+	int sigemptyset(sigset_t *set);将位图的所有比特位清0
+	int sigfillset(sigset_t *set);将位图的所有比特位置1
+	int sigaddset(sigset_t *set,int signo);
+	int sigdelset(sigset_t *set,int signo);
+	int sigismember(const sigset_t *set,int signo);
+	问题：getchar（）接收了一个什么？
+	7.信号的捕捉流程：
+	用户态：
+		
+	内核态：
+	
+	什么时候进入到内核空间：调用系统调用函数的时候，或者调用库函数的时候（库函数底层大多数都是系统调用函数）
+
+	8.信号阻塞 9号信号不能阻塞
+	sigset_t位图，操作系统中有两个位图1.sig[] 2.block[]
+	注意：
+		1.信号的阻塞并不会干扰信号的注册，该注册还是注册，只不过当前进程不能立即处理了
+		2.当block位图中对应信号的bit位为1，则表示进程阻塞该信号，当进程进入到内核空间，准备返回用户空间时，调用do_signal函数，这时候不会立即去处理该信号了，之后会处理
+	
+	int sigprocmask(int how,const sigset_t *set,sigset_t *oldset);
+	how：告诉sigprocmask函数应该做什么操作
+	SIG_BLOCK：设置某个信号为阻塞
+		block(new)=block(old)|set -->按位与
+	SIG_UNBLOCK：解除对某个信号的阻塞
+		block(new)=block(old)&(~set) -->先取反在按位或
+	SIG_SETMASK：替换阻塞位图
+		block(new)=set
+	set：用来设置阻塞位图
+	oldset：原来的阻塞位图
+
+
+
+*/
 int main()
 {
 	return 0;
