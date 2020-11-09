@@ -750,6 +750,7 @@ key(标识符) shmid(操作句柄) 拥有者 权限 空间大小 附加进程数量 状态
 	默认处理方式：SIG_DEL --->执行一个动作(函数)
 	忽略处理：SIG_IGN --->不干任何事
 		为什么僵尸进程？-->子进程退出时，会给父进程发送一个SIGCHLD（17号）信号，而操作系统对SIGCHLD的信号处理方式为忽略
+		僵尸进程无法通过发送kill信号结束！！！
 		面试技巧：僵尸进程 扯到--> 信号(忽略处理)--->继续扯到 解决(进程等待、信号处理、信号各种点等等)
 	自定义处理：自定义信号的处理函数
 	sighandler_t signal(int signum，sighandler)：内部也调用了sigaction函数
@@ -766,20 +767,20 @@ key(标识符) shmid(操作句柄) 拥有者 权限 空间大小 附加进程数量 状态
 	那是谁调用的回调函数呢？
 	目前这段代码只有一个主线程，主线程执行main函数中的，当收到2号信号时，执行回调函数的是内核执行流。
 
-	sigaction函数
+	sigaction函数更改信号为自定义处理方式
 	int sigaction(int signum,const struct sigaction *act,struct sigaction *oldact)
 	signum：待更改信号的值
-	struct sigaction
+	struct sigaction 结构体
 	{
 		void  (*sa_handler)(int):函数指针，保存了内核对信号的处理方式
 		void  (*as_sigaction)(int,siginfo_t*,void*);
 		sigset_t sa_mask 保存的是当进程在处理信号时，收到的信号
-		int   sa_flags:要怎么修改
-			SA_SIGINFO，操作系统在处理信号时，调用的就是sa_sigaction函数指针中保存的值
-			0在处理信号的时候，调用sa_handler保存的函数
+		int   sa_flags:要怎么修改 ，一般为0
+			值为SA_SIGINFO时，操作系统在处理信号时，调用的就是sa_sigaction函数指针中保存的值
+			0在处理信号的时候，调用sa_handler函数指针中保存的函数
 		void  (*sa_restorer)(void)预留信息		
 	}
-	act：将信号处理函数改变为act
+	act：将信号处理函数改为act，act.sa_mask的初始化状态必须是全零，意思是没有收到信号
 	oldact：信号之前的处理方式
 	位图操作函数：
 	int sigemptyset(sigset_t *set);将位图的所有比特位清0
@@ -787,21 +788,37 @@ key(标识符) shmid(操作句柄) 拥有者 权限 空间大小 附加进程数量 状态
 	int sigaddset(sigset_t *set,int signo);
 	int sigdelset(sigset_t *set,int signo);
 	int sigismember(const sigset_t *set,int signo);
-	问题：getchar（）接收了一个什么？
-	7.信号的捕捉流程：
-	用户态：
-		
-	内核态：
-	
-	什么时候进入到内核空间：调用系统调用函数的时候，或者调用库函数的时候（库函数底层大多数都是系统调用函数）
+	问题：在另一个SSH中输入kill -3+pid程序直接运行了起来，getchar（）接收了一个什么？
+	getchar()目的是让程序阻塞，接收什么并不用关心
+	总结：
+	1.signal是改函数指针sa_handler,内部也调用了sigaction函数
+	2.sigaction函数是改sigaction结构体
 
-	8.信号阻塞 9号信号不能阻塞
+	7.信号的捕捉流程：
+	画一个图
+	用户态：执行自己定义的代码
+		sys_return函数：返回用户空间
+	内核态：执行操作系统接口或库函数封装的系统调用函数
+		1.要从内核空间到用户空间必定调用do_signal函数：检查有没有收到信号，有：则去处理信号，无，则返回用户空间。处理完成之后继续调用do_signal函数
+		2.若有收到信号，1)该信号处理方式是系统调用(例：默认处理方式)，则继续在内核中处理 2)该信号处理方式是我们自定义的，则跳转到用户空间处理信号，处理完成之后返回内核调用sig_return函数。
+	也就是整个流程分两种：1.执行完系统调用函数之后，调用do_signal函数检查是否收到信号，无则返回
+						  2.有则看是哪种处理方式，1.自定义 2.系统调用
+	什么时候进入到内核空间：调用系统调用函数的时候，或者调用库函数的时候（库函数底层大多数都是系统调用函数）
+	
+	8.信号阻塞 block （9号SIGKILL信号和19号SIGSTOP不能阻塞）
+	信号未决(sigpending)：信号从产生到递达之间的状态，递达是实际执行信号处理的动作
+	问题：未决信号集就是我们所说的sigqueue队列吗？？？
+	是的，未决信号集就是sigqueue队列，但为什么不是先进先出？
 	sigset_t位图，操作系统中有两个位图1.sig[] 2.block[]
+	被阻塞的信号产生时，将保持在未决状态，直到进程解除对此信号的阻塞，才能执行递达动作
+	阻塞和忽略是不同的概念，阻塞：是在递达之前的动作，阻止递达，忽略：是递达之后可选择的动作
+	在task_struct结构体里，有三个信号标志位block阻塞，pending未决，handler函数指针
 	注意：
 		1.信号的阻塞并不会干扰信号的注册，该注册还是注册，只不过当前进程不能立即处理了
 		2.当block位图中对应信号的bit位为1，则表示进程阻塞该信号，当进程进入到内核空间，准备返回用户空间时，调用do_signal函数，这时候不会立即去处理该信号了，之后会处理
 	
 	int sigprocmask(int how,const sigset_t *set,sigset_t *oldset);
+	读取或更改进程的信号屏蔽字（阻塞信号集）
 	how：告诉sigprocmask函数应该做什么操作
 	SIG_BLOCK：设置某个信号为阻塞
 		block(new)=block(old)|set -->按位与
