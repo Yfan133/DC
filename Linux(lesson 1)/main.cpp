@@ -730,15 +730,13 @@ key(标识符) shmid(操作句柄) 拥有者 权限 空间大小 附加进程数量 状态
 	4.信号注册的过程
 	1个位图(sig[]的比特位)+1个sigqueue队列
 	内核源码：find /usr -name sched.h，找到一个include\linux里面有task_struct结构体，ctrl+]可以跳转，task_struct大概在1300行
-	创建一个进程则task_struct结构体下有一个struct sigpending结构体叫pending，里有一个双向链表list和sigset_t结构体内部，保存着数组sig[]，数组中的都是无符号长整型long，每个比特位都表示不同的信号。
+	创建一个进程则task_struct结构体下有一个struct sigpending结构体叫pending，里有一个双向链表list和sigset_t(位图)结构体内部，保存着数组sig[]，数组中的都是无符号长整型long，每个比特位都表示不同的信号。
 	位图sig数组不是按照long类型来使用的，而是按照bit位来使用，每一个信号在该位图中都存在一个比特位对应，为1则表示收到信号
 	位图sig数组里有两个元素，代表两个无符号长整型一共128位，从0位开始，但没有0号信号
 	非可靠信号：1-31
-		第一次：更改数组sig[]位图中对应的比特位为1，在sigqueue队列中增加sigqueue节点
-		第二次：先更改数组sig[]位图中对应的比特位为1，原本也为1，检查发现sigqueue中已经有该类型的信号了，则丢弃第二次的信号，不增加sigqueue队列节点。
+		更改数组sig[]位图中对应的比特位为1，在sigqueue队列中增加sigqueue节点，多次收到同类型信号时，检查发现sigset_t位图中该比特位已经置1了，则丢弃第二次的信号，不增加sigqueue队列节点。
 	可靠信号：34-64，
-		第一次：更改sig位图当中对应的比特位为1，并且在sigqueue队列中增加对应信号的节点
-		第二次：当多次收到同样信号时，先更改数组sig[]位图中对应的比特位为1，原本也为1，并且在sigqueue队列中增加对应信号的节点
+		更改sig位图当中对应的比特位为1，并且在sigqueue队列中增加对应信号的节点，当多次收到同样信号时，则再次在sigqueue队列中增加对应信号的节点
 	5.信号注销的过程
 	非可靠信号：
 		操作系统先将sigqueue队列当中信号对应的节点拿出来，再将sig位图中对应比特位置0，操作系统是拿着节点去处理信号的。
@@ -753,33 +751,37 @@ key(标识符) shmid(操作句柄) 拥有者 权限 空间大小 附加进程数量 状态
 		僵尸进程无法通过发送kill信号结束！！！
 		面试技巧：僵尸进程 扯到--> 信号(忽略处理)--->继续扯到 解决(进程等待、信号处理、信号各种点等等)
 	自定义处理：自定义信号的处理函数
-	sighandler_t signal(int signum，sighandler)：内部也调用了sigaction函数
+1）	sighandler_t signal(int signum，sighandler)：内部也调用了sigaction函数
 			signum:需要自定义哪一个信号
 			handler：函数指针类型的参数，函数名，该函数可以改变信号处理的方式
 	程序运行完这条语句之后，就会记录下，当收到signum号信号时，调用该函数(称为回调函数)
 	返回值：sighandler_t：函数指针
-	详细说如何更改信号的处理方式：
-	task_struct下有一个结构体指针struct sighand_struct叫*sighand，struct sighand_struct结构体里有结构体数组action[_NSIG]，数组中每个都是struct k_sigaction结构体，里又有结构体struct action，里有_sighandler _t sa_handler。_sighandler _t就是函数指针void(*sighandler_t)(int)类型，sa_handler原始指向--->默认处理方式SIG_DEL，修改之后就指向我们自定义的函数了
-	signal修改的就是函数指针sa_handler的指向
-	问题：多个信号修改，怎么都会有效呢？？
-	比特位！！！多个信号所表示的比特位不同，只要在相应比特位中改成1就行了
-	并不是！
-	那是谁调用的回调函数呢？
-	目前这段代码只有一个主线程，主线程执行main函数中的，当收到2号信号时，执行回调函数的是内核执行流。
 
-	sigaction函数更改信号为自定义处理方式
-	int sigaction(int signum,const struct sigaction *act,struct sigaction *oldact)
-	signum：待更改信号的值
+	详细说自定义信号处理流程：
+	task_struct下有一个结构体指针struct sighand_struct，该结构体里有结构体数组action[]，数组中每个都是struct k_sigaction结构体（这些结构体对应了每一个信号的处理逻辑），里又有结构体struct action sa，里有_sighandler _t类型的元素，这个sighandler_t是一个函数指针类型。_sighandler _t就是函数指针void(*sighandler_t)(int)类型，sa_handler原始指向--->默认处理方式SIG_DEL，修改之后就指向我们自定义的函数了
+	操作系统默认对信号的处理：
+	当sigset_t位图中收到某个信号则相应比特位被置为1，操作系统处理该信号时，就会从PCB(task_struct)中寻找sighand_struct这个结构体，从而找到sa_handler函数指针，操作系统会通过函数指针保存的地址来调用函数
+	自定义信号处理函数
+	signal修改的就是函数指针sa_handler保存的函数地址，这样操作系统在处理信号时，通过sa_handler地址就能调用我们自定义的函数
 	struct sigaction 结构体
 	{
 		void  (*sa_handler)(int):函数指针，保存了内核对信号的处理方式
-		void  (*as_sigaction)(int,siginfo_t*,void*);
-		sigset_t sa_mask 保存的是当进程在处理信号时，收到的信号
+		void  (*as_sigaction)(int,siginfo_t*,void*);要搭配sa_flags使用，为SA_SIGINFO是调用该函数地址
+		sigset_t sa_mask 保存的是当进程在处理信号时，收到的信号，也就是位图
 		int   sa_flags:要怎么修改 ，一般为0
 			值为SA_SIGINFO时，操作系统在处理信号时，调用的就是sa_sigaction函数指针中保存的值
 			0在处理信号的时候，调用sa_handler函数指针中保存的函数
-		void  (*sa_restorer)(void)预留信息		
+		void  (*sa_restorer)(void)预留信息
 	}
+	问题：signal函数进行信号修改，怎么都会有效呢？？
+	谁保存了，这几个信号产生时调用handler所指函数，的信息呢？
+	那是谁调用的回调函数呢？
+	目前这段代码只有一个主线程，主线程执行main函数中的，当收到2号信号时，执行回调函数的是内核执行流。
+	signal是内核在执行的，当收到信号时，打断当前的执行流，去执行内核中的执行流
+
+2） sigaction函数更改信号为自定义处理方式，sigaction结构体里都是以sa_开头的，因此这个结构体叫sa，全称struct sigaction sa
+	int sigaction(int signum,const struct sigaction *act,struct sigaction *oldact)
+	signum：待更改信号的值
 	act：将信号处理函数改为act，act.sa_mask的初始化状态必须是全零，意思是没有收到信号
 	oldact：信号之前的处理方式
 	位图操作函数：
@@ -799,11 +801,12 @@ key(标识符) shmid(操作句柄) 拥有者 权限 空间大小 附加进程数量 状态
 	用户态：执行自己定义的代码
 		sys_return函数：返回用户空间
 	内核态：执行操作系统接口或库函数封装的系统调用函数
-		1.要从内核空间到用户空间必定调用do_signal函数：检查有没有收到信号，有：则去处理信号，无，则返回用户空间。处理完成之后继续调用do_signal函数
-		2.若有收到信号，1)该信号处理方式是系统调用(例：默认处理方式)，则继续在内核中处理 2)该信号处理方式是我们自定义的，则跳转到用户空间处理信号，处理完成之后返回内核调用sig_return函数。
+		1.要从内核空间到用户空间必定调用do_signal函数：检查(pending中的位图)有没有收到信号，有：则去处理信号，无，则调用sys_return函数返回用户空间。处理完成之后继续调用do_signal函数检查
+		2.若有收到信号，1)该信号处理方式是系统调用(例：默认处理方式)，则继续在内核中处理 2)该信号处理方式是我们自定义的，则跳转到用户空间处理信号，处理完成之后调用sig_return函数返回内核，继续调用do_signal检查。
 	也就是整个流程分两种：1.执行完系统调用函数之后，调用do_signal函数检查是否收到信号，无则返回
 						  2.有则看是哪种处理方式，1.自定义 2.系统调用
 	什么时候进入到内核空间：调用系统调用函数的时候，或者调用库函数的时候（库函数底层大多数都是系统调用函数）
+	free(NULL)不会崩溃，因为NULL在底层是0
 	
 	8.信号阻塞 block （9号SIGKILL信号和19号SIGSTOP不能阻塞）
 	信号未决(sigpending)：信号从产生到递达之间的状态，递达是实际执行信号处理的动作
