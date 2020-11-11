@@ -1,15 +1,50 @@
 #include<iostream>
 #include<string>
 using namespace std;
+#pragma warning(disable:4996)
+//class A
+//{
+//public:
+//	A(const char* ptr = "")
+//	{
+//		_str = new char[strlen(ptr) + 1];
+//		strcpy(_str, ptr);
+//	}
+//	void resize(size_t n)
+//	{
+//		char* tmp = new char[n];
+//		strcpy(tmp, _str);
+//		delete[] _str;
+//		_str = tmp;
+//	}
+//	~A()
+//	{
+//		if (_str)
+//		{
+//			delete[] _str;
+//			_str = nullptr;
+//		}
+//	}
+//private:
+//	char* _str;
+//};
+//int main()
+//{
+//	char* a = new char[5];
+//	a[0] = 'q';
+//	a[1] = 'w';
+//	a[2] = 'e';
+//	a[3] = 'r';
+//	a[4] = '\0';
+//	char* b = (char*)"asdf";
+//	char* c=new char[9];
+//	strcpy(c, a);
+//	strcat(c + 4, b);
+//	delete[] a;
+//
+//	return 0;
+//}
 
-int main()
-{
-	string s("abcde");
-	string s1;
-	string s2;
-	s1 = s.substr(2, s.size());
-	return 0;
-}
 //void Test(void* t)
 //{
 //	cout << "void*" << endl;
