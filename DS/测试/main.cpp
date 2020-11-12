@@ -44,7 +44,14 @@ using namespace std;
 //
 //	return 0;
 //}
+int main()
+{
 
+	int i = 0;
+	int* p = &i;
+	p = (char*)p;
+	return 0;
+}
 //void Test(void* t)
 //{
 //	cout << "void*" << endl;
