@@ -44,13 +44,19 @@ using namespace std;
 //
 //	return 0;
 //}
+int lastRemaining(int n, int m)
+{
+    int f = 0;
+    for (int i = 2; i != n + 1; ++i)
+    {
+        f = (m + f) % i;
+    }
+    return f;
+}
 int main()
 {
-
-	int i = 0;
-	int* p = &i;
-	p = (char*)p;
-	return 0;
+    lastRemaining(5, 3);
+    return 0;
 }
 //void Test(void* t)
 //{
