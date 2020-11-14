@@ -290,7 +290,9 @@ namespace bit
 		//修改
 		void push_back(char ch)
 		{
-			if (_size == _capacity)
+			if (_capacity == 0)
+				reserve(15);
+			else if (_size == _capacity)
 				reserve(_capacity * 2);
 			_str[_size++] = ch;
 			_str[_size] = '\0';
@@ -327,16 +329,75 @@ namespace bit
 			_capacity = _size;
 			return *this;*/
 		}
+		string& insert(int pos, const char* ch)
+		{
+			int len = strlen(ch);
+			char* tmp = (char*)malloc(_size + len + 1);
+			strcpy(tmp, _str);
+			strcpy(tmp + pos, ch);
+			strcpy(tmp + pos + len, _str + pos);
+			_size += len;
+			_capacity = _size;
+			delete[] _str;
+			_str = tmp;
+			return *this;
+		}
+		iterator erase(iterator pos)
+		{
+
+		}
+		string& clear()					//清空，只需要将有效元素的个数清0，并且让_str[0]='\0'
+		{
+			_size = 0;
+			_str[0] = '\0';
+		}
+		///////////////////////////////////////////////////////////////////
+		///特殊操作
+		const char* c_str()const		//这里直接返回的_str的地址，因此操作这个地址就相当于操作string 字符串
+		{
+			return _str;
+		}
+		size_t find(char ch, size_t pos = 0)				//查找
+		{
+			while (pos < _size)
+			{
+				if (_str[pos] == ch)
+					return pos;
+				pos++;
+			}
+			return npos;
+		}
+		size_t rfind(char ch, size_t pos = npos)			//反向查找，若不传pos，则pos默认的属性为npos
+		{
+			int cur = pos == npos ? _size - 1 : pos;
+			while (cur >= 0)
+			{
+				if (_str[cur] == ch)
+					return cur;
+				cur--;
+			}
+			return npos;
+		}
+		string substr(size_t pos, size_t n = npos)
+		{
+			n = n == npos ? _size : n;
+			string s;
+			while (pos <= n)
+				s.push_back(_str[pos++]);
+			return s;
+		}
 	private: 
 		char* _str;
 		size_t _size;
 		size_t _capacity;
+		static size_t npos;
 	};
+	size_t string::npos = -1;
 }
 int main()
 {
 	bit::string p("qwer");
-	bit::string p1("asdf");
-	p += p1;
+	bit::string p1("addf");
+	bit::string s = p.substr(0, 2);
 	return 0;
 }
