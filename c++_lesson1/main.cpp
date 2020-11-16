@@ -378,7 +378,7 @@ namespace bit
 			}
 			return npos;
 		}
-		string substr(size_t pos, size_t n = npos)
+		string substr(size_t pos, size_t n = npos)	//这里错了，是从pos开始截取n个字符
 		{
 			n = n == npos ? _size : n;
 			string s;
