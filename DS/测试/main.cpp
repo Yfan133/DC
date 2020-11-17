@@ -44,11 +44,45 @@ using namespace std;
 //
 //	return 0;
 //}
+#include<vector>
+int singleNumber(vector<int>& nums)
+{
+    int bitSum[32] = { 0 };
+     //统计每一位1的个数
+     for(int i = 0; i < nums.size(); i ++)
+     {
+         int bitMask = 1; //向左移位  & 
+         for(int j = 31; j >= 0; j --)
+         {
+             if(nums[i] & bitMask)//bit == 1
+                 bitSum[j] += 1;//%3
+             bitMask = bitMask << 1;//1——》  10   100 1000
+         }
+     }
+
+     int res = 0;
+
+     for(int i = 0; i < 32; i ++)
+     {
+         res = res << 1;
+         res += bitSum[i] % 3;
+     }
+
+     return res;
+}
+class A
+{
+public:
+    A(int a)
+    {
+
+    }
+
+};
 int main()
 {
-	string a("qwer");
-	string b=a.substr(1,0);
-	return 0;
+    A* p = new A(1);
+    return 0;
 }
 //void Test(void* t)
 //{
