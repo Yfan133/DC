@@ -1,6 +1,8 @@
 #include<iostream>
 #include<assert.h>
 #include<string.h>
+#include<vector>
+#include<queue>
 using namespace std;
 #pragma warning (disable:4996)
 //template<class T>
@@ -396,8 +398,10 @@ namespace bit
 }
 int main()
 {
-	bit::string p("qwer");
+	vector<vector<int>> ar(3, vector<int>{1,2,3});
+
+	/*bit::string p("qwer");
 	bit::string p1("addf");
-	bit::string s = p.substr(0, 2);
+	bit::string s = p.substr(0, 2);*/
 	return 0;
 }

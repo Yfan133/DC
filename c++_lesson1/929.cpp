@@ -211,6 +211,7 @@ push_back()/+=/
 2.其它方式
 erase()/clear()/swap()...
 如何解决：在使用前给迭代器重新赋值
+
 OJ中循环输入：
 cin>>遇到空格就会停止接收
 多行输入：getline(cin,str);
@@ -218,5 +219,54 @@ cin>>遇到空格就会停止接收
 解决浅拷贝引起的double free：
 1.深拷贝：传统版，现代版
 2.写时拷贝：浅拷贝的基础上，其中对象销毁或者修改时，给修改的对象新开辟一块空间
+*/
+/*
+为什么把vector和string分开，vector也是任何类型数据都可以放？
+个人猜测：1.字符串默认要给'\0'，这是规定的，而vector放整型数据不需要'\0'
+		  2.string里面封装了对strlen,strcpy等各种接口需要'\0'
+vector底层：start、finish、end_of_storage
+迭代器iterator底层就是指针，一般用两个itrator配合使用，意思是一段数据。
+vector<int> v5(array,array+sizeof(array)/sizeof(array[0]));
+vector<int> v7{1,2,3,4,5};
+
+遍历方式：
+1.for(auto it:ar)
+2.vector<int>::iterator it=ar.begin()
+	while(it!=ar.end())		//end是最后一个位置的后面，非法位置
+	{
+		++it;				//对于迭代器一般都要前置++
+	}
+3.for(int i=0;i<ar.size();++i)
+怎么用指针就怎么用迭代器，因此又一次说明迭代器就是指针
+容量操作：
+	size(),capacity(),empty()
+	resize(n，data)；将有效元素设置为size个，多的用num赋值
+		1.n <= size; 将vector有效元素个数缩小为n
+		2.n>size；多的用num赋值
+			扩容方式：开辟新空间，拷贝元素，释放旧空间
+	注意：若没有给data，默认给0。string是给\0
+	reserve(newcapacity)；
+		new>old：扩大容量
+		old>new：则容量不变
+		string里面若缩小到>=15,则容量不变，<15则缩小
+元素操作
+0.front(),back()：这两个接口返回的是引用，而begin()，end()返回的是迭代器(地址)
+1.vector的扩容机制：vs1.5倍，Linux2倍
+2.在使用vector和string时一定要先把容量设置好，避免一边插入一边扩容，降低效率
+3.push_back()的插入机制是拷贝一份，如果是类对象则拷贝构造一份
+4.insert(iterator， nums，data)；在iterator的位置插入。为什么要用迭代器呢？？
+  erase(iterator_1，iterator_2)；
+修改操作：
+	swap()交换两个vector的机制？？
+
+面试：迭代器失效原因：
+vector的迭代器失效：本质是：指针失效-->指针如果指向一段非法的空间(该空间已经被释放了)
+1.可能导致扩容的resize(),
+2.用erase()删除之后,it失效。
+vs里面规定迭代器指向的被释放，该迭代器就失效了，其实可能有效
+解决：在有可能引起迭代器失效的位置之后，重新给迭代器赋值
+代码：使用迭代器将vector的元素都删除，erase的返回值是迭代器，且是删除位置的后面那个位置的迭代器
+
+vector二维数组用法：vector<vector<int>> ar(5,vector<int>(5,{}))
 
 */
