@@ -398,8 +398,6 @@ namespace bit
 }
 int main()
 {
-	vector<vector<int>> ar(3, vector<int>{1,2,3});
-
 	/*bit::string p("qwer");
 	bit::string p1("addf");
 	bit::string s = p.substr(0, 2);*/
