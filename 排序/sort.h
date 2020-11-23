@@ -92,17 +92,15 @@ void ShellInsert(int* ar, int left, int right)
 		dk = dk / 3 + 1;			//如果写成dk/=3+1;错误
 		for (int i = left + dk; i < right; ++i)
 		{
-			if (ar[i] < ar[i - dk])
+			int tmp = ar[i];			
+			int end = i - dk;
+			//int end = i;				//尽量不要这样写，效率变低了
+			while (end >= left && ar[end] > tmp)
 			{
-				int tmp = ar[i];
-				int end = i;
-				while (end >= left && ar[end - dk] > tmp)
-				{
-					ar[end] = ar[end - dk];
-					end -= dk;
-				}
-				ar[end] = tmp;
+				ar[end + dk] = ar[end];
+				end -= dk;
 			}
+			ar[end + dk] = tmp;
 		}
 	}
 }
@@ -130,6 +128,8 @@ void HeapSort(int* ar, int left, int right)
 {
 
 }
+//////////////////////////////////////////////////////////////////////////////
+//交换排序
 //冒泡排序
 void BubbleSort(int* ar, int left, int right)
 {

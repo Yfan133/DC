@@ -2,7 +2,7 @@
 #include<string>
 #include<vector>
 #include<queue>
-#include<stack>
+//#include<stack>
 using namespace std;
 #pragma warning(disable:4996)
 //int Quick(vector<int>& arr, int left, int right)
@@ -19,10 +19,27 @@ using namespace std;
 //	QuickSort(arr, 0, arr.size());
 //	return 0;
 //}
+void fun(int a[], char b[]) //这里是char*和int*
+{
+    a[0] = 2;
+    b[0] = 'w';
+    printf("%d %s", a[0], b);
+}
+class A
+{
+    unsigned a : 29;
+    //unsigned b : 11;
+    //unsigned c : 4;
+    //unsigned d : 29;
+    char index;
+};
 int main()
 {
-    stack<int> a;
-    a.push(1);
+    string ar("qwerasdf");
+    string br;
     
+    br +=ar.substr(4);
+    ar.erase(2, 3);
+
     return 0;
 }
