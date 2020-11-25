@@ -1,4 +1,10 @@
 ﻿  main.cpp
-D:\vs2019file\c++_lesson1\main.cpp(283,4): warning C4018: “<”: 有符号/无符号不匹配
-D:\vs2019file\c++_lesson1\main.cpp(288,4): warning C4018: “<”: 有符号/无符号不匹配
-  c++_lesson1.vcxproj -> D:\vs2019file\c++_lesson1\Debug\c++_lesson1.exe
+D:\vs2019file\c++_lesson1\vc.h(142,1): error C2660: “bit::vector<int>::swap”: 函数不接受 2 个参数
+D:\vs2019file\c++_lesson1\vc.h(140,8): message : 参见“bit::vector<int>::swap”的声明
+D:\vs2019file\c++_lesson1\vc.h(141): message : 在编译 类 模板 成员函数“void bit::vector<int>::swap(bit::vector<int> &)”时
+D:\vs2019file\c++_lesson1\main.cpp(16): message : 查看对正在编译的函数 模板 实例化“void bit::vector<int>::swap(bit::vector<int> &)”的引用
+D:\vs2019file\c++_lesson1\main.cpp(7): message : 查看对正在编译的 类 模板 实例化“bit::vector<int>”的引用
+D:\vs2019file\c++_lesson1\vc.h(143,1): error C2660: “bit::vector<int>::swap”: 函数不接受 2 个参数
+D:\vs2019file\c++_lesson1\vc.h(140,8): message : 参见“bit::vector<int>::swap”的声明
+D:\vs2019file\c++_lesson1\vc.h(144,1): error C2660: “bit::vector<int>::swap”: 函数不接受 2 个参数
+D:\vs2019file\c++_lesson1\vc.h(140,8): message : 参见“bit::vector<int>::swap”的声明

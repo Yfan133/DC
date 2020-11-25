@@ -26,5 +26,14 @@
     <ClInclude Include="main.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="vc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="st.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MTstr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
