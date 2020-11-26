@@ -19,40 +19,46 @@ using namespace std;
 //	QuickSort(arr, 0, arr.size());
 //	return 0;
 //}
-
-    vector<double> dicesProbability(int n)
-    {
-        int dp[15][70];
-        memset(dp, 0, sizeof(dp));
-        for (int i = 1; i <= 6; i++) {
-            dp[1][i] = 1;
-        }
-        for (int i = 2; i <= n; i++)               //n=2
-        {
-            for (int j = i; j <= 6 * i; j++)         //从2开始到12结束。
-            {
-                for (int cur = 1; cur <= 6; cur++)
-                {
-                    if (j - cur <= 0)
-                    {
-                        break;
-                    }
-                    dp[i][j] += dp[i - 1][j - cur];
-                }
-            }
-        }
-        int all = pow(6, n);
-        vector<double> ret;
-        for (int i = n; i <= 6 * n; i++) 
-        {
-            ret.push_back(dp[n][i] * 1.0 / all);
-        }
-        return ret;
-    }
-
-int main()
+#include<assert.h>
+typedef char BinTreeElemType;
+typedef struct BinTreeNode
 {
-    dicesProbability(2);
-    return 0;
+	BinTreeElemType data;
+	struct BinTreeNode* leftChild;
+	struct BinTreeNode* rightChild;
+}BinTreeNode;
+
+typedef BinTreeNode* BinTree;
+
+//二叉树的创建
+void BinTreeInit(BinTree* t);
+BinTree BinTreeCreate_1();
+void BinTreeInit(BinTree* t)  //BinTreeNode**t;
+{
+	*t = NULL;
 }
 
+BinTree BinTreeCreate_1()
+{
+	BinTreeElemType item;
+	scanf("%c", &item);
+	if (item == '#')
+		return NULL;
+	else
+	{
+		BinTreeNode* t = (BinTreeNode*)malloc(sizeof(BinTreeNode));
+		assert(t != NULL);
+		t->data = item;
+		t->leftChild = BinTreeCreate_1();
+		t->rightChild = BinTreeCreate_1();
+		return t;
+	}
+}
+void main()
+{
+	const char* str = "ABC##DE##F##G#H##";
+	BinTree bt;
+	BinTreeInit(&bt);
+	bt = BinTreeCreate_1();
+	return;
+}
