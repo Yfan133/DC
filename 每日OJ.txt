@@ -1,0 +1,192 @@
+2020-10-21
+数组中重复的数字：https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/
+	解法：
+	1.hash表，创建一个新数组，把对应大小的数放到相应下标并给该位置赋1，检测该位置是否为1
+	2.原地hash，如果该数的大小不是当前位置i，则交换两数位置，检测数的大小位置是否和该数相等，注意该数本来就在大小的下标位置应该排除(i!=nums[i])
+	经验：哈希表可以对数据进行分类存储，提高查找效率
+二维数组的查找：https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/
+	解法：
+	1.从右上角开始，每个位置左边的数都小于，右边的数都大于
+	2.对每一列进行二分查找，直到找到我们要的数
+	经验：函数参数为二级指针，传参传二级指针即可
+2020-10-22
+替换空格：https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/
+	解法：
+	1.新创建一个数组指针，大小为s的三倍，从头开始遇到空格则替换成%20
+	2.原地修改数组，先遍历数组记录有多少空格，在扩容，倒着给自己赋值
+	经验：malloc扩容后原数据丢失，应该创建一个新的用memcpy拷贝过去，realloc可以直接给空间扩容并且不改变内容
+	教训：在oj中数组最后都要赋值为'\0'
+从尾到头打印链表：https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/
+	解法：
+	1.第一遍遍历链表记录有多少节点，然后创建一个数组，给数组倒着赋值
+	2.用一个栈来存放数据，然后出栈到一个数组
+	3.递归，先递归到最后一个节点，返回时依次入数组
+	经验：递归的中心思想就是一个栈
+2020-10-23
+斐波那契数列：https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/
+	解法：
+	1.递归，n小于2就返回n，该方法时间复杂度太高
+	2.动态规划，用一个for循环
+	经验：动态规划基本思想是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解
+青蛙跳台阶问题：https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/
+	解法：
+	1.和斐波那契数列一样用递归，该方法时间复杂度过高
+	2.动态规划，用for循环
+	教训：要求解原问题可以先分解成一个个子问题，然后从子问题中解出原问题
+	设跳n个台阶有f(n)种方法，而跳最后一次台阶有两种方法，即跳1步和跳2步，因此f(n)=f(n-1)+f(n-2)
+2020-10-24
+旋转数组的最小数字：https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/
+	解法：
+	1.遍历一遍数组遇到小于第一个数的就返回，时间复杂度O(n)
+	2.二分法，mid大于high时，left=mid+1，mid小于high时，high=mid，mid==high时，--high
+	经验：二分法最后的赋值一般都是arr[low]，二分法中间值比较high时循环条件(low<high)，中间值比较tmp时循环条件(low<=high)(low==high的位置也要和tmp比较)
+	教训：分析题目时尽量画个图，多思考
+用两个栈实现队列：https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/
+	解法：
+	1.用双栈，每次push都放入栈1，删除时先检查栈2是否为空，为空则把栈1入栈2，再次检查是否为空，为空则返回-1，否则出栈
+	教训：s2出栈以后不需要再把栈s2的入s1
+2020-10-25
+矩阵中的路径：https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/
+	解法：
+	1.深度优先级，回溯算法，检查每一个节点是否符合word[pos]，符合就检查该节点上下左右是否有符合word[pos+1]，一直递归调用检查，直到上下左右都不符合条件返回false或者pos==strlen(word)-1返回true
+	教训：二级指针不能直接指向二维数组，可以指向一个数组指针，二维数组在内存中地址其实是连续的，可以用一个指针数组指向二维数组
+2020-10-26
+累加天数：https://www.nowcoder.com/practice/eebb2983b7bf40408a1360efb33f9e5d?tpId=40&&tqId=31013&rp=1&ru=/activity/oj&qru=/ta/kaoyan/question-ranking
+	解法：
+	1.
+	教训：用printf输出时，以格式yyyy-mm-dd，但month<10，用格式%02d可输出前面的0
+日期差值：https://www.nowcoder.com/practice/ccb7383c76fc48d2bbc27a2a6319631c?tpId=62&&tqId=29468&rp=1&ru=/activity/oj&qru=/ta/sju-kaoyan/question-ranking
+	解法：
+	1.统计year1和year2到公元0年过的天数，再统计当前年的过了多少时间，两者相减，注意闰年加1
+	2.先把两个日期同一到一个日子，再计算年份差
+	经验：两个日子差值应该+1，当天也算
+2020-10-27
+汉诺塔问题：https://leetcode-cn.com/problems/hanota-lcci/
+	解法：
+	1.递归，一个Move函数专移动数据，一个Han(n,A,B,C)函数用来，把A的n个数据移到C中，B为辅助栈
+	经验：把递归函数的意义想好，以便每次调用不会混乱，例：第一次调用Han(n-1,A,C,B)把n-1个数移到B中,C为辅助
+	教训：这个题每次要先把最下面(n)之上(n-1)的所有数，通过C辅助，移到B中，这样A最下面的就可以移到C中了
+	结束条件就是：n==1(A中只有最后一个元素了)，把他移到C中
+二进制中1的个数：https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/
+	解法：
+	1.n和1相与，不为0则count++，n右移1
+	2.解法和1相似，左移1
+	3.最优解：只要n=n&(n-1)不为0，则count++
+	4.递归法：
+问题：为什么无符号可以左右移，整型不能
+2020-10-28
+打印从1到最大的n位数：https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/
+	解法：
+	1.最大的数就是10^n-1，用一个for循环
+	2.考虑到如果是打印出数字，有可能n非常大超出int的范围，具体实现暂时没想出来
+删除链表的节点：https://leetcode-cn.com/problems/shan-chu-lian-biao-de-jie-dian-lcof/
+	解法：
+	1.两个指针，一个前驱一个当前，当前指针p的值等于时，前驱后继等于p后继
+	2.一个指针，先判断是否为空，head的值是否为val，再循环判断p->next
+	3.递归，head->next=递归，想清楚递归这个函数框架，如果head空返回NULL，如果head->val==val返回head->next，否则head->next递归，最后返回head
+	经验：又一次理解递归，实现递归函数之前要清楚结构功能
+2020-10-29
+调整数组顺序使奇数位于偶数前面：https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/
+	解法：
+	1.傻瓜办法(以后不要出现)，循环检查每个位置为偶数，就以该位置下一个为起始循环检查奇数点
+	2.快慢指针，先定义一个pos，从pos+1到n循环，如果pos为奇数则++，若pos为偶且i的位置为奇，则交换。这样做又重复检查了交换后的位置
+	3.前后指针(最优解)，left指向头，right指向尾，只要left<right则一直循环，left的位置为奇则++，right的位置为偶则一直--，最后检查left<right并交换，这样做不会重复走过的路
+	教训：注意检查是否为奇数，可用二进制最后一位和1相与，&1==1则是奇数，&1==0则是偶数
+链表中倒数第k个节点：https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/
+	解法：
+	1.快慢指针，没什么好讲的
+	教训：对于这种简单的代码面试时一定要先判断给的链表是否为空，给的k是否大于0
+2020-10-30
+反转链表：https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/
+	解法：
+	1.两个指针(最优解)，头指针，p=head->next，pre->p->next
+	2.三个指针，前驱pre=head，p=NULL，判断pre是否为空，在循环里定义一个指针t=pre->next，结束返回p
+	3.递归，判断当前指针和下一个是否为空，返回值一定要是反转后的头结点，因此创建一个ret节点始终指向尾，重要的一点当前head->next->next=head，再给它的下一个赋空，防止循环，head->NULL
+	经验：先写递归结束的判断，然后想清楚返回值是什么，最后写中间实现体。
+合并两个排序的链表：https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/
+	解法：
+	1.先创建一个空头，然后把两个排序链表放后面，一个链表结束则循环结束，记得把剩下的链表接在后面
+	2.递归，老生常谈先写判断返回条件，merge(l1，l2)这个函数--->排序l1和l2返回小的
+	经验：如果暂时想不出递归内容，先把返回条件写出来，写着写着就出来了
+2020-10-31
+数组中出现次数超过一半的数字：https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/
+	解法：
+	1.哈希表，新建一个数组空间为传进来的numsize，初始化为0。遍历数字把每个数放到相应大小的下标
+	2.摩尔投票，总有一个数多于其他数，因此用res保存当前多的数，count保存这个数的数量，遇到相同的数count++，不同的数count--
+	教训：指针的大小为4字节，初始化memset()时，后面的大小不能传指针arr。
+	经验：新增知识摩尔投票法
+///////////////////////////////////////////////////////////////////////////////////////
+先停一段时间的每日oj，每天复习数据结构，并完成里面的oj题
+2020-11-04
+删除链表中重复的结点：https://www.nowcoder.com/practice/fc533c45b73a41b0b44ccba763f866ef?tpId=13&&tqId=11209&rp=1&ru=/activity/oj&qru=/ta/coding-interviews/question-ranking
+	解法：
+	1.用三个指针，prev是p的前驱,p,next是p的后继，删除完成之后应该释放结点
+	教训：一步步稳着来，急于求成往往得不到真正的答案
+括号匹配问题：
+	解法：
+	1.用一个栈，如果是前面三种就依次入栈，否则出栈并检查该位置是否匹配，不是的话就返回false
+	2.尝试用递归实现：
+	教训：在循环结束之后记得检查栈是否为空
+2020-11-05
+仅仅反转字母：https://leetcode-cn.com/problems/reverse-only-letters/
+	解法：
+	1.用两个指针，一个指向头，一个指向尾，只要左指针小于右指针，就一直交换遇到的字母
+	2.
+	经验：用c_str把字符串转换成指针形式，返回的是void*，因此要用char*强转
+字母串中的第一个唯一字符：https://leetcode-cn.com/problems/first-unique-character-in-a-string/
+	解法：
+	1.哈希表，用一个数组先初始化为0，统计所有数据出现的次数，然后依次找这些位置下的数，是否为1
+	2.
+	经验：.length()的用法，字符串直接访问每个字符s[num]，进一步熟悉哈希表
+2020-11-6
+字符串最后一个单词的长度：https://www.nowcoder.com/practice/8c949ea5f36f422594b306a2300315da?tpId=37&&tqId=21224&rp=5&ru=/activity/oj&qru=/ta/huawei/question-ranking
+	解法：
+	1.循环输入while(getline(cin,s))，从尾部开始查找第一个空格返回一个下标，然后获取该位置加一到尾部的长度，并输出
+	经验：
+2020-11-9
+反转字符串II：https://leetcode-cn.com/problems/reverse-string-ii
+	解法：
+	1.用一个for循环，从头开始，步长为2k，每次检查i+k是否超出表，没有则反转i到i+k-1的数值
+	经验：reverse的效率往往没有自己写的：从两边开始依次反转效率高
+反转字符串中的单词III：https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/
+	解法：
+	1.原地反转，用begin和end保存每次要反转单词的起始和终止位置
+	经验：多想想，要有自信，能想出来的！
+找出字符串中第一个出现一次的：https://www.nowcoder.com/practice/e896d0f82f1246a3aa7b232ce38029d4?tpId=37&&tqId=21282&rp=1&ru=/activity/oj&qru=/ta/huawei/question-ranking
+	解法：
+	1.哈希做法，老生常谈，需要注意的是循环输入和不存在返回-1
+2020-11-10
+左旋转字符串：https://leetcode-cn.com/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof/
+	解法：
+	1.切片,先strsub(pos,n)从pos的位置，取n个字符，切成两个子字符串，然后返回拼接的两个字符串
+	2.遍历拼接(push_back)，从n开始到size()+n结束，取模计算该插入的s
+	3.遍历拼接(+=)，具体方法和push_back大致一样，但效率没push_back高
+	经验：多多写C++string中的方法，老是会忘
+0～n-1中缺失的数字：https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/
+	解法：
+	1.二分查找，一般返回值都是left，关键是循环结束条件和if、else中left和right的取值
+	经验：多写二分查找，写多了就有经验
+2020-11-11
+字符串相加：https://leetcode-cn.com/problems/add-strings/
+	解法：
+	1.(最好写的)，新建一个空字符串，用i和j表示num1和num2的加到的位置，add表示进位，循环判断如果i、j、add其中一个为1，则继续循环，其中i或j为-1之后在循环里面将x或y置0。
+	注意结束时应该反转字符串
+	2.(效率最高的)，新建一个空字符串大小为num1和num2中较大的+1，倒着给新建数组赋值，其它内部逻辑和第一种一致。就是保存加的值和进位的值，然后一次性给新建数组
+	注意结束时应该判断起始位置处是否为'0'，为'0'则删除该位置
+	经验：在实现字符串相加时，应该用一个add表示进位，用一个result表示当前所加的和。
+2020-11-12
+两个链表的第一个公共节点：https://leetcode-cn.com/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/
+	解法：
+	1.双指针，A,B指针走完各自的链表之后，继续走对方的链表，这样一定会在相交处遇到，如果没有相交也会同时走到末尾
+	经验：循环条件是两个指针地址相同，只会有两种情况1.两指针相遇，2.两指针都为空
+和为s的两个数字
+	解法：
+	1.双指针，因为他是排序的，所以只需要一个指针指向头，一个指向尾，比target大right--，比target小left++
+	经验：像这种数组中找节点，找值的题多多考虑双指针
+
+
+
+
+
+
+

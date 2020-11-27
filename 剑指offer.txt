@@ -67,6 +67,11 @@
 2.二叉树的镜像：https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/
 	1.递归，用一个临时结构体指针保存，二叉树的左分支，用右分支给左分支赋值，然后再用临时的结构体给右分支赋值
 	总结：理解递归
+2020-11-27
+1.二叉树中和为某一值的路径：https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/
+	1.自己想的，临时tmp，效率最低
+	2.全局tmp，在递归函数入口判断是否为空，为空就返回(这样做避免了再次进入函数的开销)
+	总结：回溯法处理，在返回时要记得pop一下tmp的元素。还有关键是判断当前节点是否为叶子结点，为叶子结点才插入
 
 
 
