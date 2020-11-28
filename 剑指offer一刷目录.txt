@@ -1,0 +1,84 @@
+2020-11-14
+1.不用加减乘除做加法：https://leetcode-cn.com/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/
+	1.考位运算，^是不进位加法，&<<是进位加法，循环直到进位为0则停止
+	经验：不进位加法^，进位加法&<<。参考博客中的题，可以更近一步理解位运算，先异或再按位分组异或
+2.在排序数组中查找数字：https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/
+	1.考二分法，两次二分查找，第一次找右边界，第二次找左边界，两个相减再-1
+	经验：再次理解二分查找的循环条件和返回值
+3.和为s的连续整数序列：https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/
+	1.考滑动数组，对于滑动数组左闭右开[ )，并且只能往右边去移动，直到触发循环结束条件
+	经验：这里循环结束条件：left<=tar/2，因为不存在超过两个数超过他的一半，例如4=2*2到>2就结束，5到>2结束
+2020-11-15
+1.翻转单词顺序：https://leetcode-cn.com/problems/fan-zhuan-dan-ci-shun-xu-lcof/
+	1.双指针，从最后开始，先检查空格，然后left和right位置锁定好了之后，用substr接口把单词放入，中间记得判断right是否已经跑到最前面。
+	经验：substr(pos,n)这个接口是从pos位置返回n个字符
+2.扑克牌中的顺子：https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/
+	1.这是一个5连顺子，也就是出现对子，或者最大数和最小数相差大于4，则返回false，如果都满足返回true
+	经验：哈希表用来统计重复的数字，非常好用！！
+2020-11-16:
+1.滑动窗口：https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/
+	1.笨办法：一个窗口一个窗口的计算，并输入到vector中，起始最大值位置设为-1，max定义出来不赋初值也可以进行比较，但是max很小很小
+	总结：最优解是队列，等学完dequeue回来写
+2.最小的k个数：https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/submissions/
+	1.借助快速排序的思想，把一个数排好返回pos，pos左侧是小的，pos右侧是大的，如果pos==k-1则不用排序了，如果pos>k-1则只排序左侧，如果pos<k-1则只排序右侧
+	总结：快排的思想：把一个数的位置找到，它左边小，右边大。快排的递归返回条件：left>=right，挖坑法避免了频繁交换两个数的位置
+2020-11-17
+
+2020-11-19
+1.数组中数字出现的次数：https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/
+	1.整体异或再分组异或，整体异或相当于两个不同的数异或了，只需要找到一个不为0的比特位，按该比特位将数分为两组，再整体异或
+	总结：求一个不为0的比特位可以用pos=ret&(-ret)，每次pos每次向左移动1而不是i
+2.礼物的最大价值：https://leetcode-cn.com/problems/li-wu-de-zui-da-jie-zhi-lcof/
+	1.动态规划，把大问题划分成小问题，每一个位置都只需要计算max(left，right)+num[i][j]。然后返回右下角的数，滚动数组的思想是：计算第3行时只需要第2行数据，因此每次的up=dp[j]，left=up[j-1]。
+	总结：滚动数组在操作up和left都是看j，即在第几行，因为我们创建了一个动态规划数组dp[行数]。
+3.丑数：https://leetcode-cn.com/problems/chou-shu-lcof/
+	1.动态规划，和斐波那契数列极为相似，要计算第n个丑数，就要计算(a)*2，(b)*3，(c)*5，丑数里面哪一个数最小，最小的则为当前丑数
+	总结：用a,b,c来统计当前计算到的位置，起始都是0，最小的为n位置上的丑数，并且把他++
+4.股票的最大利润：https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/
+	1.动态规划：还是定义出一些变量，来保存当前计算出的最小值cost，利润profit，然后依次往后执行
+	总结：先把大问题抽象化，然后拆解成可操作的变量，把他们累加起来
+2020-11-20
+1.栈的压入，弹出序列：https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/
+	1.模拟栈，用一个栈来模拟，每次入栈之后，都while循环检查top是否和当前未入栈的数相同，若相同则出栈
+	总结：实际问题，用模拟实现，注意循环结束条件：栈不为空
+2.构建乘积数组：https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof/
+	1.分左右两个部分，左边部分每次b[i]=b[i-1]*a[i-1]，右边部分从len-2开始统计每次的乘积tmp*=a[i+1]，b[i]*=tmp;
+	2.上面的优化，用left和right保存当前的累积，先统计left和right再去计算b[i]*=left和b[len-i-1]*=right
+	总结：记住这个题的图，分左右两部分，必要时先把图画出来再去code。题目：从A[0]乘到A[n-1]但不能乘下标和B相同的
+2020-11-23
+1.把数组排成最小的数：https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/
+	1.转换成字符串拼接，将数组中的每个数都用to_string转换成字符串插入，然后给字符串排序，字符串的默认排序遇到
+	   相同的字母时，以字符串短的为小，因此需要自定义排序处理函数，bool sortcom(const string& A1,const string& A2);
+	   引用不能缺。然后拼接字符串。
+	总结：to_string把整型转换成字符串类型，sort函数里自定义的返回值是bool类型
+2.剪绳子：https://leetcode-cn.com/problems/jian-sheng-zi-lcof/
+	1.数学方法：一段绳子能分得的3越多，说明乘积越大
+	总结：记住算法，把一个数分成小块，3越多乘积越大
+
+2020-11-25
+1.n个骰子的点数：https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/
+	1.
+	总结：
+
+2020-11-26
+1.二叉树深度：https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/
+	1.递归，结束条件root为空，创建一个left和right分别统计左支和右支的深度，返回max(left+right)+1
+	总结：如果root为空，返回时要返回本节点的1
+2.二叉树的镜像：https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/
+	1.递归，用一个临时结构体指针保存，二叉树的左分支，用右分支给左分支赋值，然后再用临时的结构体给右分支赋值
+	总结：理解递归
+2020-11-27
+1.二叉树中和为某一值的路径：https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/
+	1.自己想的，临时tmp，效率最低
+	2.全局tmp，在递归函数入口判断是否为空，为空就返回(这样做避免了再次进入函数的开销)
+	总结：回溯法处理，在返回时要记得pop一下tmp的元素。还有关键是判断当前节点是否为叶子结点，为叶子结点才插入
+
+2020-11-28
+1.队列最大值：https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/
+	1.双队列，一个队列用于保存插入的值，另一个双开队列用于保存最大值。
+	总结：保存最大值的思路就是：插入时查看双向队列中的值，如果比较小则删除队尾元素，直到比他大或者队列为空，再进行插入
+
+2.二叉搜索树的第k大节点：https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/
+	1.中序遍历右支，每次右支回溯时都进行k--操作。如果k为零则直接返回上一层，如果k--为零则res==当前val
+	总结：理解二叉树的回溯步骤
+

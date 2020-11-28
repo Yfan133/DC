@@ -2,6 +2,7 @@
 #include<string>
 #include<vector>
 #include<queue>
+#include<deque>
 //#include<stack>
 using namespace std;
 #pragma warning(disable:4996)
@@ -54,15 +55,29 @@ using namespace std;
 //		return t;
 //	}
 //}
+
 void main()
 {
-	//char* x = (char*)"abc";	//字符常量区不能变
-	//char* y = (char*)"abc";
-	int ar[] = { 1,2,3 };
-	int* p = ar;
-	*p += 2;
-	*p++;	//这里++优先级更高
-	int* q;
-	q = new int(2);
+	//int ar[] = { 1,2,3 };
+	//int* p = ar;
+	//*p += 2;
+	//*p++;	//这里++优先级更高
+	//int* q;
+	//q = new int(2);	//这里赋初值和p记住
 	return;
 }
+/*
+二维数组：
+a[i][j]=*(*(a+i)+j)=*(a+i)[j];
+&a[i][j]=a[i]+j=*(a+i)+j
+
+char* x = (char*)"abc";		//指针x和y指向字符常量区，不能修改其内容。并且x和y的地址相同
+char* y = (char*)"abc";
+
+1. 引用必须用指向一个实例
+2. 将函数用inline修饰只是向编译器建议这个函数可以作为内联函数来使用，是否展开由编译器决定
+3. inline必须放在函数定义的前面，放在声明前面是不起作用的
+4. 如果在多个源文件中定义同名的inline函数，则函数实现体必须一致
+
+*/
+
