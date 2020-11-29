@@ -81,4 +81,16 @@
 2.二叉搜索树的第k大节点：https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/
 	1.中序遍历右支，每次右支回溯时都进行k--操作。如果k为零则直接返回上一层，如果k--为零则res==当前val
 	总结：理解二叉树的回溯步骤
+2020-11-29
+1.二叉树的最近公共祖先：https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/
+	1.后序遍历，每次遍历如果找到q或者p则返回，如果没找到则返回nullptr，如果left和right都不为空则说明找到了root并返回
+	总结：这个后序遍历的前提是，该二叉树中没有重复的节点，并且一定会有公共祖先
+2.数字序列中某一位的数字：https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/
+	1.数学法，分三步，1)找位数，判断只要n大于该位数的总量则一直循环，然后更新起始和总量  
+		              2)找到对应的数，num=start+(n-1)/digit
+                                              3)找到偏移量，把对应数转成string+ 偏移量，offset=(n-1)%digit
+	总结：这道题完全考的找数字的规律，应该记住这种算法！
+
+
+
 
