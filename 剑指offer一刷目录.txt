@@ -90,6 +90,14 @@
 		              2)找到对应的数，num=start+(n-1)/digit
                                               3)找到偏移量，把对应数转成string+ 偏移量，offset=(n-1)%digit
 	总结：这道题完全考的找数字的规律，应该记住这种算法！
+2020-11-30
+1.把数字翻译成字符串：https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/
+	1.动态规划，dp[i]=dp[i-1]+dp[i-2](如果两数范围在10~25)，否则dp[i]=dp[i-1]
+	2.递归，
+	总结：动态规划需要注意的是，每次都要更新dp[0]和dp[1]的值
+2.从上到下打印二叉树：https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/
+	1.队列，层序遍历。每一次进去都统计当前队列的容量，然后for循环插入左支和右支
+	2.如果不统计当前队列容量，也可以使用两个变量，cursize和newsize，cursize初始化为1，每次插入操作newsize++，当cursize=0时，cursize=newsize。newsize=0；
 
 
 
