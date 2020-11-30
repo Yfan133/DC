@@ -32,5 +32,11 @@
     <ClCompile Include="数字序列中某一位的数字.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="从上到下打印二叉树.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="把数字翻译成字符串.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
