@@ -138,7 +138,7 @@ UDP通信流程&UDP编程接口：
 			4.接收数据《---- 发送数据(服务端)
 			5.关闭套接字     关闭套接字(服务端)
 		服务端：server
-			1.创建一个套接字：将创建出来的套接字的进程和网卡建立联系，struct socket{...};
+			1.创建一个套接字：将创建出来的套接字的进程和网卡建立联系，本质上在内核中是一个结构体struct socket{...};
 			2.绑定地址信息：port+ip，将端口和进程联系起来，port表明服务端进程在哪一个端口上侦听数据；ip表明服务端进程在哪一个网卡上接收数据
 			3.发送数据 ----》接收数据(客户端)
 			4.接收数据《---- 发送数据(客户端)
@@ -146,6 +146,7 @@ UDP通信流程&UDP编程接口：
 	2.UDP编程套接字
 		1.创建套接字
 			int socket(int domain，int type，int protocor)；
+				用例：sockfd = socket(AF_INET,SOCK_DGRAM,IPPORT_UDP);	//采用ipv4版本的UDP类型套接字
 				domain：地址域，指定网络层在使用什么协议						
 					网络层：AF_INET：IPV4版本的ip协议
 							AF_INET6：IPV6版本的ip协议
@@ -162,40 +163,75 @@ UDP通信流程&UDP编程接口：
 
 		2.绑定地址信息：
 			int bind(int sockfd，const struct sockaddr* addr，socklen_t addrlen)；
+				用例：bind(sockfd，(struct sockaddr*)&addr，sizeof(addr))；
 				sockfd：套接字操作句柄
 				addr：地址信息 ip+port
 				addrlen：地址信息的长度
+
+				前提：struct sockaddr_in addr;		//创建一个结构体
+						addr.sa_family = AF_INET;		//设置协议，ipv4
+						addr.sin_port = htons(port);	//转换为网络字节序，设置端口地址
+						addr.sin_addr.s_addr = inet_addr(ip.c_str());	//把字符类型ip转换成指针类型，再进一步转换成uint32,并设置ip地址为网络字节序
+				协议的地址信息超过16字节，也没有问题，第三个参数就是传入结构体的长度
+
 			地址信息解析
 				struct sockaddr
 				{
-					sa_family_t sa_family；		//填充地址域，告诉bind函数，网络层使用什么协议
-					char sa_data[14]；			//
+					sa_family_t sa_family；		//填充地址域，告诉bind函数，网络层使用什么协议,内核通过该变量确定传入的结构体应该如何来读取sa_data
+					char sa_data[14]；			//14字节
 				}
+			具体：
 				struct sockaddr_in
 				{
+					_SOCKADDR_COMMON(sin_);		//地址域信息，2字节	    //这就是上面的sa_family
 					
+					in_port_t sin_port;			//2字节的无符号整数		//下面的共14字节就是上面char类型的数组,char[14]
+					struct in_addr sin_addr;	//4字节的无符号整数		
+
+												//8字节的保留空间
+					unsigned char sin_zero[sizeof(struct sockaddr)-_SOCKADDR_COMMON_SIZE-sizeof(in_port_t)-sizeof(struct in_addr)];
 				}
-			ipv4版本的地址信息：
-				
-			内核是通过地址域，来判断版本是哪一个
-			bind接口为什么设计为struct sockaddr，而不是设计为struct sockaddr_in，
+			对于上面的解释：
+				bind接口在设计的时候为了通用各种协议，定义了一个结构体struct sockaddr；而在进行具体协议地址信息绑定的时候，填充不同的结构体，之后将结构体的对象的地址，强转传参给bind函数
+				socklen：地址信息的长度，防止有的协议的地址信息长度大于16个字节，所以传递地址信息长度，告诉bind函数，应该如何解析地址信息
 
 	3.发送数据
 		ssize_t sendto(int sockfd，const void* buf，size_t len，int flags，const struct sockaddr* dest_addr，socklen_t addrlen)
 			sockfd：套接字的操作句柄
-			buf：要发送的数据，可以发送结构体，可以发送字符串
+			buf：要发送的数据，可以发送结构体，也可以发送字符串
 			len：数据长度
 			flags:
-				0:阻塞
-			dest_addr：目标主机的地址信息，
-
+				0:阻塞发送
+			dest_addr：目标主机的地址信息，要将数据发送到哪里去
+				struct sockaddr_in:包含目标主机的IP地址和端口号(port)
+			addr_len:地址信息长度
+			返回值：返回实际发送的字节数量
 		画个图：client(客户) 和 server(服务)
-		1.UDP没有发送缓冲区，这句话错的，只不过UDP是整条数据发送，所以在发送缓冲区当中打上UDP协议报头之后就提交给网路层了
-
-
+		1.(UDP没有发送缓冲区)这句话是错的，只不过UDP是整条数据发送，所以在发送缓冲区当中打上UDP协议报头之后就提交给网络层了
 
 	4.接收数据
-		ssize
+		ssize_t recvfrom(int sockfd,void* buf,size_t len,int flag,struct sockaddr* src_addr,socklen_t* addrlen);
+			sockfd:套接字操作句柄
+			buf：将数据接收到哪里？
+			len：最大接收的字节数
+			flag：
+				0：阻塞接收
+			src_addr：数据源主机的IP地址和端口
+			addrlen：地址信息的长度(结构体的大小)
+
+	5.关闭套接字：
+		close(int sockfd);
+	
+	总结：一定记住sockaddr是结构体类型，他里面保存了IP地址和port端口信息，可以唯一识别一台主机中的一个进程
+				  sockaddr_in：ipv4版本
+				  sockaddr_in6：ipv6版本
+				  这个结构体要初始化三个东西：
+					1.版本信息：addr.sin_family = AF_INET;
+					2.port端口：要先转换成网络字节序，用htons接口。
+						addr.sin_port = htons(port);
+					3.ip地址：先转换成c字符串c_str，再转换成网络字节序inet_addr。
+						addr.sin_addr.s_addr = inet_addr(ip.c_str());
+				
 				
 UDP通信的小demo
 	服务端：创建套接字，绑定地址信息，接收数据，发送数据，关闭套接字
@@ -204,7 +240,14 @@ UDP通信的小demo
 封装接口：
 	1.创建套接字
 	2.接收&发送数据
-	3.
+	3.绑定地址信息
+	4.关闭套接字的接口
+
+画个图：客户端地址信息，服务端地址信息，还有他们之间的通信
+
+
+
+
 
 
 TCP编程流程&TCP接口
