@@ -3,6 +3,7 @@
 #include<vector>
 #include<queue>
 #include<deque>
+#include<list>
 //#include<stack>
 using namespace std;
 #pragma warning(disable:4996)
@@ -20,64 +21,71 @@ using namespace std;
 //	QuickSort(arr, 0, arr.size());
 //	return 0;
 //}
-//#include<assert.h>
-//typedef char BinTreeElemType;
-//typedef struct BinTreeNode
-//{
-//	BinTreeElemType data;
-//	struct BinTreeNode* leftChild;
-//	struct BinTreeNode* rightChild;
-//}BinTreeNode;
-//
-//typedef BinTreeNode* BinTree;
-//
-////二叉树的创建
-//void BinTreeInit(BinTree* t);
-//BinTree BinTreeCreate_1();
-//void BinTreeInit(BinTree* t)  //BinTreeNode**t;
-//{
-//	*t = NULL;
-//}
-//
-//BinTree BinTreeCreate_1()
-//{
-//	BinTreeElemType item;
-//	scanf("%c", &item);
-//	if (item == '#')
-//		return NULL;
-//	else
-//	{
-//		BinTreeNode* t = (BinTreeNode*)malloc(sizeof(BinTreeNode));
-//		assert(t != NULL);
-//		t->data = item;
-//		t->leftChild = BinTreeCreate_1();
-//		t->rightChild = BinTreeCreate_1();
-//		return t;
-//	}
-//}
 
-void main()
-{
-	//int ar[] = { 1,2,3 };
-	//int* p = ar;
-	//*p += 2;
-	//*p++;	//这里++优先级更高
-	//int* q;
-	//q = new int(2);	//这里赋初值和p记住
-	return;
-}
 /*
-二维数组：
-a[i][j]=*(*(a+i)+j)=*(a+i)[j];
-&a[i][j]=a[i]+j=*(a+i)+j
 
-char* x = (char*)"abc";		//指针x和y指向字符常量区，不能修改其内容。并且x和y的地址相同
-char* y = (char*)"abc";
 
-1. 引用必须用指向一个实例
-2. 将函数用inline修饰只是向编译器建议这个函数可以作为内联函数来使用，是否展开由编译器决定
-3. inline必须放在函数定义的前面，放在声明前面是不起作用的
-4. 如果在多个源文件中定义同名的inline函数，则函数实现体必须一致
 
 */
+//int length_go(string& code)
+//{
+//    size_t size = code.size();
+//    if (size <= 4)
+//        return 5;
+//    if (size >= 8)
+//        return 25;
+//    return 10;
+//}
+//int other_go(string& code)
+//{
+//    int al[2] = { 0 };    //用两个标志位存储大小写
+//    int dig = 0;
+//    int ch = 0;
+//    int res = 0;
+//    for (int i = 0; i < code.size(); i++)
+//    {
+//        if (code[i] >= 'A' && code[i] <= 'Z')
+//            al[0] = 1;
+//        else if (code[i] >= 'a' && code[i] <= 'z')
+//            al[1] = 1;
+//        else if (code[i] >= '0' && code[i] <= '9')
+//            dig++;
+//        else
+//            ch++;
+//    }
+//    //字母
+//    if (al[0] == 1 && al[1] == 1)res += 20;
+//    else if (al[0] == 1 || al[1] == 1)res += 10;
+//    //数字
+//    if (dig > 1)res += 20;
+//    else if (dig == 1)res += 10;
+//    //符号
+//    if (ch > 1)res += 25;
+//    else if (ch == 1)res += 10;
+//    //奖励
+//    if (al[0] == 1 && al[1] == 1 && dig > 0 && ch > 0)res += 5;
+//    else if ((al[0] == 1 || al[1] == 1) && dig > 0 && ch > 0)res += 3;
+//    else if (dig > 0 && (al[0] == 1 || al[1] == 1))res += 2;
+//    return res;
+//}
+//int main()
+//{
+//    string code;
+//    while (getline(cin, code))
+//    {
+//        int goal = 0;
+//        goal += length_go(code);
+//        goal += other_go(code);
+//        if (goal >= 90)cout << "VERY_SECURE" << endl;
+//        else if (goal >= 80)cout << "SECURE" << endl;
+//        else if (goal >= 70)cout << "VERY_STRONG" << endl;
+//        else if (goal >= 60)cout << "STRONG" << endl;
+//        else if (goal >= 50)cout << "AVERAGE" << endl;
+//        else if (goal >= 25)cout << "WEEK" << endl;
+//        else cout << "VERY_WEEK" << endl;
+//    }
+//    return 0;
+//}
+
+
 
