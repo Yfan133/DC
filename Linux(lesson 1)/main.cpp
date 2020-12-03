@@ -1276,6 +1276,8 @@ posix信号量
 			write：sem_init(&Product，0，capacity)；
 				   sem_post(&Consume)：可读的空间+1，通知消费者PCB等待队列
 
+semaphore:信号量
+
 读写锁：和互斥锁很相似，但是比互斥锁高效
 	1.适用场景：
 		少量写+大量读		
