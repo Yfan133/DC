@@ -21,7 +21,17 @@ using namespace std;
 //	QuickSort(arr, 0, arr.size());
 //	return 0;
 //}
-
+void Fun(int** a, int** b)
+{
+	*a = *b;
+}
+int main()
+{
+	int* a = new int(1);
+	int* b = new int(2);
+	Fun(&a, &b);
+	return 0;
+}
 /*
 
 
