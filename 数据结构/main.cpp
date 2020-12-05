@@ -15,14 +15,23 @@ int main()
 	printf("VLR: ");
 	BinTreeVLR(bt);
 	printf("\n");
+	printf("VLR: ");
+	BinTreeVLR_Nor(bt);
+	printf("非递归\n");
 	//中序遍历
 	printf("LVR: ");
 	BinTreeLVR(bt);
 	printf("\n");
+	printf("LVR: ");
+	BinTreeLVR_Nor(bt);
+	printf("非递归\n");
 	//后序遍历
 	printf("LRV: ");
 	BinTreeLRV(bt);
 	printf("\n");
+	printf("LRV: ");
+	BinTreeLRV_Nor(bt);
+	printf("非递归\n");
 	//层次遍历
 	//printf("Level: ");
 	//BinTreeLevel(bt);

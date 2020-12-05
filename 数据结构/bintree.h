@@ -67,16 +67,16 @@ void BinTreeLVR(BinTree bt)
 {
 	if (bt == NULL)
 		return;
-	BinTreeVLR(bt->leftchild);
+	BinTreeLVR(bt->leftchild);
 	printf("%c  ", bt->data);
-	BinTreeVLR(bt->rightchild);
+	BinTreeLVR(bt->rightchild);
 }
 void BinTreeLRV(BinTree bt)
 {
 	if (bt == NULL)
 		return;
-	BinTreeVLR(bt->leftchild);
-	BinTreeVLR(bt->rightchild);
+	BinTreeLRV(bt->leftchild);
+	BinTreeLRV(bt->rightchild);
 	printf("%c  ", bt->data);
 }
 //void BinTreeLevel(BinTree bt)
@@ -94,7 +94,73 @@ void BinTreeLRV(BinTree bt)
 //		if()
 //	}
 //}
-
+//二叉树非递归遍历						//双指针！！！！！！！！
+#include<stack>
+#include<iostream>
+void BinTreeVLR_Nor(BinTree bt)			//先根：每次往栈里push的时候就打印，bt用来插入节点，p用来定位bt的位置。   把所有节点都当成是左子数！
+{
+	if (bt == nullptr)
+		return;
+	std::stack<BinTreeNode*> st;
+	st.push(bt);
+	do
+	{
+		while (bt != nullptr)
+		{
+			printf("%c  ", bt->data);
+			st.push(bt);
+			bt = bt->leftchild;
+		}
+		BinTreeNode* p = st.top();
+		st.pop();
+		if (p->rightchild != nullptr)
+			bt = p->rightchild;
+	} while (!st.empty());
+}
+void BinTreeLVR_Nor(BinTree bt)			//中根：打印的条件是：1.左树为空  2.左树被访问过了
+{										//因此，需要bt：插入数据   p：进行定位和输出
+	if (bt == nullptr)
+		return;
+	BinTreeNode* pre = NULL;
+	std::stack<BinTreeNode*> st;
+	do
+	{
+		while (bt != nullptr)
+		{
+			st.push(bt);
+			bt = bt->leftchild;
+		}
+		BinTreeNode* p = st.top();			//这里和后序不同，中序每次取顶部元素时都要删除并打印，后序需要再判断"右树"
+		st.pop();
+		printf("%c  ", p->data);
+		if (p->rightchild != nullptr)
+			bt = p->rightchild;
+	} while (!st.empty() || bt != nullptr);
+}
+void BinTreeLRV_Nor(BinTree bt)			//后根：打印条件是  1.左右数都为空    2."右"树都被访问过了（注意：这里一定是检查右树）
+{										//因此，需要pre前驱：记录上次打印的节点   bt：进行插入   p：用来定位bt的位置和进行打印
+	if (bt == nullptr)
+		return;
+	BinTreeNode* pre = NULL;
+	std::stack<BinTreeNode*> st;
+	do
+	{
+		while (bt != NULL)
+		{
+			st.push(bt);
+			bt = bt->leftchild;
+		}
+		BinTreeNode* p = st.top();
+		if (p->rightchild == NULL || p->rightchild == pre)
+		{
+			st.pop();
+			printf("%c  ", p->data);
+			pre = p;
+		}
+		else
+			bt = p->rightchild;
+	} while (!st.empty());
+}
 //二叉树的算法
 int Size(BinTree bt)
 {
@@ -167,8 +233,6 @@ bool Equal(BinTree bt1, BinTree bt2)
 #endif // !_BINTREE_H_
 /*
 总结：
-	1.在后序遍历完成返回值的时候，可以简化代码，只接收left判断出的值，如果不成立。
-		要进行right的判断，直接把right判断结果返回给上一层，从代码角度返回了两次
+	1.在后序遍历完成返回值的时候，可以简化代码，只接收left判断出的值，如果不成立。要进行right的判断，直接把right判断结果返回给上一层，从代码角度返回了两次
 	2.每次写递归程序之前，先想清楚所有的结束条件
-
 */
