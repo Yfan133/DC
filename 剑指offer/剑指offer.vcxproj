@@ -142,9 +142,11 @@
     <ClInclude Include="common.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="二叉搜索树的最近公共祖先1.cpp" />
     <ClCompile Include="二叉搜索树的第k大节点.cpp" />
     <ClCompile Include="二叉树的最近公共祖先.cpp" />
     <ClCompile Include="从上到下打印二叉树.cpp" />
+    <ClCompile Include="平衡二叉树.cpp" />
     <ClCompile Include="把数字翻译成字符串.cpp" />
     <ClCompile Include="数字序列中某一位的数字.cpp" />
     <ClCompile Include="队列最大值.cpp" />
