@@ -99,6 +99,13 @@
 	1.队列，层序遍历。每一次进去都统计当前队列的容量，然后for循环插入左支和右支
 	2.如果不统计当前队列容量，也可以使用两个变量，cursize和newsize，cursize初始化为1，每次插入操作newsize++，当cursize=0时，cursize=newsize。newsize=0；
 
+剑指offer停一周，把数据结构重看一遍
 
-
+2020-12-5
+1.二叉搜索树的最近公共祖先：https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/
+	1.根据搜索树的特点，判断root的值，如果比p和q都大则在左树找，如果比p和q都小则在右树找，否则返回root
+	总结：超级返回--》根结点只有三种可能性，因此只需要把那一种的可能性直接返回！
+2.平衡二叉树：https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/
+	1.后序遍历，若left和right差值>1，则返回-1
+	
 
