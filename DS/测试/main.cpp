@@ -21,81 +21,25 @@ using namespace std;
 //	QuickSort(arr, 0, arr.size());
 //	return 0;
 //}
-void Fun(int** a, int** b)
-{
-	*a = *b;
-}
 int main()
 {
-	int* a = new int(1);
-	int* b = new int(2);
-	Fun(&a, &b);
+	int i = 0;
+	vector<int> vc{ i };
 	return 0;
 }
-/*
-
-
-
-*/
-//int length_go(string& code)
+//void fun(const int& a,const int& b)
 //{
-//    size_t size = code.size();
-//    if (size <= 4)
-//        return 5;
-//    if (size >= 8)
-//        return 25;
-//    return 10;
-//}
-//int other_go(string& code)
-//{
-//    int al[2] = { 0 };    //用两个标志位存储大小写
-//    int dig = 0;
-//    int ch = 0;
-//    int res = 0;
-//    for (int i = 0; i < code.size(); i++)
-//    {
-//        if (code[i] >= 'A' && code[i] <= 'Z')
-//            al[0] = 1;
-//        else if (code[i] >= 'a' && code[i] <= 'z')
-//            al[1] = 1;
-//        else if (code[i] >= '0' && code[i] <= '9')
-//            dig++;
-//        else
-//            ch++;
-//    }
-//    //字母
-//    if (al[0] == 1 && al[1] == 1)res += 20;
-//    else if (al[0] == 1 || al[1] == 1)res += 10;
-//    //数字
-//    if (dig > 1)res += 20;
-//    else if (dig == 1)res += 10;
-//    //符号
-//    if (ch > 1)res += 25;
-//    else if (ch == 1)res += 10;
-//    //奖励
-//    if (al[0] == 1 && al[1] == 1 && dig > 0 && ch > 0)res += 5;
-//    else if ((al[0] == 1 || al[1] == 1) && dig > 0 && ch > 0)res += 3;
-//    else if (dig > 0 && (al[0] == 1 || al[1] == 1))res += 2;
-//    return res;
+//	cout << a << ' ' << b << endl;
 //}
 //int main()
 //{
-//    string code;
-//    while (getline(cin, code))
-//    {
-//        int goal = 0;
-//        goal += length_go(code);
-//        goal += other_go(code);
-//        if (goal >= 90)cout << "VERY_SECURE" << endl;
-//        else if (goal >= 80)cout << "SECURE" << endl;
-//        else if (goal >= 70)cout << "VERY_STRONG" << endl;
-//        else if (goal >= 60)cout << "STRONG" << endl;
-//        else if (goal >= 50)cout << "AVERAGE" << endl;
-//        else if (goal >= 25)cout << "WEEK" << endl;
-//        else cout << "VERY_WEEK" << endl;
-//    }
-//    return 0;
+//	int i = 0;
+//	int j = 0;
+//	int x = 0;
+//	int y = 0;
+//	fun(i++, i);	//第一个参数：i的一份临时值  第二个参数：i的一份拷贝
+//	fun(j++, ++j);	
+//	fun(++x, x++);
+//	fun(++y, ++y);
+//	return 0;
 //}
-
-
-
