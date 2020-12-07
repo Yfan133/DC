@@ -107,5 +107,14 @@
 	总结：超级返回--》根结点只有三种可能性，因此只需要把那一种的可能性直接返回！
 2.平衡二叉树：https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/
 	1.后序遍历，若left和right差值>1，则返回-1
-	
+2020-12-7
+1.对称的二叉树：https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/
+	1.先序遍历，左支传右，右支传左
+	总结：这种二叉树的题应该多想想用不用新建一个函数，用不用设置成员变量
+2.最小栈：https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/
+	1.双栈，每次插入栈A都检查栈B顶部元素
+	总结：利用栈的先进先出可以解决很多问题，里括号匹配问题
+3.顺时针打印矩阵：https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/
+	1.分层次打印，从最外层到最内存依次打印
+	总结：这个题就是干就完了
 
