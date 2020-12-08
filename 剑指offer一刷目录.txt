@@ -117,4 +117,9 @@
 3.顺时针打印矩阵：https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/
 	1.分层次打印，从最外层到最内存依次打印
 	总结：这个题就是干就完了
+2020-12-8
+1.重建二叉树：https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/
+	1.找位置分左右子树
+2.另一个树的子树：https://leetcode-cn.com/problems/subtree-of-another-tree/
+	1.先写判断两个数是否相同的算法，再递归判断该树的左右子树
 
