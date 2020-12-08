@@ -4,6 +4,7 @@
 #include<queue>
 #include<deque>
 #include<list>
+#include <algorithm>
 //#include<stack>
 using namespace std;
 #pragma warning(disable:4996)
@@ -21,11 +22,10 @@ using namespace std;
 //	QuickSort(arr, 0, arr.size());
 //	return 0;
 //}
+
 int main()
 {
-	int i = 0;
-	vector<int> vc{ i };
-	return 0;
+	
 }
 //void fun(const int& a,const int& b)
 //{
