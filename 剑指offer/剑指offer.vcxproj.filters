@@ -53,5 +53,11 @@
     <ClCompile Include="顺时针打印矩阵.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="另一颗数的子树.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="重建二叉树.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
