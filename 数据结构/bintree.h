@@ -13,6 +13,7 @@ void BinTreeInit(BinTree* bt);
 
 //二叉树的创建
 void BinTreeCreate(BinTree* bt);
+BinTree BinTreeCreateLRV_LVR(const char* vlr, const char* lvr, int n);
 
 //二叉树的遍历
 void BinTreeVLR(BinTree bt);
@@ -53,7 +54,19 @@ void BinTreeCreate(BinTree* bt)					//先序创建ABC##DE##F##G#H##
 		BinTreeCreate(&((*bt)->rightchild));
 	}
 }
-
+BinTree BinTreeCreateLRV_LVR(const char* vlr, const char* lvr, int n) //n是节点个数，非常重要，根据n判断当前左右树创建是否完成
+{
+	if (n == 0)
+		return NULL;
+	int k = 0;
+	while (vlr[0] != lvr[k])
+		k++;
+	BinTreeNode* head = new BinTreeNode;
+	head->data = vlr[0];
+	head->leftchild = BinTreeCreateLRV_LVR(vlr + 1, lvr, k);		//总结：根据先序的顺序，在中序中找数，然后创建。因此先序每次要 +1
+	head->rightchild = BinTreeCreateLRV_LVR(vlr + k + 1, lvr + k + 1, n - k - 1);	//创建右树，要考虑k的大小，因此先序 + k + 1，中序 + k + 1
+	return head;
+}
 //二叉树的遍历
 void BinTreeVLR(BinTree bt)
 {

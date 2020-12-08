@@ -2,10 +2,12 @@
 
 int main()
 {
-	//const char* str = "ABC##DE##F##G#H##";
+	const char* str1 = "ABCDEFGH";
+	const char* str2 = "CBEDFAGH";
 	BinTree bt;
 	BinTreeInit(&bt);
-	BinTreeCreate(&bt);
+	bt = BinTreeCreateLRV_LVR(str1, str2, strlen(str1));
+	//BinTreeCreate(&bt);
 	//bt = BinTreeCreate_1();
 	//int index = 0;
 	//bt = BinTreeCreate_2(str, &index);
