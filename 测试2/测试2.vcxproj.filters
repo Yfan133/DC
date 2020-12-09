@@ -18,5 +18,11 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="删除有序链表中重复出现的元素.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="序列化二叉树.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
