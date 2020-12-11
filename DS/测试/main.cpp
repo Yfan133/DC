@@ -22,10 +22,27 @@ using namespace std;
 //	QuickSort(arr, 0, arr.size());
 //	return 0;
 //}
+class A
+{
+public:
+	A()
+	{
 
+	}
+	~A()
+	{
+		delete this;
+	}
+	void foo()
+	{
+		delete this;
+	}
+};
 int main()
 {
-	
+	A* a = new A();
+	a->foo();
+	return 0;
 }
 //void fun(const int& a,const int& b)
 //{

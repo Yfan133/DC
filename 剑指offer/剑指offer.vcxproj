@@ -149,10 +149,13 @@
     <ClCompile Include="包含main函数的栈.cpp" />
     <ClCompile Include="另一颗数的子树.cpp" />
     <ClCompile Include="对称的二叉树.cpp" />
+    <ClCompile Include="左旋字符串.cpp" />
     <ClCompile Include="平衡二叉树.cpp" />
+    <ClCompile Include="打印从1到最大的n位数.cpp" />
     <ClCompile Include="把数字翻译成字符串.cpp" />
     <ClCompile Include="数字序列中某一位的数字.cpp" />
     <ClCompile Include="重建二叉树.cpp" />
+    <ClCompile Include="链表倒数第k个节点.cpp" />
     <ClCompile Include="队列最大值.cpp" />
     <ClCompile Include="顺时针打印矩阵.cpp" />
   </ItemGroup>
