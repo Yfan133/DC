@@ -68,5 +68,11 @@
     <ClCompile Include="打印从1到最大的n位数.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="从上到下打印二叉树2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="最长不含重复字符的子字符串.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
