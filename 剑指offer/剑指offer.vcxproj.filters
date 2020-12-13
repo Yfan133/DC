@@ -74,5 +74,14 @@
     <ClCompile Include="最长不含重复字符的子字符串.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="序列化二叉树.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="数值的整数次方.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="剪绳子2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
