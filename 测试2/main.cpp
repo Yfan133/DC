@@ -6,6 +6,9 @@
 using namespace std;
 int main()
 {
-    printf("%-30.4f", 2.123456);
+    string s("qwer");
+    string q("qw");
+    char* p = (char*)"qw";
+    int pos = s.find(q);
     return 0;
 }
