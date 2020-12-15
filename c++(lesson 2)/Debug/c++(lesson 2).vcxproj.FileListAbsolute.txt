@@ -1,0 +1,2 @@
+D:\vs2019file\c++(lesson 2)\Debug\c++(lesson 2).exe
+D:\vs2019file\c++(lesson 2)\Debug\c++(lesson 2).pdb
