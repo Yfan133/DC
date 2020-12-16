@@ -95,5 +95,11 @@
     <ClCompile Include="从上到下打印二叉树3.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="调整数组顺序使奇数位于偶数前面.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="数组中重复的数字.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

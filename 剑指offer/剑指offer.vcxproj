@@ -162,7 +162,9 @@
     <ClCompile Include="把数字翻译成字符串.cpp" />
     <ClCompile Include="数值的整数次方.cpp" />
     <ClCompile Include="数字序列中某一位的数字.cpp" />
+    <ClCompile Include="数组中重复的数字.cpp" />
     <ClCompile Include="最长不含重复字符的子字符串.cpp" />
+    <ClCompile Include="调整数组顺序使奇数位于偶数前面.cpp" />
     <ClCompile Include="重建二叉树.cpp" />
     <ClCompile Include="链表倒数第k个节点.cpp" />
     <ClCompile Include="队列最大值.cpp" />
