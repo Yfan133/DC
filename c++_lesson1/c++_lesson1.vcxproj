@@ -142,7 +142,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="929.cpp" />
+    <ClCompile Include="IO进阶.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="继承.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List.h" />
