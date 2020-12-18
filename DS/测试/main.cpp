@@ -22,26 +22,32 @@ using namespace std;
 //	QuickSort(arr, 0, arr.size());
 //	return 0;
 //}
-class A
-{
-public:
-	A()
-	{
 
-	}
-	~A()
-	{
-		delete this;
-	}
-	void foo()
-	{
-		delete this;
-	}
-};
+
+bool cmp(vector<int> a, vector<int> b)
+{
+    if (a[0] == b[0])
+        return a[1] > b[1];
+    return a[0] < b[0];
+}
+int removeCoveredIntervals(vector<vector<int>>& intervals)
+{
+    sort(intervals.begin(), intervals.end(), cmp);
+    int res = intervals.size();
+    int max = intervals[0][1];
+    for (int i = 1; i < intervals.size(); i++)
+    {
+        if (max > intervals[i][1])
+            res--;
+        else
+            max = intervals[i][1];
+    }
+    return res;
+}
 int main()
 {
-	A* a = new A();
-	a->foo();
+    vector<vector<int>> vv = { {1,4},{3,6},{2,8},{4,5} };
+    removeCoveredIntervals(vv);
 	return 0;
 }
 //void fun(const int& a,const int& b)
