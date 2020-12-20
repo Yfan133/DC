@@ -2,7 +2,9 @@
 #include <string.h>
 #include <stdio.h>
 #include <fstream>
+#include <iomanip>
 using namespace std;
+#pragma warning(disable : 4996)
 
 #define N 53  //带权重的n个叶子节点数,根据文件中字符种类的个数来确定 
 #define M 2*N-1 //n个叶子节点的哈夫曼树具有2*n-1个节点 
@@ -162,7 +164,7 @@ void dayinshu(huffman T, char ch[]) {
         }
     }
 }
-int main() 
+int main()
 {
     huffman T;
     char a[10000];//读取文件中的字符个数 
@@ -257,3 +259,5 @@ int main()
         cout << "-------------------------------------------|" << endl;
         cin >> n;
     }
+    return 0;
+}

@@ -11,8 +11,7 @@ class A
 using namespace std;
 int main()
 {
-    deque<A*> ar;
-    A* a;
-    ar.push_back(a);
+    double a = 2.123;
+    double b = a * a;
     return 0;
 }
