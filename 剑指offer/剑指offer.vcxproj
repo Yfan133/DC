@@ -158,6 +158,7 @@
     <ClCompile Include="左旋字符串.cpp" />
     <ClCompile Include="平衡二叉树.cpp" />
     <ClCompile Include="序列化二叉树.cpp" />
+    <ClCompile Include="序列化二叉树2.cpp" />
     <ClCompile Include="打印从1到最大的n位数.cpp" />
     <ClCompile Include="把数字翻译成字符串.cpp" />
     <ClCompile Include="数值的整数次方.cpp" />

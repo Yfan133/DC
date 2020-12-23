@@ -101,5 +101,8 @@
     <ClCompile Include="数组中重复的数字.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="序列化二叉树2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
