@@ -144,6 +144,8 @@
     <ClCompile Include="929.cpp" />
     <ClCompile Include="IO进阶.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="剪绳子.cpp" />
+    <ClCompile Include="电话号码的字母组合.cpp" />
     <ClCompile Include="继承.cpp" />
   </ItemGroup>
   <ItemGroup>
