@@ -27,10 +27,7 @@
     <ClCompile Include="IO进阶.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="电话号码的字母组合.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="剪绳子.cpp">
+    <ClCompile Include="多态.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
