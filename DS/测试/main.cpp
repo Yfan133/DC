@@ -1,34 +1,29 @@
 ﻿#include <iostream>
 #include <set>
+#include <vector>
 using namespace std;
-#define mod 1000007
-int mi(int x, int t)
+int robCount(vector<int> nums)
 {
-    int r = 1;
-    for (; t; t >>= 1) 
+    int cur = 0, pre = 0, tmp;
+    for (int i : nums)
     {
-        if (t & 1) //为奇数则进去
-            r = (long long)r * x % mod;
-        x = (long long)x * x % mod;
+        tmp = cur;  //tmp保存cur当前的状态
+        cur = max(pre + i, cur);    //cur取前个数加后个数 he 当前较大的数
+        pre = tmp;  //把cur上次的状态重新赋值给pre
     }
-    return r;
+    return cur;
 }
-int cuttingRope(int n) 
+int rob(vector<int>& nums)
 {
-    if (n < 4)
-        return n - 1;
-    int t = n / 3;
-    int r = n % 3;
-    if (r == 0) 
-        return mi(3, t) % mod;
-    else if (r == 1) 
-        return (long long)mi(3, t - 1) * 4 % mod;
-    else 
-        return (long long)mi(3, t) * 2 % mod;
+    if (nums.size() == 0)
+        return 0;
+    if (nums.size() == 1)
+        return nums[0];
+    return max(robCount(vector<int>(nums.begin(), nums.end() - 1)), robCount(vector<int>(nums.begin() + 1, nums.end())));
 }
 int main()
 {
-    mi(3, 5);
-    //cuttingRope(100);
+    vector<int> vc = { 1, 5, 1, 2, 6, 9 };
+    rob(vc);
 	return 0;
 }

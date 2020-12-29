@@ -104,5 +104,11 @@
     <ClCompile Include="序列化二叉树2.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="表示数值的字符串.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="复杂链表的复制.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
