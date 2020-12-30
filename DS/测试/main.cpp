@@ -1,29 +1,61 @@
 ﻿#include <iostream>
 #include <set>
 #include <vector>
+#include <string>
 using namespace std;
-int robCount(vector<int> nums)
+bool isMatch(string s, string p)
 {
-    int cur = 0, pre = 0, tmp;
-    for (int i : nums)
+    int l = 0, r = 0;
+    while (l < s.size() && r < s.size())
     {
-        tmp = cur;  //tmp保存cur当前的状态
-        cur = max(pre + i, cur);    //cur取前个数加后个数 he 当前较大的数
-        pre = tmp;  //把cur上次的状态重新赋值给pre
+        if (s[l] == p[r])
+        {
+            l++;
+            r++;
+        }
+        else
+        {
+            if (p[r] == '.')
+            {
+                p[r] = s[l];
+                l++;
+                r++;
+            }
+            else if (p[r] == '*')
+            {
+                int pos_s = l + 1;
+                int pos_p = r + 1;
+                //先统计 s 中从位置 l 开始相同的字符
+                while (pos_s < s.size() && s[pos_s] == s[l])
+                {
+                    pos_s++;
+                }
+                int s_len = pos_s - l;
+                while (pos_p < p.size() && p[pos_p] == p[r - 1])
+                {
+                    pos_p++;
+                }
+                int p_len = pos_p - r;
+                if (p_len > s_len + 1)
+                    return false;
+                l = pos_s;
+                r = pos_p;
+            }
+            else    //防止 aab c*a*b 的情况
+            {
+                if (r + 1 < p.size() && p[r + 1] == '*')
+                {
+                    r += 2;
+                }
+                else
+                    return false;
+            }
+        }
     }
-    return cur;
-}
-int rob(vector<int>& nums)
-{
-    if (nums.size() == 0)
-        return 0;
-    if (nums.size() == 1)
-        return nums[0];
-    return max(robCount(vector<int>(nums.begin(), nums.end() - 1)), robCount(vector<int>(nums.begin() + 1, nums.end())));
+    return l == s.size() && r == p.size();
 }
 int main()
 {
-    vector<int> vc = { 1, 5, 1, 2, 6, 9 };
-    rob(vc);
+    isMatch(string("aab"), string("c*a*b"));
 	return 0;
 }

@@ -1,2 +1,7 @@
 ﻿  main.cpp
+D:\vs2019file\DS\测试\main.cpp(9,14): warning C4018: “<”: 有符号/无符号不匹配
+D:\vs2019file\DS\测试\main.cpp(9,30): warning C4018: “<”: 有符号/无符号不匹配
+D:\vs2019file\DS\测试\main.cpp(29,30): warning C4018: “<”: 有符号/无符号不匹配
+D:\vs2019file\DS\测试\main.cpp(34,30): warning C4018: “<”: 有符号/无符号不匹配
+D:\vs2019file\DS\测试\main.cpp(46,27): warning C4018: “<”: 有符号/无符号不匹配
   测试.vcxproj -> D:\vs2019file\DS\测试\Debug\测试.exe

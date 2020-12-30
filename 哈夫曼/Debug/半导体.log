@@ -1,4 +1,0 @@
-﻿  ac.cpp
-D:\vs2019file\哈夫曼\ac.cpp(24,27): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
-D:\vs2019file\哈夫曼\ac.cpp(35,27): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
-  半导体.vcxproj -> D:\vs2019file\哈夫曼\Debug\半导体.exe
