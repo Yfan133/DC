@@ -1,0 +1,2 @@
+D:\vs2019file\网络\Debug\网络.exe
+D:\vs2019file\网络\Debug\网络.pdb
