@@ -1,2 +1,0 @@
-D:\vs2019file\哈夫曼\Debug\半导体.exe
-D:\vs2019file\哈夫曼\Debug\半导体.pdb
