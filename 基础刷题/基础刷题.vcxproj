@@ -139,7 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="另类加法.cpp" />
+    <ClCompile Include="最小公倍数.cpp" />
     <ClCompile Include="统计回文.cpp" />
+    <ClCompile Include="走方格的方案数.cpp" />
     <ClCompile Include="连续最大和.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

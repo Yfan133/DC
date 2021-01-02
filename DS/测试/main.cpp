@@ -3,11 +3,37 @@
 #include <vector>
 #include <string>
 using namespace std;
+
+class A
+{
+public:
+	int a_ = 1;
+};
+class B1 : virtual public A
+{
+public:
+	int b1_ = 2;
+};
+class B2 : virtual public A
+{
+public:
+	int b2_ = 3;
+};
+class C : public B1, public B2
+{
+public:
+	int c_ = 4;
+};
+void TestFun()
+{
+	C c;
+	c.B1::a_ = 9;
+	c.B2::a_ = 10;
+	c.a_ = 1;
+}
 int main()
 {
-	string a("qwer");
-	string b;
-	b += a.substr(0, 0);
-	b += a.substr(4);
+	TestFun();
+	
 	return 0;
 }
