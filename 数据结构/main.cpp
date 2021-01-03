@@ -1,4 +1,4 @@
-#if 0
+// #if 0
 #include"bintree.h"
 
 int main()
@@ -51,7 +51,7 @@ int main()
 		printf("yes!\n");
 	return 0;
 }
-#endif
+// #endif
 //#include "heap.h"
 #if 0
 int main()
@@ -95,6 +95,7 @@ void main()
 	HeapShow(&mhp);
 }
 #endif
+#if 0
 #include "bst.h"
 void main()
 {
@@ -112,3 +113,4 @@ void main()
 	BSTNode* p = BstFind(bst, 27);
 	BstErase(&bst, p);
 }
+#endif

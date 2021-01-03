@@ -107,29 +107,46 @@ void BinTreeLRV(BinTree bt)
 //		if()
 //	}
 //}
-//二叉树非递归遍历						//双指针！！！！！！！！
+//二叉树非递归遍历						//双指针！,每次打印的时候就应该从栈中 pop
 #include<stack>
 #include<iostream>
-void BinTreeVLR_Nor(BinTree bt)			//先根：每次往栈里push的时候就打印，bt用来插入节点，p用来定位bt的位置。   把所有节点都当成是左子数！
+void BinTreeVLR_Nor(BinTree bt)				//先根的简单方法
 {
 	if (bt == nullptr)
 		return;
 	std::stack<BinTreeNode*> st;
 	st.push(bt);
-	do
+	while (!st.empty())
 	{
-		while (bt != nullptr)
-		{
-			printf("%c  ", bt->data);
-			st.push(bt);
-			bt = bt->leftchild;
-		}
-		BinTreeNode* p = st.top();
+		BinTreeNode* node = st.top();
 		st.pop();
-		if (p->rightchild != nullptr)
-			bt = p->rightchild;
-	} while (!st.empty());
+		printf("%c  ", node->data);
+		//要控制好 node 的插入顺序，先插右支再插左支
+		if (node->rightchild)
+			st.push(node->rightchild);
+		if (node->leftchild)
+			st.push(node->leftchild);
+	}
 }
+//void BinTreeVLR_Nor(BinTree bt)			//先根：每次往栈里push的时候就打印，bt用来插入节点，p用来定位bt的位置。   把所有节点都当成是左子数！
+//{
+//	if (bt == nullptr)
+//		return;
+//	std::stack<BinTreeNode*> st;
+//	do
+//	{
+//		while (bt != nullptr)
+//		{
+//			printf("%c  ", bt->data);
+//			st.push(bt);
+//			bt = bt->leftchild;
+//		}
+//		BinTreeNode* p = st.top();
+//		st.pop();
+//		if (p->rightchild != nullptr)
+//			bt = p->rightchild;
+//	} while (!st.empty() || bt != nullptr);
+//}
 void BinTreeLVR_Nor(BinTree bt)			//中根：打印的条件是：1.左树为空  2.左树被访问过了
 {										//因此，需要bt：插入数据   p：进行定位和输出
 	if (bt == nullptr)
