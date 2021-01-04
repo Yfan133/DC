@@ -30,5 +30,20 @@
     <ClCompile Include="最小公倍数.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="组成偶数最近的素数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="二进制插入.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="求最大连续bit数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="最近公共祖先.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="井字棋.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
