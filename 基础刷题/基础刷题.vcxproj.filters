@@ -45,5 +45,14 @@
     <ClCompile Include="井字棋.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="搜索旋转排序数组.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="搜索旋转排序数组2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="寻找旋转排序数组中的最小值.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

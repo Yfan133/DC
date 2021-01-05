@@ -412,57 +412,58 @@ DNS	 底层使用UDP协议
 
 http协议格式
 	请求：
-		请求首行  \r\n
-		请求头部  key:value\r\nkey:value\r\n
-			Content-Length:	正文长度
-			Content-Type：	正文的编码格式
-				text/plain：纯文本格式		appliation/json：json	数据格式
-				text/html：	HTML格式		appliation/msword：word 文档格式
-				text/png：	png图片格式
-			referer：当前的页面从哪一个页面跳过来的
-			Cookie：向服务器提交浏览器本地保存的认证信息，认证信息是之前登陆服务器的时候，服务器返回给浏览器的，浏览器进行缓存，在下一次请求的时候带上Cookie
-			Tranfer-Encoding：针对正文而言，可以支持分块传输
-			User-Agent：操作系统和浏览器的版本信息
-			Location：搭配重定向使用
-			Connection：keep-alive  保持长连接
+		请求首行：\r\n
+		请求头部：  形式-》(key:value\r\nkey:value\r\n)
+			GET / HTTP/1.1：请求方法
+			Host：192.168.0.88:18888
+			Connection：连接方式
+				keep-alive：保持长连接
 				早期http是一个无状态短链接协议，http也持支长连接
 				短链接：浏览器和服务端发送完数据，连接随即断开
 				长连接：浏览器和服务端发完数据之后，连接不断开
-			画个图：(重定向)浏览器去访问服务端，此时服务端出问题不能提供服务，返还另一个服务端的ip，浏览器用这个ip继续访问另一服务器
+			User-Agent：操作系统和浏览器的版本信息
+			Referer：当前的页面从哪一个页面跳过来的
+			Cookie：向服务器提交浏览器本地保存的认证信息，认证信息是之前登陆服务器的时候，服务器返回给浏览器的，浏览器进行缓存，在下一次请求的时候带上Cookie
+
+		请求方法：
+		1.GET：从服务器上获取一个资源的方法
+			1.Get方法并不是只能向服务器获取资源，其实也是可以在查询字符串当中提交数据到服务器
+			2.提交的数据在URL当中，URL的长度针对不同浏览器是有不同限制的
+		2.POST：向服务器去提交数据的方法，提交的数据在正文当中
+		问题：
+			POST方法比GET方法更安全吗？
+				不是，POST方法比GET方法更加私密
+			安全的做法是：使用https，即ssl加密，将传输的数据进行加密操作
+		http协议的版本分类：
+			HTTP 0.9、
+			HTTP 1.0、
+			HTTP 1.1、
+			HTTP 2
+	响应
+		响应首行  \r\n
+		响应头部：key:value\r\nkey:value:\r\n
+			HTTP/1.1 200 OK：200 OK状态码
+			Tranfer-Encoding：针对正文而言，可以支持分块传输
+			Content-Type：正文的编码格式	text/html
+			Content-Length:	正文长度		body.size()
+				text/plain：纯文本格式
+				text/html：	HTML格式
+				text/png：	png图片格式
+			appliation/json：json	数据格式
+			appliation/msword：word 文档格式
+			Location：搭配重定向使用
+				画个图：(重定向)浏览器去访问服务端，此时服务端出问题不能提供服务，返还另一个服务端的ip，浏览器用这个ip继续访问另一服务器
 		空行	  \r\n
 		正文
 
-	请求方法：
-	1.GET：从服务器上获取一个资源的方法
-		1.Get方法并不是只能向服务器获取资源，其实也是可以在查询字符串当中提交数据到服务器
-		2.提交的数据在URL当中，URL的长度针对不同浏览器是有不同限制的
-	2.POST：向服务器去提交数据的方法，提交的数据在正文当中
-	问题：
-		POST方法比GET方法更安全吗？
-			不是，POST方法比GET方法更加私密
-		安全的做法是：使用https，即ssl加密，将传输的数据进行加密操作
-	http协议的版本分类：
-		HTTP 0.9、
-		HTTP 1.0、
-		HTTP 1.1、
-		HTTP 2
-
-响应
-	响应首行  \r\n
-		协议版本 状态码 状态码解释 \r\n		
-			状态码分类：
+		状态码解释(分类)：
 			1XX：接收到请求了，正在处理
 			2XX：请求成功处理完毕了；200，OK
-			3XX：重定向的状态，表示浏览器需要进行附加操作，才能完成请求	(302：临时重定向，搭配Location一起使用)，烤鸭的例子
-			4XX：服务器无法处理这个请求  (404：页面不存在 -》Page Not Found)
-			5XX：服务器处理出错(502：Bad Geteway 坏的网关)
-	响应头部  key:value\r\nkey:value:\r\n
-		Content-Type:   正文类型
-			text/html(页面，则不需要正文长度), application/json, text/plain
-		Content-Length：正文长度
-	空行	 \r\n
-	正文
+			3XX：重定向的状态，表示浏览器需要进行附加操作，才能完成请求	(302：临时重定向，搭配Location：http//www.baidu.com\r\n 一起使用)
+			4XX：服务器无法处理这个请求  (404：Page Not Found，页面不存在)
+			5XX：服务器处理出错(502：Bad Geteway，服务器内部错误) 
 
+		值得注意的：状态码并不影响数据的传输！
 小结：
 	1.http协议是应用层的协议，在传输层使用的是tcp协议，在网络层使用的是ip协议
 	2.http是无状态的协议(不会记录刚才的请求的状态)，早期使用的tcp是短连接，现在也支持长连接
@@ -470,12 +471,8 @@ http协议格式
 	4.http协议使用的是 80 端口，https使用的是 443 端口
 
 ctemplate：谷歌的渲染http
-状态码：
-	404：一般返回的是错误页面
-	502：服务器内部错误
 */
 /*
-等下再看一下录屏密码怎么查看的？
 
 UDP协议：(无连接 不可靠 面向数据报)
 	无连接：	只要直到对端 ip 和 port 就可发数据
@@ -518,7 +515,8 @@ TCP协议：
 			1.发送数据包的名称						SYN, SYN_ACK, ACK
 			2.配合客户端和服务端的状态来进行描述	SYN_SENT, SYN_RECV, ESTABLISHED, ESTABLISHED
 			3.包序管理								细讲一下包序 Seq：发送的包，Ack：请求的包
-			客户端发起连接 SYN，服务端收到并发送 SYN_ACK，客户端回应ACK      ACK
+
+		客户端发起连接 SYN，服务端收到并发送 SYN_ACK，客户端回应ACK
 			SYN：连接请求
 			ACK：SYN的回复
 			ACK + SYN：回复连接请求，并且也请求连接
@@ -528,69 +526,69 @@ TCP协议：
 			1.为什么会显示FIN_WAIT_2：因为服务端要关闭才会，发送FIN 然后变成 LAST_ACK
 				也就是服务器并没有关闭，只有服务器关闭才会向所有发送FIN
 			2.为什么会出现绑定重复（address already in use）？
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-				MSL：最大报文段生存时间，发送方认为TCP报文
-			2MSL = 丢失的ACK 
-
+				MSL：最大报文段生存时间，发送 ACK 方认为TCP报文在网络当中的最大生存时间(传输时间)
+				2MSL = 丢失的ACK的MSL + 重传的Fin的MSL
 	完整解释TCP的四次挥手过程：（图文详解）
-		若第一次的ACK丢失，在第二个MSL中会再次发送FIN，然后回应ACK。再来2MSL的时间，若此时对端收到，则2MSL过后双方关闭
+		若第一次的 ACK 丢失，对端没收到超过时间会再次发送FIN，然后回应ACK。再来2MSL的时间，若此时对端收到，则对端先关闭，2MSL过后这边也关闭
 		超时重传：发送FIN的一端，在一定时间内没有收到ACK回复之后，会超时重传，即重新传FIN。对端收到后发送ACK继续等待2MSL
-	
-		如果说连接处于TIME_WAIT状态，是否还可以接收数据包？
+	问题：
+		如果说发送ACK后连接处于TIME_WAIT状态，是否还可以接收数据包？
 			可以接收数据包，也就意味着端口并没有被释放
 		如果主动断开连接方是 客户端，意味着客户端会有TIME_WAIT状态
 		如果主动断开连接方是 服务端，意味着服务端会有TIME_WAIT状态
-			如果现在连接处于TIME_WAIT状态，意味着端口还没有被释放
-			如果服务端关闭
 
-		地址复用：
-			核心思想就是告诉内核，这个地址信息可以被复用
-			int setsockopt(int sock, int level, int optname, const void* optval, sockelen_t len)
-				sock：将要被设置的套接字
-				level：指定套接字的层次
-					SOL_SOCKET：通用套接字选项  --》 地址复用
-					
-				optname：
-					SOL_SOCKET：通用套接字选项  --》地址复用
-
-
-	TCP协议字段：
-		16位的源端口：表示数据从哪一个端口来
-		16位目的端口：表示
-		32位序号：表示TCP源端向TCP目的端发送的数据字节流
-		32位确认序号：标识TCP目的端期望TCP源端的下一个请求序号
+	3.地址复用：
+		核心思想就是告诉内核，这个地址信息可以被复用
+		int setsockopt(int sock, int level, int optname, const void* optval, sockelen_t len)
+			sock：将要被设置的套接字
+			level：指定套接字的层次
+				SOL_SOCKET：通用套接字选项  --》 地址复用
+				IPPROTO_TCP
+				IPPROTO_IP
+			optname：
+				SOL_SOCKET：通用套接字选项  --》地址复用
+					SO_REUSEADDR：允许重用本地地址和端口
+					SO_RECVBUF：获取接收缓冲区的大小
+				IPPROTO_TCP
+					TCP_MAXSEG：获取最大报文段长度
+				IPPROTO_IP
+					IP_TTL：获取最大的生存时间
+			optval：告诉setsockopt函数具体应该如何完成指定的任务
+				地址复用：传入1
+				传参：传入int类型的地址
+			len:
+				optval的长度
+	4.TCP协议字段：
+		1. 16位的源端口：表示数据从哪一个端口来
+		2. 16位目的端口：表示数据的目的
+		3. 32位序号：标识TCP源端向TCP目的端发送的数据字节流(本端包序)
+		4. 32位确认序号：标识TCP目的端期望TCP源端的下一个请求序号(期望包序)
 
 		序号在TCP连接中是两套序号，客户端维护一套，服务端维护一套
-			客户端给服务端发送数据，使用的是客户端序号，服务端确认的时候，期望客户端的下一个序号
+			客户端给服务端发送数据，使用的是客户端序号，服务端确认的时候，发送期望客户端的下一个序号
+			服务端给客户端发送数据，使用的时服务端序号，客户端确认的时候，发送期望服务端的下一个序号
 
-		SYN(Seq=0)
+		三次握手的时候，连接双方会协商发送序号的起始位置，起始位置不一定从1开始，只要后续的序号是前序+1就可以了，没有对序号做要求
+
+	包序管理：
+		(三次握手)
+		SYN(Seq=0) 
 		Seq=0:客户端维护的序号为0的包
 		ACK(Ack=1) + SYN(Seq=0)
 		Ack=1:服务端期望客户端下一个包为序号1的包
 		Seq=0：服务端维护的序号为0的包
+		ACK(Ack=1,Seq=1)
+		Ack=1：客户端期望服务端下一个包为序号1的包
+		Seq=1：客户端维护的序号为1的包
 
-		包序管理规则：
-			1.纯ACK数据包不占用数据包！！！
+		(收发数据)
+		一次发送数据需要：PSH + ACK
+			1.纯ACK数据包不占用数据包！！因此三次握手之后客户端还是发送 PSH(Seq=1,Ack=1);
 			2.确认序号 = 接收到的数据的起始序号 + 数据长度
 		
 	课后分析四次挥手，UDP校验原理
 
-
 */
-/*
-1.响应头部：
-
-类C风格：
-	snprintf(buf, sizeof(buf - 1), "")
-	最后还要加空行 \r\n
-C++方式：
-	302状态码解释
-	404只是一个状态码，并不妨碍服务端的数据传输
-	502也不会妨碍服务端发送数据，在response header中可以看到502
-
-只有加一个/aaa 才能返回 Linux too easy
-*/
-
 /*
 nginx：
 	查看：yum list | grep nginx
