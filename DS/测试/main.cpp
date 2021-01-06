@@ -7,30 +7,28 @@ using namespace std;
 class A
 {
 public:
-	void fun()
+	virtual void fun()
 	{
 		cout << "基类" << endl;
 	}
-	int a_ = 1;
 };
 class B : public A
 {
 public:
-	void fun()
+	virtual void fun()
 	{
-		cout << "派生" << endl;
+		cout << "派生类" << endl;
 	}
-	int b_ = 2;
 };
-void TestFun()
+void Test(A& a)
 {
-	B b;
-	b.fun();
-	b.A::fun();
+	a.fun();
 }
 int main()
 {
-	TestFun();
-	
+	A a;
+	B b;
+	Test(a);
+	Test(b);
 	return 0;
 }

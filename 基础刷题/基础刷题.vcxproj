@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="二进制插入.cpp" />
     <ClCompile Include="井字棋.cpp" />
+    <ClCompile Include="参数解析.cpp" />
     <ClCompile Include="另类加法.cpp" />
     <ClCompile Include="寻找旋转排序数组中的最小值.cpp" />
     <ClCompile Include="搜索旋转排序数组.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="组成偶数最近的素数.cpp" />
     <ClCompile Include="统计回文.cpp" />
     <ClCompile Include="走方格的方案数.cpp" />
+    <ClCompile Include="跳石板.cpp" />
     <ClCompile Include="连续最大和.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
