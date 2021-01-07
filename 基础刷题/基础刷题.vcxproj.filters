@@ -60,5 +60,11 @@
     <ClCompile Include="跳石板.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="日期转换.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="幸运的袋子.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
