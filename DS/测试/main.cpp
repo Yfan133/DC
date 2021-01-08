@@ -4,6 +4,19 @@
 #include <string>
 using namespace std;
 
+#include <stdio.h>
+#include <string.h>
+#pragma warning(disable : 4996)
+// 1.strcat和strcpy作用相似，都是拼接后面的字符串到前面，返回前一个的地址
+// 2.若strcat(str + 1, ptr + 2);表示从ptr起始的第三个字符开始拷贝，到str后面，返回str第二个字符的地址
+int main()
+{
+	char str[15] = "abc";
+	const char* ptr = "qwer";
+	char* p = strcat(str + 1, ptr + 1);
+	return 0;
+}
+
 //class A
 //{
 //public:
