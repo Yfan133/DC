@@ -11,9 +11,9 @@ using namespace std;
 // 2.若strcat(str + 1, ptr + 2);表示从ptr起始的第三个字符开始拷贝，到str后面，返回str第二个字符的地址
 int main()
 {
-	char str[15] = "abc";
-	const char* ptr = "qwer";
-	char* p = strcat(str + 1, ptr + 1);
+	string str("qwerasdf-zxcv");
+	int pos = str.find("xcv");
+	string st(str.substr(str.find('-')));
 	return 0;
 }
 

@@ -144,9 +144,11 @@
     <ClCompile Include="井字棋.cpp" />
     <ClCompile Include="参数解析.cpp" />
     <ClCompile Include="另类加法.cpp" />
+    <ClCompile Include="完全数计算.cpp" />
     <ClCompile Include="寻找旋转排序数组中的最小值.cpp" />
     <ClCompile Include="幸运的袋子.cpp" />
     <ClCompile Include="手套.cpp" />
+    <ClCompile Include="扑克牌大小.cpp" />
     <ClCompile Include="搜索旋转排序数组.cpp" />
     <ClCompile Include="搜索旋转排序数组2.cpp" />
     <ClCompile Include="日期转换.cpp" />

@@ -72,5 +72,11 @@
     <ClCompile Include="手套.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="完全数计算.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="扑克牌大小.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
