@@ -154,10 +154,12 @@
     <ClCompile Include="日期转换.cpp" />
     <ClCompile Include="最小公倍数.cpp" />
     <ClCompile Include="最近公共祖先.cpp" />
+    <ClCompile Include="杨辉三角的变形.cpp" />
     <ClCompile Include="求最大连续bit数.cpp" />
     <ClCompile Include="组成偶数最近的素数.cpp" />
     <ClCompile Include="统计回文.cpp" />
     <ClCompile Include="走方格的方案数.cpp" />
+    <ClCompile Include="超长正整数相加.cpp" />
     <ClCompile Include="跳石板.cpp" />
     <ClCompile Include="连续最大和.cpp" />
   </ItemGroup>

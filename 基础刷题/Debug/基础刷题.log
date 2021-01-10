@@ -1,0 +1,112 @@
+﻿  二进制中1的个数.cpp
+  二进制插入.cpp
+D:\vs2019file\基础刷题\二进制插入.cpp(1,1): error C2059: 语法错误:“常数”
+D:\vs2019file\基础刷题\二进制插入.cpp(2,17): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+D:\vs2019file\基础刷题\二进制插入.cpp(2,17): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+D:\vs2019file\基础刷题\二进制插入.cpp(10,1): error C2059: 语法错误:“常数”
+D:\vs2019file\基础刷题\二进制插入.cpp(11,17): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+D:\vs2019file\基础刷题\二进制插入.cpp(11,17): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+  井字棋.cpp
+D:\vs2019file\基础刷题\井字棋.cpp(3,25): error C2061: 语法错误: 标识符“vector”
+D:\vs2019file\基础刷题\井字棋.cpp(7,19): error C2065: “board”: 未声明的标识符
+D:\vs2019file\基础刷题\井字棋.cpp(12,17): error C2065: “board”: 未声明的标识符
+D:\vs2019file\基础刷题\井字棋.cpp(12,31): error C2065: “board”: 未声明的标识符
+D:\vs2019file\基础刷题\井字棋.cpp(12,45): error C2065: “board”: 未声明的标识符
+D:\vs2019file\基础刷题\井字棋.cpp(18,17): error C2065: “board”: 未声明的标识符
+D:\vs2019file\基础刷题\井字棋.cpp(18,31): error C2065: “board”: 未声明的标识符
+D:\vs2019file\基础刷题\井字棋.cpp(18,45): error C2065: “board”: 未声明的标识符
+D:\vs2019file\基础刷题\井字棋.cpp(22,13): error C2065: “board”: 未声明的标识符
+D:\vs2019file\基础刷题\井字棋.cpp(22,27): error C2065: “board”: 未声明的标识符
+D:\vs2019file\基础刷题\井字棋.cpp(22,41): error C2065: “board”: 未声明的标识符
+D:\vs2019file\基础刷题\井字棋.cpp(22,63): error C2065: “board”: 未声明的标识符
+D:\vs2019file\基础刷题\井字棋.cpp(22,77): error C2065: “board”: 未声明的标识符
+D:\vs2019file\基础刷题\井字棋.cpp(22,91): error C2065: “board”: 未声明的标识符
+  参数解析.cpp
+D:\vs2019file\基础刷题\参数解析.cpp(11,23): warning C4018: “<”: 有符号/无符号不匹配
+D:\vs2019file\基础刷题\参数解析.cpp(22,26): warning C4018: “<”: 有符号/无符号不匹配
+  另类加法.cpp
+  完全数计算.cpp
+  寻找旋转排序数组中的最小值.cpp
+D:\vs2019file\基础刷题\寻找旋转排序数组中的最小值.cpp(3,23): error C2061: 语法错误: 标识符“vector”
+D:\vs2019file\基础刷题\寻找旋转排序数组中的最小值.cpp(5,29): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\寻找旋转排序数组中的最小值.cpp(8,17): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\寻找旋转排序数组中的最小值.cpp(8,29): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\寻找旋转排序数组中的最小值.cpp(9,24): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\寻找旋转排序数组中的最小值.cpp(11,17): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\寻找旋转排序数组中的最小值.cpp(11,29): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\寻找旋转排序数组中的最小值.cpp(13,22): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\寻找旋转排序数组中的最小值.cpp(13,34): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\寻找旋转排序数组中的最小值.cpp(18,16): error C2065: “nums”: 未声明的标识符
+  幸运的袋子.cpp
+D:\vs2019file\基础刷题\幸运的袋子.cpp(10,25): warning C4018: “<”: 有符号/无符号不匹配
+D:\vs2019file\基础刷题\幸运的袋子.cpp(21,18): warning C4018: “<”: 有符号/无符号不匹配
+  手套.cpp
+D:\vs2019file\基础刷题\手套.cpp(3,34): error C2061: 语法错误: 标识符“vector”
+D:\vs2019file\基础刷题\手套.cpp(8,32): error C2065: “INT_MAX”: 未声明的标识符
+D:\vs2019file\基础刷题\手套.cpp(9,32): error C2065: “INT_MAX”: 未声明的标识符
+D:\vs2019file\基础刷题\手套.cpp(13,17): error C2065: “left”: 未声明的标识符
+D:\vs2019file\基础刷题\手套.cpp(13,27): error C2065: “right”: 未声明的标识符
+D:\vs2019file\基础刷题\手套.cpp(14,24): error C2065: “left”: 未声明的标识符
+D:\vs2019file\基础刷题\手套.cpp(14,34): error C2065: “right”: 未声明的标识符
+D:\vs2019file\基础刷题\手套.cpp(17,26): error C2065: “left”: 未声明的标识符
+D:\vs2019file\基础刷题\手套.cpp(18,26): error C2065: “right”: 未声明的标识符
+D:\vs2019file\基础刷题\手套.cpp(19,29): error C2065: “left”: 未声明的标识符
+D:\vs2019file\基础刷题\手套.cpp(19,25): error C3861: “min”: 找不到标识符
+D:\vs2019file\基础刷题\手套.cpp(20,29): error C2065: “right”: 未声明的标识符
+D:\vs2019file\基础刷题\手套.cpp(20,25): error C3861: “min”: 找不到标识符
+D:\vs2019file\基础刷题\手套.cpp(23,22): error C3861: “min”: 找不到标识符
+  扑克牌大小.cpp
+  搜索旋转排序数组.cpp
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(3,22): error C2061: 语法错误: 标识符“vector”
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(5,13): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(7,29): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(11,17): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(11,30): error C2065: “target”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(13,22): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(13,35): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(15,21): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(15,34): error C2065: “target”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(15,44): error C2065: “target”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(15,53): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(22,21): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(22,33): error C2065: “target”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(22,43): error C2065: “target”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(22,53): error C2065: “nums”: 未声明的标识符
+  搜索旋转排序数组2.cpp
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(3,23): error C2061: 语法错误: 标识符“vector”
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(5,13): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(7,29): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(11,17): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(11,30): error C2065: “target”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(13,22): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(13,34): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(15,21): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(15,34): error C2065: “target”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(15,44): error C2065: “target”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(15,53): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(20,22): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(20,34): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(22,21): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(22,33): error C2065: “target”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(22,43): error C2065: “target”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(22,53): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(29,21): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(29,34): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(31,21): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(31,35): error C2065: “nums”: 未声明的标识符
+  日期转换.cpp
+  最小公倍数.cpp
+  最近公共祖先.cpp
+  求最大连续bit数.cpp
+  组成偶数最近的素数.cpp
+D:\vs2019file\基础刷题\组成偶数最近的素数.cpp(7,13): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+  统计回文.cpp
+D:\vs2019file\基础刷题\统计回文.cpp(22,20): warning C4018: “<=”: 有符号/无符号不匹配
+  走方格的方案数.cpp
+  超长正整数相加.cpp
+  正在生成代码...
+  正在编译...
+  跳石板.cpp
+  连续最大和.cpp
+  正在生成代码...
+D:\vs2019file\基础刷题\连续最大和.cpp(15): error C4700: 使用了未初始化的局部变量“tmp”

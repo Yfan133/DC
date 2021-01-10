@@ -7,13 +7,15 @@ using namespace std;
 #include <stdio.h>
 #include <string.h>
 #pragma warning(disable : 4996)
-// 1.strcat和strcpy作用相似，都是拼接后面的字符串到前面，返回前一个的地址
-// 2.若strcat(str + 1, ptr + 2);表示从ptr起始的第三个字符开始拷贝，到str后面，返回str第二个字符的地址
+
 int main()
 {
-	string str("qwerasdf-zxcv");
-	int pos = str.find("xcv");
-	string st(str.substr(str.find('-')));
+	//int a;
+	//float b, c, d;
+	//scanf("%2d%3f%4f", &a, &b, &c);
+	//scanf("%f", &d);
+	//printf("%d, %f, %f", a, b, c);
+	//printf("\n%f", d);
 	return 0;
 }
 

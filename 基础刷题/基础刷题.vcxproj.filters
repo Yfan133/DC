@@ -78,5 +78,11 @@
     <ClCompile Include="扑克牌大小.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="超长正整数相加.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="杨辉三角的变形.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
