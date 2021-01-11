@@ -144,6 +144,7 @@
     <ClCompile Include="井字棋.cpp" />
     <ClCompile Include="参数解析.cpp" />
     <ClCompile Include="另类加法.cpp" />
+    <ClCompile Include="字符串通配符.cpp" />
     <ClCompile Include="完全数计算.cpp" />
     <ClCompile Include="寻找旋转排序数组中的最小值.cpp" />
     <ClCompile Include="幸运的袋子.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="求最大连续bit数.cpp" />
     <ClCompile Include="组成偶数最近的素数.cpp" />
     <ClCompile Include="统计回文.cpp" />
+    <ClCompile Include="统计每个月兔子的总数.cpp" />
     <ClCompile Include="走方格的方案数.cpp" />
     <ClCompile Include="超长正整数相加.cpp" />
     <ClCompile Include="跳石板.cpp" />

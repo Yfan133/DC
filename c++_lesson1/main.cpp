@@ -5,72 +5,41 @@
 using namespace std;
 #pragma warning (disable:4996)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//class A
-//{
-//public:
-//	A()
-//	{}
-//};
-//// 1.B中包含A对象
-//class B
-//{
-//public:
-//	A a;
-//};
-//// 2.C继承自A
-//class C : public  A
-//{};
-//// 3.菱形继承：见博客
-//// 4.虚函数
-//class D
-//{
-//public:
-//	virtual void fun()
-//	{}
-//};
-//class E : public D
-//{
-//	virtual void fun()
-//	{}
-//};
-//void Test(A& a)
-//{
-//	
-//}
-//int main()
-//{
-//	B b;
-//	C c;
-//	E e;
-//	// 可以看到汇编中有三条 call 指令
-//	return 0;
-//}
+class A
+{
+public:
+	virtual void fun1()
+	{
+		cout << "基类" << endl;
+	}
+	virtual void fun2()
+	{
+		cout << "基类" << endl;
+	}
+};
+class B : public A
+{
+public:
+	virtual void fun1()
+	{
+		cout << "子类" << endl;
+	}
+	virtual void fun2()
+	{
+		cout << "子类" << endl;
+	}
+	/*virtual void fun3()
+	{
+		cout << "子类" << endl;
+	}*/
+};
+int main()
+{
+	A a;
+	B b;
+	A& c = a;
+	A& d = b;
+	c.fun1();
+	d.fun1();
+	return 0;
+}

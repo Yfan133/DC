@@ -84,5 +84,11 @@
     <ClCompile Include="杨辉三角的变形.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="统计每个月兔子的总数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="字符串通配符.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

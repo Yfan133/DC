@@ -8,10 +8,14 @@ bool isPernum(int tar)
     for (int i = 2; i <= sqrt(tar); i++)
     {
         if (tar % i == 0)
+        {
             if (i != sqrt(tar))
                 count = count + tar / i + i;
             else
                 count += i;
+            if (count > tar)
+                return false;
+        }
     }
     return count == tar;
 }
