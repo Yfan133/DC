@@ -4,34 +4,21 @@
 #include <vector>
 using namespace std;
 #pragma warning (disable:4996)
-
 class A
 {
 public:
 	virtual void fun1()
-	{
-		cout << "基类" << endl;
-	}
-	virtual void fun2()
-	{
-		cout << "基类" << endl;
-	}
+	{}
+	void fun2()
+	{}
 };
 class B : public A
 {
 public:
 	virtual void fun1()
-	{
-		cout << "子类" << endl;
-	}
-	virtual void fun2()
-	{
-		cout << "子类" << endl;
-	}
-	/*virtual void fun3()
-	{
-		cout << "子类" << endl;
-	}*/
+	{}
+	virtual void fun3()
+	{}
 };
 int main()
 {
@@ -39,7 +26,9 @@ int main()
 	B b;
 	A& c = a;
 	A& d = b;
-	c.fun1();
-	d.fun1();
+	a.fun1();
+	a.fun2();
+	b.fun1();
+	b.fun2();
 	return 0;
 }

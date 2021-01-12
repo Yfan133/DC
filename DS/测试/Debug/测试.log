@@ -1,2 +1,3 @@
 ﻿  main.cpp
+D:\vs2019file\DS\测试\main.cpp(48,10): warning C4477: “printf”: 格式字符串“%x”需要类型“unsigned int”的参数，但可变参数 2 拥有了类型“Handler”
   测试.vcxproj -> D:\vs2019file\DS\测试\Debug\测试.exe

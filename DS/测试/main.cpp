@@ -18,32 +18,3 @@ using namespace std;
 //	printf("\n%f", d);
 //	return 0;
 //}
-class A
-{
-public:
-	virtual void fun1()
-	{}
-	virtual void fun2()
-	{}
-};
-class B : public A
-{
-public:
-	virtual void fun1()
-	{}
-	virtual void fun3()
-	{}
-};
-class C : public B
-{
-public:
-	virtual void fun3()
-	{}
-};
-int main()
-{
-	A a;
-	B b;
-	C c;
-	return 0;
-}
