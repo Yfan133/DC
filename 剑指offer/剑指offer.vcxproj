@@ -151,6 +151,7 @@
     <ClCompile Include="从上到下打印二叉树.cpp" />
     <ClCompile Include="从上到下打印二叉树2.cpp" />
     <ClCompile Include="从上到下打印二叉树3.cpp" />
+    <ClCompile Include="删除链表的节点.cpp" />
     <ClCompile Include="剪绳子2.cpp" />
     <ClCompile Include="包含main函数的栈.cpp" />
     <ClCompile Include="另一颗数的子树.cpp" />

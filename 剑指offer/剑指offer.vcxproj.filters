@@ -116,5 +116,8 @@
     <ClCompile Include="机器人运动路径.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="删除链表的节点.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
