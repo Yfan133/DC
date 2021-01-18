@@ -1,0 +1,2 @@
+D:\vs2019file\项目\Debug\项目.exe
+D:\vs2019file\项目\Debug\项目.pdb

@@ -1,3 +1,2 @@
 ﻿  main.cpp
-D:\vs2019file\DS\测试\main.cpp(27): warning C4172: 返回局部变量或临时变量的地址: tmp
   测试.vcxproj -> D:\vs2019file\DS\测试\Debug\测试.exe

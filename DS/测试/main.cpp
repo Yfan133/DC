@@ -21,18 +21,13 @@ using namespace std;
 //	printf("\n%f", d);
 //	return 0;
 //}
-int& add(int left, int right)
-{
-	int tmp = left + right;
-	return tmp;
-}
-
 int main()
 {
-	//char* p = (char*)malloc(10);
-	char p[15];
-	strcpy(p, "qwer");
-	//int& p = add(1, 2);
-	//printf("%d", p);
+	vector<string> vec;
+
+
+	std::string dir = vec[3];
+	ques.desc_.append(dir);
+	ques.desc_.append("/desc.txt");
 	return 0;
 }
