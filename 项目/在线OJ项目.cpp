@@ -77,10 +77,73 @@ httplib库介绍：可以帮助我们创建一个http服务，不需要关心tcp和http的解析过程，解析
 
 λ表达式：[](){}：[]：λ传递的参数 ()：参数列表 {}：处理机制
 */
-
-
-
 /*
+code目录下的模块
+	oj_data：文件信息
+		1.oj_config_cfg：题目总览
+		2.每个题目的详细信息
+			1.desc.txt：题目描述信息
+			2.header.cpp：头文件和Solution
+			3.tail.cpp：调用用户的代码
+	oj_model.hpp：获取文件信息
+		1.文件结构体：文件的各种信息
+		2.类Model：
+			1.打开oj_文件，并获取所有文件的总览
+			2.通过路径，获取每道题的详细信息
+			3.返回给上层 vector<Questions> 集合
+			
+			GetOneQues()：获取一个试题
+				
+	oj_server.cpp：处理浏览器的请求并且向浏览器传输数据
+		1.注册Get_all_questions方法
+			1.获取
+			2.
+		2.注册Get_one_question方法
+			迫切要解决的问题：怎么区分不同的试题？
+				正则表达式：R"(/question/(\d))"，但是'\d'只能识别个位数，因此'\d+'表示多位数字
+				match库
+			1.请求体里面：包含不同的题目id
+				req[0]：请求url
+				req[1]：不同的题号
+			2.调用GetOneQuestion获取单个试题内容
+
+			3.渲染单个试题的模板html，可以在菜鸟教程中练习
+				testarea:文本输入框
+				form：表单
+				input：
+		3.注册Post方法
+			1.浏览器的请求
+				方法：post
+				url：/compile/[试题号]
+				code：url编码后的代码
+			2.服务端
+				1.正则表达式通配url中的题号
+				2.对提交的代码进行url解码
+				
+				
+
+	tools.hpp：打开文件返回文件内容，切分字符串
+		1.split
+		2.
+	template：html的模板
+	oj_view.hpp：用代码填充html的模板
+		/////1.把template加到环境变量中：
+		1.创建一个TemplateDictionary类对象，构造要填充name
+		2.遍历vector<>填充好字典，看下setvalue函数
+		3.填充html页面，先Get页面，再Expand填充字典数据
+	问题：看一下oj_view.hpp的出参是什么？
+
+
+
+
+
+
+
+
+
+
+
+
 试题信息获取：oj_model.hpp
 	1.题目的描述：结构体questions
 		1.题目id
@@ -142,24 +205,6 @@ html页面：
 	{{变量}}：预定义变量：{{id}}
 	{{#question}}：片段标记
 	{{/queation}}：片段标记结尾
-*/
-
-/*
-code目录下的模块
-	oj_data：文件信息
-		1.oj_config_cfg：题目总览
-		2.每个题目的详细信息
-			1.desc.txt：题目描述信息
-			2.header.cpp：头文件和Solution
-			3.tail.cpp：调用用户的代码
-	oj_model.hpp：获取文件信息
-	oj_server.cpp：和浏览器传输数据
-	tools.hpp：
-
-
-
-
-
 */
 
 #include <iostream>

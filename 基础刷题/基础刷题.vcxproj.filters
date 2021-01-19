@@ -90,5 +90,17 @@
     <ClCompile Include="字符串通配符.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="转换成小写字母.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="旋转数组.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="移除元素.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="搜索插入位置.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
