@@ -1,4 +1,4 @@
-// #if 0
+#if 0
 #include"bintree.h"
 
 int main()
@@ -51,8 +51,8 @@ int main()
 		printf("yes!\n");
 	return 0;
 }
-// #endif
-//#include "heap.h"
+#endif
+#include "heap.h"
 #if 0
 int main()
 {
@@ -84,17 +84,17 @@ void main()
 	HeapShow(&mhp);
 }
 #endif
-#if 0
+//#if 0
 void main()
 {
-	//int ar[] = {27,15,19,18,28,34,65,49,25,37};
-	int ar[] = { 53, 17, 78, 9, 45, 65, 87, 23 };
+	int ar[] = {27,15,19,18,28,34,65,49,25,37};
+	//int ar[] = { 53, 17, 78, 9, 45, 65, 87, 23 };
 	int n = sizeof(ar) / sizeof(ar[0]);
 	Minheap mhp;
 	HeapSort(&mhp, ar, n);
 	HeapShow(&mhp);
 }
-#endif
+//#endif
 #if 0
 #include "bst.h"
 void main()

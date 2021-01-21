@@ -102,5 +102,17 @@
     <ClCompile Include="搜索插入位置.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="组队竞赛.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="排序子序列.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="倒置字符串.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="字符串中找出连续最长的数字串.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
