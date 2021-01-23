@@ -114,5 +114,17 @@
     <ClCompile Include="字符串中找出连续最长的数字串.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="存在重复元素.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="长按键入.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="合并两个有序数组.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="最后一个单词的长度.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

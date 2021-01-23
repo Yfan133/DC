@@ -145,8 +145,10 @@
     <ClCompile Include="倒置字符串.cpp" />
     <ClCompile Include="参数解析.cpp" />
     <ClCompile Include="另类加法.cpp" />
+    <ClCompile Include="合并两个有序数组.cpp" />
     <ClCompile Include="字符串中找出连续最长的数字串.cpp" />
     <ClCompile Include="字符串通配符.cpp" />
+    <ClCompile Include="存在重复元素.cpp" />
     <ClCompile Include="完全数计算.cpp" />
     <ClCompile Include="寻找旋转排序数组中的最小值.cpp" />
     <ClCompile Include="幸运的袋子.cpp" />
@@ -158,6 +160,7 @@
     <ClCompile Include="搜索旋转排序数组2.cpp" />
     <ClCompile Include="旋转数组.cpp" />
     <ClCompile Include="日期转换.cpp" />
+    <ClCompile Include="最后一个单词的长度.cpp" />
     <ClCompile Include="最小公倍数.cpp" />
     <ClCompile Include="最近公共祖先.cpp" />
     <ClCompile Include="杨辉三角的变形.cpp" />
@@ -172,6 +175,7 @@
     <ClCompile Include="跳石板.cpp" />
     <ClCompile Include="转换成小写字母.cpp" />
     <ClCompile Include="连续最大和.cpp" />
+    <ClCompile Include="长按键入.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

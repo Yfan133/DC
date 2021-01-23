@@ -150,7 +150,8 @@ code目录下的模块
 							内存访问失败
 						3.编译错误
 						4.运行错误
-							
+				5.返回运行结果
+					
 	tools.hpp：打开文件返回文件内容，切分字符串
 		1.split
 		2.
@@ -164,7 +165,15 @@ code目录下的模块
 		5.Compile函数，创建子进程。
 			子进程：进程程序替换
 			父进程：等待子进程退出
-		
+		6.运行的情况：
+			1.子进程非正常退出
+				1.访问空指针，内存访问越界，double free等
+				2.父进程收到子进程异常的退出信号，用status收集退出信号的低7位
+			2.子进程正常退出
+				测试用例全部通过
+				测试用例没有全部通过
+			3.用sigalarm退出信号控制运行时间
+			4.
 
 	template：html的模板
 	oj_view.hpp：用代码填充html的模板
@@ -211,18 +220,6 @@ code目录下的模块
 	getline是以\n来区分的，因此我们在后面加\n
 	用static修饰的函数，不用实例化对象直接，类::函数进行调用
 
-前端知识：
-html页面：
-<html>
-<head></head>	定义属性信息，
-<body></body>	想展示的内容，文档主体
-<div></div>		分块
-<a></a>			超链接
-<meta>			提供html页面源数据，正文的类型
-<form>			表单
-<action>		要执行的动作
-</html>
-
 谷歌的模板分离技术：ctemplate
 	1.预定义html页面的模板，使用一个模板参数预定义到html页面当中
 	2.后端代码将这些预定义模板参数的值计算完毕之后，只需要按照html模板进行更新
@@ -241,15 +238,6 @@ html页面：
 	{{#question}}：片段标记
 	{{/queation}}：片段标记结尾
 */
-
-
-
-
-
-
-
-
-
 /*
 面试时怎么介绍项目？？
 
@@ -264,8 +252,6 @@ html页面：
 	3.编译错误返还给浏览器的方法：修改标准错误的文件描述符，重定向到文件描述符中。
 	  从文件中读取编译错误信息，然后通过Resp返回给浏览器
 	
-
-
 替换失败也算是内部错误吧？
 在设置生成路径时，记住后面也要加/也就是 ./路径/
 在g++中添加： -D CompileOnline，因此 header.cpp头文件不会引入
@@ -274,11 +260,105 @@ html页面：
 #endif
 是怎么生成编译错误文件的？
 是直接生成错误文件的，为什么可以通过判断是否有文件，来判断是否错误？
-
 unlink函数删除文件
-
 新增功能：
-	时间限制，内存限制
+	时间限制：alarm
+	内存限制：
+	int setrlimit(int resource，const struct rlimit *rlim)；
+		resource：
+			RLIMIT_AS：进程最大虚拟内存空间
+			RLIMIT_CORE：内存转储文件的最大大小
+			RLIMIT_CPU：使用CPU的最大时间
+			RLIMIT_DATA：进程数据端的最大大小
+			RLIMIT_STACK：进程堆栈大小
+		struct rlimit{
+			rlim_t rlim_cur;
+			rlim_t rlim_max;
+		}
+
+扩展：
+	1.针对每道题都设置一个定时器
+
+【时间-日志等级 文件：行号】具体的日志信息
+info，warning，error，fatal，debug
+日志可以加到model模块，检测打开文件是否失败
+
+Makefile：
+	1.添加
+		INCLUDE_PATH=............
+		LIB_PATH=................
+		BIN=../bin/svr
+	2.然后在调用处：
+		$(INCLUDE_PATH)
+		$(LIB_PATH)
+		$(BIN):oj_server
+	3.清除
+		.PHONY:clean
+		clean:
+			rm $(BIN)
+如果不输入/all_questions，则默认访问逻辑根目录：index.html
+
+html：网页内容
+css：网页布局
+js：网页动态计算
+
+<title>：
+<nav>：导航栏
+ace
+*/
+/*
+前端知识：
+html页面：
+<html>
+	<head></head>		定义html页面的属性信息
+		<meta></meta>	提供html页面元数据，这些元数据可以被浏览器识别，正文的类型
+		<meta http-equiv="content-type" content="text/html;charset=utf-8">
+			http-equiv：定义key
+			content：定义value
+
+	<body></body>		想在浏览器中展示的内容，文档主体
+		{{#question}}{{question}}	
+		<div></div>		在html页面中定义的分块
+		<a></a>			超链接
+			<a href="/question/{{id}}">{{id}}.{{title}}({{star}})</a>
+		<form>			表单
+		<action>		要执行的动作
+</html>
+*/
+
+/*
+int setrlimit(int resourse, const struct rlimit *rlim);
+	resource：
+		RLIMIT_AS：进程最大虚拟内存空间
+		RLIMIT_CORE：
+		RLIMIT_CPU：
+		RLIMIT_DATA：
+		RLIMIT_STACK：
+	struct rlimit
+	{
+		rlim_t rlim_cur；软限制
+		rlim_t rlim_max；硬限制
+	}
+日志信息：
+	【20210123】
+	info等级：warning，error，fatal，debug
+	
+enum Loglevel
+{
+	INFO = 0,		0
+	WARNING,		1
+	ERROR,			2
+	FATAL,			3
+	DEBUG			4
+};
+字符指针数组：分别指向枚举值的每一个下标
+宏定义：__FILE__，__LINE__
+int Log(LogLevel lev, const char* file, int line, const std::string& logmsg)
+{
+	
+}
+
+
 
 
 
