@@ -18,18 +18,8 @@ using namespace std;
 //	return 0;
 //}
 
-void EnterBow(long long n, long long r)
-{
-    n = n / 2 / 3.14;
-    if (r < n)
-        cout << "No" << endl;
-    else
-        cout << "Yes" << endl;
-}
 int main()
 {
-    long long n, r;
-    cin >> n >> r;
-    EnterBow(n, r);
+    
     return 0;
 }
