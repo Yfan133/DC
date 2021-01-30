@@ -1,6 +1,6 @@
 #include "AVLTree.h"
 #include "RBTree.h"
-int main()
+int main(void)
 {
 	//TestAVLTree();
 	TestRBTree();

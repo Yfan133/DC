@@ -163,6 +163,7 @@
     <ClCompile Include="最后一个单词的长度.cpp" />
     <ClCompile Include="最小公倍数.cpp" />
     <ClCompile Include="最近公共祖先.cpp" />
+    <ClCompile Include="有序数组中出现次数超过25的元素.cpp" />
     <ClCompile Include="杨辉三角的变形.cpp" />
     <ClCompile Include="求最大连续bit数.cpp" />
     <ClCompile Include="移除元素.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="跳石板.cpp" />
     <ClCompile Include="转换成小写字母.cpp" />
     <ClCompile Include="连续最大和.cpp" />
+    <ClCompile Include="重建二叉树.cpp" />
     <ClCompile Include="长按键入.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
