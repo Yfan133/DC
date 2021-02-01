@@ -311,3 +311,4 @@ void TestRBTree()
 	br.Inorder();
 	br.IsVaildRBTree();
 }
+// 总结：插入时最多只需要旋转两次，因为
