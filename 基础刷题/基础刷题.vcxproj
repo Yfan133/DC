@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="二叉树中的最长交错路径.cpp" />
     <ClCompile Include="二进制中1的个数.cpp" />
     <ClCompile Include="二进制插入.cpp" />
     <ClCompile Include="井字棋.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="字符串通配符.cpp" />
     <ClCompile Include="存在重复元素.cpp" />
     <ClCompile Include="完全数计算.cpp" />
+    <ClCompile Include="对称二叉树.cpp" />
     <ClCompile Include="寻找旋转排序数组中的最小值.cpp" />
     <ClCompile Include="幸运的袋子.cpp" />
     <ClCompile Include="手套.cpp" />
@@ -168,6 +170,7 @@
     <ClCompile Include="有序数组中出现次数超过25的元素.cpp" />
     <ClCompile Include="杨辉三角的变形.cpp" />
     <ClCompile Include="求最大连续bit数.cpp" />
+    <ClCompile Include="种花问题.cpp" />
     <ClCompile Include="移除元素.cpp" />
     <ClCompile Include="组成偶数最近的素数.cpp" />
     <ClCompile Include="组队竞赛.cpp" />

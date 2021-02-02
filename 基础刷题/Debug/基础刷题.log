@@ -1,4 +1,5 @@
-﻿  二进制插入.cpp
+﻿  二叉树中的最长交错路径.cpp
+  二进制插入.cpp
 D:\vs2019file\基础刷题\二进制插入.cpp(1,1): error C2059: 语法错误:“常数”
 D:\vs2019file\基础刷题\二进制插入.cpp(2,17): error C2143: 语法错误: 缺少“;”(在“{”的前面)
 D:\vs2019file\基础刷题\二进制插入.cpp(2,17): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
@@ -6,25 +7,34 @@ D:\vs2019file\基础刷题\二进制插入.cpp(10,1): error C2059: 语法错误:
 D:\vs2019file\基础刷题\二进制插入.cpp(11,17): error C2143: 语法错误: 缺少“;”(在“{”的前面)
 D:\vs2019file\基础刷题\二进制插入.cpp(11,17): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
   井字棋.cpp
-D:\vs2019file\基础刷题\井字棋.cpp(3,25): error C2061: 语法错误: 标识符“vector”
-D:\vs2019file\基础刷题\井字棋.cpp(7,19): error C2065: “board”: 未声明的标识符
-D:\vs2019file\基础刷题\井字棋.cpp(12,17): error C2065: “board”: 未声明的标识符
-D:\vs2019file\基础刷题\井字棋.cpp(12,31): error C2065: “board”: 未声明的标识符
-D:\vs2019file\基础刷题\井字棋.cpp(12,45): error C2065: “board”: 未声明的标识符
-D:\vs2019file\基础刷题\井字棋.cpp(18,17): error C2065: “board”: 未声明的标识符
-D:\vs2019file\基础刷题\井字棋.cpp(18,31): error C2065: “board”: 未声明的标识符
-D:\vs2019file\基础刷题\井字棋.cpp(18,45): error C2065: “board”: 未声明的标识符
-D:\vs2019file\基础刷题\井字棋.cpp(22,13): error C2065: “board”: 未声明的标识符
-D:\vs2019file\基础刷题\井字棋.cpp(22,27): error C2065: “board”: 未声明的标识符
-D:\vs2019file\基础刷题\井字棋.cpp(22,41): error C2065: “board”: 未声明的标识符
-D:\vs2019file\基础刷题\井字棋.cpp(22,63): error C2065: “board”: 未声明的标识符
-D:\vs2019file\基础刷题\井字棋.cpp(22,77): error C2065: “board”: 未声明的标识符
-D:\vs2019file\基础刷题\井字棋.cpp(22,91): error C2065: “board”: 未声明的标识符
-  参数解析.cpp
-D:\vs2019file\基础刷题\参数解析.cpp(11,23): warning C4018: “<”: 有符号/无符号不匹配
-D:\vs2019file\基础刷题\参数解析.cpp(22,26): warning C4018: “<”: 有符号/无符号不匹配
-  字符串通配符.cpp
-  完全数计算.cpp
+D:\vs2019file\基础刷题\井字棋.cpp : fatal error C1041: 无法打开程序数据库“D:\vs2019file\基础刷题\Debug\vc142.pdb”；如果要将多个 CL.EXE 写入同一个 .PDB 文件，请使用 /FS
+  倒置字符串.cpp
+D:\vs2019file\基础刷题\倒置字符串.cpp(1,1): error C2059: 语法错误:“常数”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\sal.h(2361,12): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\sal.h(2361,12): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+D:\vs2019file\基础刷题\倒置字符串.cpp(25,1): error C2059: 语法错误:“常数”
+D:\vs2019file\基础刷题\倒置字符串.cpp(30,5): error C2084: 函数“int main(void)”已有主体
+D:\vs2019file\基础刷题\倒置字符串.cpp(5): message : 参见“main”的前一个定义
+  合并两个有序数组.cpp
+D:\vs2019file\基础刷题\合并两个有序数组.cpp : fatal error C1041: 无法打开程序数据库“D:\vs2019file\基础刷题\Debug\vc142.pdb”；如果要将多个 CL.EXE 写入同一个 .PDB 文件，请使用 /FS
+  复杂链表赋值.cpp
+D:\vs2019file\基础刷题\复杂链表赋值.cpp(18,9): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+D:\vs2019file\基础刷题\复杂链表赋值.cpp(18,9): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\vs2019file\基础刷题\复杂链表赋值.cpp(19,5): error C2334: “{”的前面有意外标记；跳过明显的函数体
+  字符串中找出连续最长的数字串.cpp
+D:\vs2019file\基础刷题\字符串中找出连续最长的数字串.cpp : fatal error C1041: 无法打开程序数据库“D:\vs2019file\基础刷题\Debug\vc142.pdb”；如果要将多个 CL.EXE 写入同一个 .PDB 文件，请使用 /FS
+  存在重复元素.cpp
+D:\vs2019file\基础刷题\存在重复元素.cpp(3,34): error C2061: 语法错误: 标识符“vector”
+D:\vs2019file\基础刷题\存在重复元素.cpp(6,9): error C2065: “unordered_set”: 未声明的标识符
+D:\vs2019file\基础刷题\存在重复元素.cpp(6,1): error C2062: 意外的类型“int”
+D:\vs2019file\基础刷题\存在重复元素.cpp(7,23): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\存在重复元素.cpp(7,23): error C3312: 未找到可调用的“begin”函数(针对类型“unknown-type”)
+D:\vs2019file\基础刷题\存在重复元素.cpp(7,23): error C3312: 未找到可调用的“end”函数(针对类型“unknown-type”)
+D:\vs2019file\基础刷题\存在重复元素.cpp(7,21): error C2143: 语法错误: 缺少“;”(在“:”的前面)
+D:\vs2019file\基础刷题\存在重复元素.cpp(7,27): error C2143: 语法错误: 缺少“;”(在“)”的前面)
+D:\vs2019file\基础刷题\存在重复元素.cpp(9,17): error C2065: “board”: 未声明的标识符
+D:\vs2019file\基础刷题\存在重复元素.cpp(9,35): error C2065: “board”: 未声明的标识符
+D:\vs2019file\基础刷题\存在重复元素.cpp(11,13): error C2065: “board”: 未声明的标识符
   寻找旋转排序数组中的最小值.cpp
 D:\vs2019file\基础刷题\寻找旋转排序数组中的最小值.cpp(3,23): error C2061: 语法错误: 标识符“vector”
 D:\vs2019file\基础刷题\寻找旋转排序数组中的最小值.cpp(5,29): error C2065: “nums”: 未声明的标识符
@@ -55,6 +65,17 @@ D:\vs2019file\基础刷题\手套.cpp(20,29): error C2065: “right”: 未声�
 D:\vs2019file\基础刷题\手套.cpp(20,25): error C3861: “min”: 找不到标识符
 D:\vs2019file\基础刷题\手套.cpp(23,22): error C3861: “min”: 找不到标识符
   扑克牌大小.cpp
+D:\vs2019file\基础刷题\扑克牌大小.cpp : fatal error C1041: 无法打开程序数据库“D:\vs2019file\基础刷题\Debug\vc142.pdb”；如果要将多个 CL.EXE 写入同一个 .PDB 文件，请使用 /FS
+  打家劫舍.cpp
+D:\vs2019file\基础刷题\打家劫舍.cpp : fatal error C1041: 无法打开程序数据库“D:\vs2019file\基础刷题\Debug\vc142.pdb”；如果要将多个 CL.EXE 写入同一个 .PDB 文件，请使用 /FS
+  排序子序列.cpp
+  搜索插入位置.cpp
+D:\vs2019file\基础刷题\搜索插入位置.cpp(3,28): error C2061: 语法错误: 标识符“vector”
+D:\vs2019file\基础刷题\搜索插入位置.cpp(5,31): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索插入位置.cpp(9,17): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索插入位置.cpp(9,30): error C2065: “target”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索插入位置.cpp(11,22): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\搜索插入位置.cpp(11,34): error C2065: “target”: 未声明的标识符
   搜索旋转排序数组.cpp
 D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(3,22): error C2061: 语法错误: 标识符“vector”
 D:\vs2019file\基础刷题\搜索旋转排序数组.cpp(5,13): error C2065: “nums”: 未声明的标识符
@@ -93,10 +114,56 @@ D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(29,21): error C2065: �
 D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(29,34): error C2065: “nums”: 未声明的标识符
 D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(31,21): error C2065: “nums”: 未声明的标识符
 D:\vs2019file\基础刷题\搜索旋转排序数组2.cpp(31,35): error C2065: “nums”: 未声明的标识符
+  旋转数组.cpp
+D:\vs2019file\基础刷题\旋转数组.cpp(3,23): error C2061: 语法错误: 标识符“vector”
   日期转换.cpp
-  杨辉三角的变形.cpp
-  统计每个月兔子的总数.cpp
-  超长正整数相加.cpp
+  最后一个单词的长度.cpp
+D:\vs2019file\基础刷题\最后一个单词的长度.cpp(3,33): error C2061: 语法错误: 标识符“string”
+D:\vs2019file\基础刷题\最后一个单词的长度.cpp(6,17): error C2065: “s”: 未声明的标识符
+D:\vs2019file\基础刷题\最后一个单词的长度.cpp(7,26): error C2065: “s”: 未声明的标识符
+D:\vs2019file\基础刷题\最后一个单词的长度.cpp(11,17): error C2065: “s”: 未声明的标识符
+  正在生成代码...
+  正在编译...
+  有序数组中出现次数超过25的元素.cpp
+D:\vs2019file\基础刷题\有序数组中出现次数超过25的元素.cpp(1,1): error C2059: 语法错误:“user-defined literal”
+D:\vs2019file\基础刷题\有序数组中出现次数超过25的元素.cpp(2,16): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+D:\vs2019file\基础刷题\有序数组中出现次数超过25的元素.cpp(2,16): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+D:\vs2019file\基础刷题\有序数组中出现次数超过25的元素.cpp(15,1): error C2059: 语法错误:“user-defined literal”
+D:\vs2019file\基础刷题\有序数组中出现次数超过25的元素.cpp(16,16): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+D:\vs2019file\基础刷题\有序数组中出现次数超过25的元素.cpp(16,16): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+  移除元素.cpp
+D:\vs2019file\基础刷题\移除元素.cpp(3,29): error C2061: 语法错误: 标识符“vector”
+D:\vs2019file\基础刷题\移除元素.cpp(5,31): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\移除元素.cpp(8,17): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\移除元素.cpp(8,31): error C2065: “val”: 未声明的标识符
+D:\vs2019file\基础刷题\移除元素.cpp(10,41): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\移除元素.cpp(10,56): error C2065: “val”: 未声明的标识符
+D:\vs2019file\基础刷题\移除元素.cpp(14,21): error C2065: “nums”: 未声明的标识符
+D:\vs2019file\基础刷题\移除元素.cpp(14,34): error C2065: “nums”: 未声明的标识符
+  组队竞赛.cpp
+  转换成小写字母.cpp
+D:\vs2019file\基础刷题\转换成小写字母.cpp(3,23): error C3646: “toLowerCase”: 未知重写说明符
+D:\vs2019file\基础刷题\转换成小写字母.cpp(3,23): error C2059: 语法错误:“(”
+D:\vs2019file\基础刷题\转换成小写字母.cpp(4,5): error C2334: “{”的前面有意外标记；跳过明显的函数体
   连续最大和.cpp
+  重建二叉树.cpp
+D:\vs2019file\基础刷题\重建二叉树.cpp(13,13): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+D:\vs2019file\基础刷题\重建二叉树.cpp(13,13): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\vs2019file\基础刷题\重建二叉树.cpp(14,5): error C2334: “{”的前面有意外标记；跳过明显的函数体
+D:\vs2019file\基础刷题\重建二叉树.cpp(31,13): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+D:\vs2019file\基础刷题\重建二叉树.cpp(31,13): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\vs2019file\基础刷题\重建二叉树.cpp(32,5): error C2334: “{”的前面有意外标记；跳过明显的函数体
+  长按键入.cpp
+D:\vs2019file\基础刷题\长按键入.cpp(3,35): error C2061: 语法错误: 标识符“string”
+D:\vs2019file\基础刷题\长按键入.cpp(6,20): error C2065: “name”: 未声明的标识符
+D:\vs2019file\基础刷题\长按键入.cpp(6,39): error C2065: “typed”: 未声明的标识符
+D:\vs2019file\基础刷题\长按键入.cpp(8,17): error C2065: “name”: 未声明的标识符
+D:\vs2019file\基础刷题\长按键入.cpp(8,28): error C2065: “typed”: 未声明的标识符
+D:\vs2019file\基础刷题\长按键入.cpp(10,30): error C2065: “typed”: 未声明的标识符
+D:\vs2019file\基础刷题\长按键入.cpp(10,42): error C2065: “typed”: 未声明的标识符
+D:\vs2019file\基础刷题\长按键入.cpp(21,18): error C2065: “name”: 未声明的标识符
+D:\vs2019file\基础刷题\长按键入.cpp(23,20): error C2065: “typed”: 未声明的标识符
+D:\vs2019file\基础刷题\长按键入.cpp(25,17): error C2065: “typed”: 未声明的标识符
+D:\vs2019file\基础刷题\长按键入.cpp(25,29): error C2065: “typed”: 未声明的标识符
   正在生成代码...
 D:\vs2019file\基础刷题\连续最大和.cpp(15): error C4700: 使用了未初始化的局部变量“tmp”

@@ -124,36 +124,52 @@ AVL树在现实中使用比较少--需要用到二叉平衡搜索树
 		方法：
 			1.空树也是红黑树
 			2.检查是叶子节点则停下来，检测是否合理
+*/
+/*
+迭代器是一种设计模式：什么设计模式？？？？list、string里面
+迭代器本质：就是指针或者是对指针的封装
+	vector 和 string 两个迭代器就是原生态的指针。原因：底层空间是连续的
+迭代器的作用：
+	让算法(sort,reverse)可以处理任意数据结构中的数据，算法在实现时不用考虑应该面对什么样的数据结构，只关心算法本身
+如何给一个容器增加迭代器：
+	1.必须要熟悉容器底层的数据结构
+	2.原生态指针 <----> 对指针的封装
+	3.封装一个迭代器的类
+		迭代器的方法：
+		构造
+		operator*()、operator->()
+		operator++()/operator++(int)、operator--()/operator--(int)
+		operator!=()/operator==()
+	4.取别名：iterator
+在Increment()方法里：
+	1.如果右子树存在，则在右子树中找最小(最左侧)
+	2.如果右子树不存在，则在父节点中找：
+		1.node是parent的左树，返回parent 
+		2.node是parent的右树，则继续向上走，直到node不是parent的右
+	特别的：
+		根节点的右树为空：代码循环了
+在--方法里
+	1.如果左子树存在，则在左子树中找最大(最右侧)
+	2.如果左子树不存在，则在父节点中找：
+		1.如果node==parent->right，则返回parent
+		2.如果node==parent->left，则node=parent,parent=node->parent
+	特别的：
+		it在begin位置就不能再--了
 
-给容器添加迭代器：封装一个迭代器的类
-	1.方法：
-		operator*()
-		operator++()
-		operator++(int)
-		operator()
-		operator()
-	2.在++方法里：
-		如果node是parent的右子树，则一直向上走
-	3.在--方法里
-		如果node是parent的左子树，则一直向上走
+改造：
+	添加：size，empty，swap，clear，find
+	改insert：
+		返回值：pair<iterator, bool>
 
 封装map和set
-	插入：map和set插入的值不同，map->first
-		方法：
-			将map的k提取出来
-			仿函数key(data)
+	模板类型：
+		map：key-value
+		set：key
+	find方法：参数make_pair一下
+插入：map和set插入的值不同，map->first
+	方法：
+		1.增加模板参数：KOFD
+		2.在比较的地方使用KEY(data)<KEY(cur->data)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+注意：typename RBT::iterator iterator,让编译器知道不是静态成员
 */

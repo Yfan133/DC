@@ -192,14 +192,14 @@ private:
 			pathBlack++;
 		else
 		{
-			// 性质3
+			// 违背性质3：连续为红
 			if (root->parent->color_ == RED)
 			{
 				cout << root->parent->val_ << "和" << root->val_ << "连续为红" << endl;
 				return false;
 			}
 		}
-		// 性质4
+		// 违背性质4：其中路径黑节点个数不同
 		if (root->left == nullptr && root->right == nullptr)
 		{
 			if (pathBlack != countBlack)
