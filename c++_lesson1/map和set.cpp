@@ -170,6 +170,24 @@ AVL树在现实中使用比较少--需要用到二叉平衡搜索树
 	方法：
 		1.增加模板参数：KOFD
 		2.在比较的地方使用KEY(data)<KEY(cur->data)
+map：
+typedef pair<K, D> ValueType
+class KOFD
+{
+	const K& operator()(const& ValueType)
+	{
+		return Value.first;
+	}
+};
+注意：typename RBT::iterator iterator,让编译器知道不是静态成员，而是一种类型
 
-注意：typename RBT::iterator iterator,让编译器知道不是静态成员
+总结：
+	1.AVL树和红黑树都是二叉搜索树，且AVL是绝对平衡树，红黑树是近似平衡树
+	2.红黑树实现比较简单
+	3.删除方法：
+		AVL树删除之后如果不平衡，要旋转调整，然后再检查父节点，最差情况下要旋转到根结点
+		红黑树删除最多旋转三次
+	4.红黑树的性能比AVL树差一点，但差不多
+调研：红黑树在那些地方被应用？
+	set、map、B树
 */

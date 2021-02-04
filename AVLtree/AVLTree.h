@@ -133,7 +133,7 @@ private:
 			Destory(root->left);
 			Destory(root->right);
 			delete root;
-			root == nullptr;
+			root = nullptr;
 		}
 	}
 	void RotateRight(Node* parent)

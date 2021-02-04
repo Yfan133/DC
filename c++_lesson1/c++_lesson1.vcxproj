@@ -146,6 +146,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map和set.cpp" />
     <ClCompile Include="二叉搜索树.cpp" />
+    <ClCompile Include="哈希.cpp" />
     <ClCompile Include="多态.cpp" />
     <ClCompile Include="继承.cpp" />
   </ItemGroup>

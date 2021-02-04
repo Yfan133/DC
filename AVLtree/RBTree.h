@@ -22,19 +22,123 @@ struct BRTreeNode
 	BRTreeNode<T>* right;
 	BRTreeNode<T>* parent;
 };
+// 红黑树的迭代器
+template <class T>
+struct RBTreeIterator
+{
+	typedef BRTreeNode<T> Node;
+	typedef RBTreeIterator<T> Self;
+	RBTreeIterator(Node* node = nullptr)
+		:pNode(node)
+	{}
+	// RBTreeIterator(const Self& S){pNode = s->pNode;}
+	T& operator*()
+	{
+		return pNode->val_;
+	}
+	T* operator->()
+	{
+		return &(operator*());
+	}
+	Self& operator++()
+	{
+		Increment();
+		return *this;	// this相当于一个内部的类对象指针，对this解引用就是类对象
+	}
+	Self operator++(int)
+	{
+		Self tmp(*this);
+		Increment();
+		return tmp;
+	}
+	Self& operator--()
+	{
+		Decrement();
+		return *this;
+	}
+	Self& operator--(int)
+	{
+		Self tmp(*this);
+		Decrement();
+		return tmp;
+	}
+	bool operator!=(const Self& s)const
+	{
+		return pNode != s.pNode;
+	}
+	bool operator==(const Self& s)const
+	{
+		return pNode == s.pNode;
+	}
+private:
+	// 1.约定end是head的位置，begin是树中最小的位置
+	void Increment()
+	{
+		// 1.找右子树的最小值
+		if (pNode->right)
+		{
+			pNode = pNode->right;
+			while (pNode->left)
+				pNode = pNode->left;
+		}
+		// 2.在父中找到大于节点的第一个节点
+		else
+		{
+			Node* parent = pNode->parent;
+			while (pNode == parent->right)
+			{
+				pNode = parent;
+				parent = pNode->parent;
+			}
+			// 特殊情况：根结点没有右子树
+			if (pNode->right != parent)
+				pNode = parent;
+		}
+	}
+	// 2.约定对end--，之后到树中值最大的节点处
+	void Decrement()
+	{
+		// 1.已经在end的位置，对end--到最大节点处
+		if (pNode->parent->parent == pNode && RED == pNode->color_)
+			pNode = pNode->right;
+		// 2.在左树中找最大的
+		else if (pNode->left)
+		{
+			pNode = pNode->left;
+			while (pNode->right)
+				pNode = pNode->right;
+		}
+		else
+		{
+			Node* parent = pNode->parent;
+			while (pNode == parent->left)
+			{
+				pNode = parent;
+				parent = pNode->parent;
+			}
+			pNode = parent;
+		}
+	}
+private:
+	Node* pNode;
+};
+
 template <class T>
 class BRTree
 {
-	typedef BRTreeNode<T> Node;
 private:
+	typedef BRTreeNode<T> Node;
 	Node* head;
+	size_t _size;
 public:
+	typedef RBTreeIterator<T> iterator;
 	BRTree()
 	{
 		head = new Node;
 		head->left = head;
 		head->right = head;
 		head->parent = nullptr;
+		_size = 0;
 	}
 	~BRTree()
 	{
@@ -42,6 +146,25 @@ public:
 		delete head;
 		head = nullptr;
 	}
+	///////////////////////////////////////////////////////////
+	// 增加迭代器的方法
+	iterator begin()
+	{
+		return iterator(head->left);
+	}
+	iterator end()
+	{
+		return iterator(head);
+	}
+	bool empty()
+	{
+		return head->parent == nullptr;
+	}
+	size_t size()
+	{
+		return _size;
+	}
+	///////////////////////////////////////////////////////////
 	bool Insert(const T& data)
 	{
 		Node*& root = GetRoot();
@@ -51,6 +174,10 @@ public:
 			root = new Node(data, BLACK);
 			root->parent = head;
 			head->parent = root;
+			head->left = root;
+			head->right = root;
+			_size = 1;
+			return true;
 		}
 		// 2.找到插入位置
 		Node* cur = root;
@@ -142,6 +269,7 @@ public:
 		root->color_ = BLACK;
 		head->left = LeftMin();
 		head->right = RightMax();
+		_size++;
 		return true;
 	}
 	bool IsVaildRBTree()
@@ -303,12 +431,20 @@ private:
 };
 void TestRBTree()
 {
-	BRTree<int> br;
+	BRTree<int> brt;
 	//int arr[] = { 5, 3, 4, 1, 7, 8, 2, 6, 0, 9 };
 	int arr[] = { 16, 3, 7, 11, 9, 26, 18, 14, 15 };
+	//int arr[] = { 16 };
 	for (auto i : arr)
-		br.Insert(i);
-	br.Inorder();
-	br.IsVaildRBTree();
+		brt.Insert(i);
+	brt.IsVaildRBTree();
+	brt.Inorder();
+	RBTreeIterator<int> it = brt.begin();
+	while (it != brt.end())
+	{
+		cout << *it << " ";
+		++it;
+	}
+	cout << endl << brt.size();
 }
 // 总结：插入时最多只需要旋转两次，因为
