@@ -144,6 +144,7 @@
     <ClCompile Include="二进制插入.cpp" />
     <ClCompile Include="井字棋.cpp" />
     <ClCompile Include="倒置字符串.cpp" />
+    <ClCompile Include="删除被覆盖区间.cpp" />
     <ClCompile Include="参数解析.cpp" />
     <ClCompile Include="另类加法.cpp" />
     <ClCompile Include="合并两个有序数组.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="完全数计算.cpp" />
     <ClCompile Include="对称二叉树.cpp" />
     <ClCompile Include="寻找旋转排序数组中的最小值.cpp" />
+    <ClCompile Include="年会抽奖.cpp" />
     <ClCompile Include="幸运的袋子.cpp" />
     <ClCompile Include="手套.cpp" />
     <ClCompile Include="扑克牌大小.cpp" />
@@ -170,6 +172,7 @@
     <ClCompile Include="有序数组中出现次数超过25的元素.cpp" />
     <ClCompile Include="杨辉三角的变形.cpp" />
     <ClCompile Include="求最大连续bit数.cpp" />
+    <ClCompile Include="相同的树.cpp" />
     <ClCompile Include="种花问题.cpp" />
     <ClCompile Include="移除元素.cpp" />
     <ClCompile Include="组成偶数最近的素数.cpp" />
