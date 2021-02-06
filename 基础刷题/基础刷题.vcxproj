@@ -148,6 +148,7 @@
     <ClCompile Include="参数解析.cpp" />
     <ClCompile Include="另类加法.cpp" />
     <ClCompile Include="合并两个有序数组.cpp" />
+    <ClCompile Include="复杂链表的复制.cpp" />
     <ClCompile Include="复杂链表赋值.cpp" />
     <ClCompile Include="字符串中找出连续最长的数字串.cpp" />
     <ClCompile Include="字符串通配符.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="幸运的袋子.cpp" />
     <ClCompile Include="手套.cpp" />
     <ClCompile Include="扑克牌大小.cpp" />
+    <ClCompile Include="打家劫舍 II.cpp" />
     <ClCompile Include="打家劫舍.cpp" />
     <ClCompile Include="排序子序列.cpp" />
     <ClCompile Include="搜索插入位置.cpp" />
@@ -179,9 +181,11 @@
     <ClCompile Include="组队竞赛.cpp" />
     <ClCompile Include="统计回文.cpp" />
     <ClCompile Include="统计每个月兔子的总数.cpp" />
+    <ClCompile Include="调整数组顺序使奇数位于偶数前面.cpp" />
     <ClCompile Include="走方格的方案数.cpp" />
     <ClCompile Include="超长正整数相加.cpp" />
     <ClCompile Include="跳石板.cpp" />
+    <ClCompile Include="跳跃游戏.cpp" />
     <ClCompile Include="转换成小写字母.cpp" />
     <ClCompile Include="连续最大和.cpp" />
     <ClCompile Include="重建二叉树.cpp" />
