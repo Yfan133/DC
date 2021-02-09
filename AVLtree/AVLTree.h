@@ -194,7 +194,7 @@ private:
 	{
 		Node* subL = parent->left;
 		Node* subLR = subL->right;
-		int bf = subLR->val;
+		int bf = subLR->bf_;
 		RotateLeft(parent->left);
 		RotateRight(parent);
 		if (bf == -1)

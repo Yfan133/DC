@@ -1,8 +1,10 @@
-#include "AVLTree.h"
-#include "RBTree.h"
+//#include "AVLTree.h"
+//#include "RBTree.h"
+#include "HashBucket.h"
 int main(void)
 {
 	//TestAVLTree();
-	TestRBTree();
+	//TestRBTree();
+	TestHashBucket();
 	return 0;
 }
