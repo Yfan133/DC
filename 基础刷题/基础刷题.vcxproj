@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="两个链表的第一个公共节点.cpp" />
     <ClCompile Include="二叉树中的最长交错路径.cpp" />
     <ClCompile Include="二进制中1的个数.cpp" />
     <ClCompile Include="二进制插入.cpp" />
     <ClCompile Include="井字棋.cpp" />
     <ClCompile Include="倒置字符串.cpp" />
+    <ClCompile Include="划分链表.cpp" />
     <ClCompile Include="删除被覆盖区间.cpp" />
     <ClCompile Include="参数解析.cpp" />
     <ClCompile Include="另类加法.cpp" />
