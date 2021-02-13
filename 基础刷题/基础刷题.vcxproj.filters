@@ -174,5 +174,11 @@
     <ClCompile Include="两个链表的第一个公共节点.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="环路检测.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="节点间通路.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
