@@ -180,5 +180,11 @@
     <ClCompile Include="节点间通路.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="一次编辑.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="零矩阵.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

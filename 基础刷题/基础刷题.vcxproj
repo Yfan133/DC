@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="一次编辑.cpp" />
     <ClCompile Include="两个链表的第一个公共节点.cpp" />
     <ClCompile Include="二叉树中的最长交错路径.cpp" />
     <ClCompile Include="二进制中1的个数.cpp" />
@@ -194,6 +195,7 @@
     <ClCompile Include="连续最大和.cpp" />
     <ClCompile Include="重建二叉树.cpp" />
     <ClCompile Include="长按键入.cpp" />
+    <ClCompile Include="零矩阵.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
