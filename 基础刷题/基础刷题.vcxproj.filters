@@ -186,5 +186,11 @@
     <ClCompile Include="零矩阵.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="有序数组的平方.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="仅仅反转字母.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

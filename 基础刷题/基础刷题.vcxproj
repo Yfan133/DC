@@ -145,6 +145,7 @@
     <ClCompile Include="二进制中1的个数.cpp" />
     <ClCompile Include="二进制插入.cpp" />
     <ClCompile Include="井字棋.cpp" />
+    <ClCompile Include="仅仅反转字母.cpp" />
     <ClCompile Include="倒置字符串.cpp" />
     <ClCompile Include="划分链表.cpp" />
     <ClCompile Include="删除被覆盖区间.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="最小公倍数.cpp" />
     <ClCompile Include="最近公共祖先.cpp" />
     <ClCompile Include="有序数组中出现次数超过25的元素.cpp" />
+    <ClCompile Include="有序数组的平方.cpp" />
     <ClCompile Include="杨辉三角的变形.cpp" />
     <ClCompile Include="求最大连续bit数.cpp" />
     <ClCompile Include="环路检测.cpp" />
