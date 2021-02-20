@@ -4,14 +4,12 @@
 #include <algorithm>
 #include <cmath>
 #include <deque>
-class A
-{
-
-};
+#include <list>
 using namespace std;
 int main()
 {
-    double a = 2.123;
-    double b = a * a;
+    list<int> node{ 1,2,3 };
+    list<int> node1 = { 1, 2, 3 };
+
     return 0;
 }

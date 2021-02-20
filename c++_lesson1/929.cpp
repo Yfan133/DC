@@ -89,14 +89,49 @@ vector和list的区别：
 6.
 
 */
+/*
+迭代器模式
+1.概念
+	是一种设计模式(经验思想的总结),设计一种结构便于遍历容器中的数据，而不会暴露容器实现细节
+2.作用
+	是STL中算法和容器之间的纽带，算法是通用类型的必须通过迭代器使用，与数据类型和数据结构都无关
+3.迭代器由谁来实现，如何实现
+	1.谁实现的容器谁实现迭代器
+	2.根据底层数据结构，遍历规则
+		a.封装迭代器的类
+			对原生态指针进行的管理
+			指针类似操作：operator*()、operator->()
+			迭代器移动：
+			迭代器比较：
+		b.取别名
+		c.增加begin()/end()家口
+4.迭代器失效
+5.举例：vector，list
+6.如何解决：
+	在可能造成迭代器失效的地方都重新给迭代器赋值
+*/
 
+/*
+容器简介：
+分类：
+	1.序列式容器
+		string：动态顺序表，末尾是'\0'
+		vector：动态顺序表
+		list：带头结点的双向循环链表
+		priority_que：
+	2.关联式容器
+		
+容器适配器：
+	stack(栈)：由于其特点：后进后出，插入/删除最后一个元素，底层使用了vector
+	queue(队列)：由于其特性：先进后出，插入:尾部,删除:头部，底层使用了list
+*/
 
 /*
 优先级队列模板参数列表：
-template<class T, class Container = vector<T>, class Com = less<T>>
-priority_queue<int, vector<int>, greater<int>> ar;创建一个小堆
-priority_queue<int, vector<int>, Less> ar;		  创建一个大堆
-prio
+	template<class T, class Container = vector<T>, class Com = less<T>>
+	priority_queue<int, vector<int>, greater<int>> ar;创建一个小堆
+	priority_queue<int, vector<int>, Less> ar;		  创建一个大堆
+	prio
 class priority;
 问题：
 	1.为什么使用vector存储元素
