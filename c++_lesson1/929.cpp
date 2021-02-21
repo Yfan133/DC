@@ -2,48 +2,6 @@
 为什么把vector和string分开，vector也是任何类型数据都可以放？
 	1.字符串默认要给'\0'，这是规定的，而vector放整型数据不需要'\0'
     2.string里面封装了对strlen,strcpy等各种接口需要'\0'
-
-vector底层：start、finish、end_of_storage
-迭代器iterator底层就是指针，一般用两个itrator配合使用，意思是一段数据。
-
-遍历方式：
-	1.for(auto it:ar)
-	2.vector<int>::iterator it=ar.begin()
-		while(it!=ar.end())		//end是最后一个位置的后面，非法位置
-		{
-			++it;				//对于迭代器一般都要前置++
-		}
-	3.for(int i=0;i<ar.size();++i)
-容量操作：
-	size(),capacity(),empty()
-	resize(n，data)；将有效元素设置为size个，多的用num赋值
-		1.n <= size; 将vector有效元素个数缩小为n
-		2.n>size；多的用num赋值
-			扩容方式：开辟新空间，拷贝元素，释放旧空间
-	注意：若没有给data，默认给0。string是给\0
-	reserve(newcapacity)；
-		new>old：扩大容量
-		old>new：则容量不变
-		string里面若缩小到>=15,则容量不变，<15则缩小
-元素操作
-0.front(),back()：这两个接口返回的是引用，而begin()，end()返回的是迭代器(地址)
-1.vector的扩容机制：vs1.5倍，Linux2倍
-2.在使用vector和string时一定要先把容量设置好，避免一边插入一边扩容，降低效率
-3.push_back()的插入机制是拷贝一份，如果是类对象则拷贝构造一份
-4.insert(iterator， nums，data)；在iterator的位置插入。为什么要用迭代器呢？？
-  erase(iterator_1，iterator_2)；
-修改操作：
-	swap()交换两个vector的机制？？
-
-面试：迭代器失效原因：
-vector的迭代器失效：本质是：指针失效-->指针如果指向一段非法的空间(该空间已经被释放了)
-1.可能导致扩容的resize(),
-2.用erase()删除之后,it失效。
-vs里面规定迭代器指向的被释放，该迭代器就失效了，其实可能有效
-解决：在有可能引起迭代器失效的位置之后，重新给迭代器赋值
-代码：使用迭代器将vector的元素都删除，erase的返回值是迭代器，且是删除位置的后面那个位置的迭代器
-
-vector二维数组用法：vector<vector<int>> ar(5,vector<int>(5,{}))
 */
 
 
@@ -63,7 +21,7 @@ insert的三种方式
 在写链表前问清楚:是否带头结点
 
 list的迭代器不是原生态的指针，因为it++要能实现到达下一个节点，因此不能是原生态指针(例如:int* p，p++并不是指向下一个节点)
-	根本原因：链表底层不是连续的空间,vector、string底层都是连续的空间
+	根本原因：链表底层不是连续的空间而是一个个封装的节点,vector、string底层都是连续的空间
 封装迭代器的类中需要提供的方法：
 	1.构造函数---通过构造函数构造一个迭代器的对象与元素结合
 	2.迭代器需要进行比较
@@ -112,21 +70,34 @@ vector和list的区别：
 */
 
 /*
-容器简介：
+容器简介：一些模板类的集合，和普通模板类不同的是，容器封装了组织数据的方法和算法
 分类：
-	1.序列式容器
+	1.序列式容器：底层数据的存储是线性的，这类容器对存储的元素不会排序
 		string：动态顺序表，末尾是'\0'
 		vector：动态顺序表
 		list：带头结点的双向循环链表
-		priority_que：
-	2.关联式容器
-		
+		priority_que：vector + 堆算法的封装
+	2.关联式容器：组织底层数据时，是以键值对形式存储的
+		map：映射容器-》底层红黑树
+		set：集合容器-》
+		multimap：多重映射容器
+		multiset：多重集合容器
+	3.无序关联式容器：
+		unordered_map：哈希映射-》
+		unordered_set：哈希集合
+		unordered_multimap：哈希多重映射
+		unordered_multiset：哈希多重集合
 容器适配器：
 	stack(栈)：由于其特点：后进后出，插入/删除最后一个元素，底层使用了vector
 	queue(队列)：由于其特性：先进后出，插入:尾部,删除:头部，底层使用了list
+	STL中使用的是 deque双端队列
 */
 
 /*
+堆的概念：
+	将集合中的数据放置在一维数组中(完全二叉树)，必须满足：如果树中任意节点比其子节点都大，则是大堆
+堆的特性：
+	堆顶元素一定是最大的
 优先级队列模板参数列表：
 	template<class T, class Container = vector<T>, class Com = less<T>>
 	priority_queue<int, vector<int>, greater<int>> ar;创建一个小堆
@@ -134,19 +105,16 @@ vector和list的区别：
 	prio
 class priority;
 问题：
-	1.为什么使用vector存储元素
+	1.默认采用vector作为容器
 	2.默认按照less对priority_queue中的元素进行比较，创建出来的是一个大堆
 	3.创建小堆，应该怎么设置比较方式
-	设置比较方式：
+		设置比较方式：
 		1.函数指针，typedef bool (*Handler_)(Data,Data)
 		2.仿函数(函数对象)：可以像函数一样使用，其本质是一个对象！！
 		3.lambda表达式
 
-bool operator< (const Data a)
-{
-	return 
-}
-问题：如果push的时候传的是地址，那么
+问题：如果push的时候传的是地址，那么默认的比较方式，会对指针地址进行比较，得不到对象成员比较的结果
+	解决：自己写比较方式：写一个仿函数，比较对象成员的大小
 
 
 接口：
@@ -160,14 +128,11 @@ bool operator< (const Data a)
 */
 /*
 创建堆：
-1.找调整位置：(size - 1) / 2 ；--->size=nums.size()-1;
-2.for循环，每个位置都向下调整
-3.进入调整函数，记录当前父节点位置，然后向下调整
-	左孩子：left = root * 2 + 1； 
+	1.找调整位置：(size - 1) / 2 ；--->size=nums.size()-1;
+	2.for循环，每个位置都向下调整
+	3.进入调整函数，记录当前父节点位置，然后向下调整
+		左孩子：left = root * 2 + 1； 
 问题：为啥在删除操作的时候，不直接 while(child > 0 && .....);
-
-每次加<int>是给模板设置类型，
-
 
 1.理解什么是仿函数，怎么使用仿函数
 2.什么是函数指针，怎么使用
@@ -177,18 +142,46 @@ bool operator< (const Data a)
 	stack           ----》vector
 	queue           ----》list
 	priority_queue	----》vector 和 堆算法	
-	都是容量适配器，其实就是将容器封装一下，接口提供给用户，类似(最小栈,最大队列)
+都是容量适配器，其实就是将容器封装一下，接口提供给用户，类似(最小栈,最大队列)
+
+设计模式：迭代器，适配器
+
 STL实现：stack、queue和priority_queue使用的是deque双端队列
-	deque可进行双端的插入和删除，都是O(1)的时间复杂度
-		问题：连续空间为什么头插，时间复杂度也为O(1)?
-		答：多端连续的空间保证数据的存储，(头插的话反向填充)，再来一个类似Linux中的页表的东西叫map，用来管理地址
+	deque可进行双端的插入和删除，都是O(1)的时间复杂度，底层实现是连续空间
+		
+	问题：为什么连续空间进行头插，时间复杂度也为O(1)?
+		答：底层实现时，使用了多段连续的空间保证数据的存储，(头插的话反向填充)，再来一个类似Linux中的页表映射的东西叫map，用来管理地址
 	可以画个图：map存储各个连续空间的首地址，迭代器中有4个指针，分别是cur, first, last, node -> map
 
 双端队列优点：1.插入、删除效率很高
-			  2.扩容效率也很高
-缺点：遍历效率低，但stack和queue都不能遍历，因此STL为了追求高性能采取了deque
+			  2.扩容效率也很高：相对于vector的扩容-》开辟，拷贝，释放三个步骤而言，效率更高只需要开辟新空间并使用
+缺点：遍历效率太低，但stack和queue都不能遍历，因此STL为了追求高性能采取了deque
 
 为什么STL使用双端队列而不是vector和list
 	对于vector：扩容时优点很大
-	对于queue：
+	对于queue：deque底层空间连续，避免了大量的内存碎片
 */
+
+
+/*
+堆的创建方法：
+	1.找到最后一个非叶子分支
+	2.向下调整，直到调整到根节点
+	3.大堆创建完成
+删除算法：
+	1.将根节点和最后一个节点进行交换
+	2.size--，将根节点向下调整
+插入算法：
+	 1.将新增节点插入最后一个位置
+	 2.向上调整，直到根节点或者小于父节点
+*/
+#include <iostream>
+#include <algorithm>
+#include <list>
+using namespace std;
+int main()
+{
+	list<int> l1{ 1,2,3 };
+	auto it = find(l1.begin(), l1.end(), 2);
+	return 0;
+}
