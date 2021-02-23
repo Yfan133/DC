@@ -149,290 +149,7 @@
 //////	Test3(str);
 //////	return 0;
 //////}
-////#include <iostream>
-////using namespace std;
-////namespace my_list
-////{
-////	template <class T>
-////	struct ListNode
-////	{
-////		ListNode(const T& val = T())
-////			: val_(val)
-////			, pre_(nullptr)
-////			, next_(nullptr)
-////		{}
-////		T val_;
-////		ListNode* pre_;
-////		ListNode* next_;
-////	};
-////	template <class T>
-////	struct ListIterator
-////	{
-////		typedef ListNode<T> Node;
-////		typedef ListIterator<T> Self;
-////		ListIterator(Node* node = nullptr)
-////			:_pNode(node)
-////		{}
-////		T& operator*()
-////		{
-////			return _pNode->val_;
-////		}
-////		T* operator->()
-////		{
-////			return &(operator*());
-////		}
-////		Self& operator++()	// 前置++
-////		{
-////			_pNode = _pNode->next_;
-////			return *this;
-////		}
-////		Self operator++(int)	// 后置++
-////		{
-////			Self temp(_pNode);
-////			_pNode = _pNode->next_;
-////			return temp;
-////		}
-////		Self& operator--()	// 前置--
-////		{
-////			_pNode = _pNode->pre_;
-////			return *this;
-////		}
-////		Self operator--(int)	// 后置--
-////		{
-////			Self temp(_pNode);
-////			_pNode = _pNode->pre_;
-////			return temp;
-////		}
-////		bool operator!=(const Self& it)const 
-////		{
-////			return _pNode != it._pNode;
-////		}
-////		bool operator==(const Self& it)const 
-////		{
-////			return _pNode == it._pNode;
-////		}
-////		Node* _pNode;
-////	};
-////	template <class T>
-////	class list
-////	{
-////		typedef ListNode<T> Node;
-////	public:
-////		typedef ListIterator<T> iterator;
-////		list()
-////		{
-////			CreateHead();
-////		}
-////		list(size_t n, const T& data = T())
-////		{
-////			CreateHead();
-////			for(int i = 0; i < n; ++i)
-////				push_back(data);
-////		}
-////		//template <class Iterator>
-////		list(int* first, int* last)	// 迭代器构造必须采用模板，因为不同容器的迭代器实现可能不同
-////		{
-////			CreateHead();
-////			while (first != last)
-////			{
-////				push_back(*first);
-////				++first;
-////			}
-////		}
-////		list(const list<T>& node)
-////		{
-////			CreateHead();
-////			Node* cur = node.head_->next_;
-////			while (cur != node.head_)
-////			{
-////				push_back(cur->val_);
-////				cur = cur->next_;
-////			}
-////		}
-////		~list()
-////		{
-////			Clear();
-////			delete head_;
-////			head_ = nullptr;
-////		}
-////		list<T>& operator=(list<T> node)
-////		{
-////			swap(head_, node.head_);
-////			return *this;
-////		}
-////		iterator begin()
-////		{
-////			return iterator(head_->next_);
-////		}
-////		iterator end()
-////		{
-////			return iterator(head_);
-////		}
-////		size_t size()const
-////		{
-////			size_t count = 0;
-////			Node* cur = head_->next_;
-////			while (cur != head_)
-////			{
-////				cur = cur->next_;
-////				count++;
-////			}
-////			return count;
-////		}
-////		bool empty()const
-////		{
-////			return head_->next_ == head_;
-////		}
-////		void resize(size_t n, const T& data = T())
-////		{
-////			size_t oldsize = size();
-////			if (n > oldsize)
-////			{
-////				for (size_t i = oldsize; i < n; ++i)
-////				{
-////					push_back(data);
-////				}
-////			}
-////			else
-////			{
-////				for (size_t i = n; i < oldsize; ++i)
-////				{
-////					pop_back();
-////				}
-////			}
-////		}
-////		void push_back(const T& data)
-////		{
-////			insert(end(), data);
-////		}
-////		void pop_back()
-////		{
-////			erase(--end());
-////		}
-////		void push_front(const T& data)
-////		{
-////			insert(begin(), data);
-////		}
-////		void pop_front()
-////		{
-////			erase(begin());
-////		}
-////		iterator insert(iterator pos, const T& data)
-////		{
-////			Node* node = new Node(data);
-////			Node* posNode = pos._pNode;
-////			
-////			node->pre_ = posNode->pre_;
-////			node->next_ = posNode;
-////			posNode->pre_->next_ = node;
-////			posNode->pre_ = node;
-////			return iterator(node);
-////		}
-////		iterator erase(iterator pos)
-////		{
-////			if (pos == end())
-////				return pos;
-////			Node* node = pos._pNode;
-////			Node* pRet = node->next_;
-////			node->pre_->next_ = node->next_;
-////			node->next_->pre_ = node->pre_;
-////			delete node;
-////			node = nullptr;
-////			return iterator(pRet);
-////		}
-////		iterator erase(iterator begin, iterator end)
-////		{
-////			while (begin != end)
-////			{
-////				begin = erase(begin);
-////			}
-////			return begin;
-////		}
-////		void Clear()
-////		{
-////			erase(begin(), end());
-////		}
-////	private:
-////		void CreateHead()
-////		{
-////			head_ = new Node;
-////			head_->pre_ = head_;
-////			head_->next_ = head_;
-////		}
-////	private:
-////		Node* head_;
-////	};
-////}
-////void Test1()
-////{
-////	my_list::list<int> l1;
-////	my_list::list<int> l2(10, 5);
-////	my_list::list<int> l3(l1);
-////
-////	int array[] = { 1,2,3,4,5 };
-////	my_list::list<int> l4{ array, array + sizeof(array) / sizeof(array[0]) };
-////
-////	//auto it = l2.begin();
-////	my_list::ListIterator<int> it = l4.begin();
-////	while (it != l4.end())
-////	{
-////		cout << *it << " ";
-////		it++;
-////	}
-////	cout << endl;
-////	
-////	// 如果想要让容器支持范围for循环，则必须实现begin/end的方法，以及迭代器++操作
-////	for (auto e : l2)
-////		cout << e << " ";
-////	cout << endl;
-////}
-////void Test2()
-////{
-////	my_list::list<int> L;
-////	L.push_back(1);
-////	L.push_back(2);
-////	L.push_back(3);
-////	L.push_back(4);
-////	L.push_back(5);
-////
-////	cout << L.size() << endl;
-////	L.resize(10, 6);
-////	for (auto e : L)
-////		cout << e << " ";
-////	cout << endl;
-////
-////	L.resize(4);
-////	for (auto e : L)
-////		cout << e << " ";
-////	cout << endl;
-////
-////	L.push_front(0);
-////	for (auto e : L)
-////		cout << e << " ";
-////	cout << endl;
-////
-////	L.pop_front();
-////	for (auto e : L)
-////		cout << e << " ";
-////	cout << endl;
-////
-////	L.erase(L.begin());
-////	for (auto e : L)
-////		cout << e << " ";
-////	cout << endl;
-////
-////	L.Clear();
-////	if (L.empty())
-////	{
-////		cout << "ok" << endl;
-////	}
-////}
-////int main()
-////{
-////	// 迭代器是对原生态指针的封装
-////	Test1();
-////	return 0;
-////}
+
 //#include <iostream>
 //#include <vector>
 //#include <queue>
@@ -517,5 +234,147 @@
 //	Test1();
 //	Test2();
 //	//sort(arr.begin(), arr.end(), [](int a, int b) {return a > b; });
+//	return 0;
+//}
+#include <iostream>
+#include <vector>
+using namespace std;
+namespace my_que
+{
+	// 模板参数列表：T：元素类型  Container：底层数据组织格式  Com：比较方式
+	template <class T, class Container = vector<T>, class Com = less<T>>
+	class priority_que
+	{
+	public:
+		priority_que()
+		{}
+		// 迭代器构造
+		template <class Iterator>
+		priority_que(Iterator begin, Iterator end)
+			: _con(begin, end)
+		{
+			// 1.先插入数组，再从最后一个非叶子分支开始，对每个节点向下调整
+			size_t n = _con.size() - 1;
+			size_t node = (n - 1) >> 1;
+			for (; node >= 0; --node)
+			{
+				_AdjustDown(node);
+			}
+		}
+		void push(const T& data)
+		{
+			// 1.先插入数组最后，然后向上调整，直到根节点或者找到合适位置
+			_con.push_back(data);
+			size_t child = _con.size() - 1;
+			while (child)
+			{
+				size_t parent = (child - 1) >> 1;
+				if (Com()(_con[parent], _con[child]))
+				{
+					swap(_con[parent], _con[child]);
+					child = parent;
+				}
+				else
+					return;
+			}
+		}
+		void pop()
+		{
+			// 1.先交换首尾数据，删除尾部数据，然后将首数据向下调整
+			if (_con.empty())
+				return;
+			swap(_con.front(), _con.back());
+			_con.pop_back();
+			_AdjustDown(0);
+		}
+		const T& top()const 
+		{
+			return _con.front();
+		}
+		size_t size()const
+		{
+			return _con.size();
+		}
+		bool empty()const
+		{
+			return _con.empty();
+		}
+	private:
+		void _AdjustDown(size_t parent)
+		{
+			// 1.找到左右子树中较大的
+			// 2.交换
+			// 3.循环直到越过元素总数
+			size_t child = parent * 2 + 1;
+			while (child < _con.size())
+			{
+				if (child + 1 < _con.size() && Com()(_con[child], _con[child + 1]))
+					child += 1;
+				if (Com()(_con[parent], _con[child]))
+				{
+					swap(_con[parent], _con[child]);
+					parent = child;
+					child = parent * 2 + 1;
+				}
+				else
+					return;
+			}
+		}
+	private:
+		Container _con;
+	};
+}
+void TestMyPriorityQueue1()
+{
+	my_que::priority_que<int> q;
+	q.push(3);
+	q.push(7);
+	q.push(1);
+	q.push(4);
+	q.push(2);
+	q.push(6);
+	q.push(5);
+
+	cout << q.size() << endl;
+	cout << q.top() << endl;
+
+	q.pop();
+	cout << q.size() << endl;
+	cout << q.top() << endl;
+}
+
+
+template<class T>
+class Greater
+{
+public:
+	bool operator()(const T& left, const T& right)
+	{
+		return left > right;
+	}
+};
+
+void TestMyPriorityQueue2()
+{
+	my_que::priority_que<int, vector<int>, Greater<int>> q;
+	q.push(3);
+	q.push(7);
+	q.push(1);
+	q.push(4);
+	q.push(2);
+	q.push(6);
+	q.push(5);
+
+	cout << q.size() << endl;
+	cout << q.top() << endl;
+
+	q.pop();
+	cout << q.size() << endl;
+	cout << q.top() << endl;
+}
+//int main()
+//{
+//	TestMyPriorityQueue1();
+//	TestMyPriorityQueue2();
 //	return 0;
 //}

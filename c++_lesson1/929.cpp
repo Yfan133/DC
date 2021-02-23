@@ -1,75 +1,4 @@
 /*
-为什么把vector和string分开，vector也是任何类型数据都可以放？
-	1.字符串默认要给'\0'，这是规定的，而vector放整型数据不需要'\0'
-    2.string里面封装了对strlen,strcpy等各种接口需要'\0'
-*/
-
-
-/*
-list底层就是对链表的封装
-list为什么带头结点并且是循环链表：
-	1.头删和头插方便，找尾方便
-	2.end的位置就是头结点(最后一个元素的后面)
-怎么查找一个元素：
-	find(begin(),end(),data);
-insert的三种方式
-	insert(pos,data)/insert(pos,n,data)/insert(pos,first,last)
-特殊操作
-	remove(data);删除所有值为data的元素
-	remove_if(Pre):按照指定条件进行删除，传入函数指针
-
-在写链表前问清楚:是否带头结点
-
-list的迭代器不是原生态的指针，因为it++要能实现到达下一个节点，因此不能是原生态指针(例如:int* p，p++并不是指向下一个节点)
-	根本原因：链表底层不是连续的空间而是一个个封装的节点,vector、string底层都是连续的空间
-封装迭代器的类中需要提供的方法：
-	1.构造函数---通过构造函数构造一个迭代器的对象与元素结合
-	2.迭代器需要进行比较
-	3.迭代器具有指针类似的操作：解引用  ->
-	4.迭代器要能移动： 前置++和-- 后置++和--  --操作单链表无法实现
-给一个容器增加迭代器：
-	1.将指针封装成一个迭代器的类
-	2.在容器中给迭代器类型重新命名 typedef 迭代器类型
-	3.在容器中类中增加begin()/end()
-后置++这里返回值：为什么不引用，因为tmp是临时创建出来的，返回时应该重新拷贝一份
-
-list里面的迭代器本质是一个结构体ListIterator，类的别名是iterator。这个类中封装了一系列类似指针的操作
-
-vector和list的区别：
-相同点：都是STL提供的序列式容器，包含在std的命名空间中
-不同点：
-				 vector            list               string
-1.底层结构      顺序表(连续)     链表(不连续)       顺序表且最后为\0''(连续)
-2.空间利用率      较高           很低(指针四字节)      较高	 注意：考虑扩容就不一定了，双倍扩容
-3.插入/删除效率   较低(元素搬移)    较高               较低
-4.元素访问效率    较高(下标访问)    较低(查找)         较高
-5.迭代器          原生态指针        对指针的封装       原生态指针
-6.
-
-*/
-/*
-迭代器模式
-1.概念
-	是一种设计模式(经验思想的总结),设计一种结构便于遍历容器中的数据，而不会暴露容器实现细节
-2.作用
-	是STL中算法和容器之间的纽带，算法是通用类型的必须通过迭代器使用，与数据类型和数据结构都无关
-3.迭代器由谁来实现，如何实现
-	1.谁实现的容器谁实现迭代器
-	2.根据底层数据结构，遍历规则
-		a.封装迭代器的类
-			对原生态指针进行的管理
-			指针类似操作：operator*()、operator->()
-			迭代器移动：
-			迭代器比较：
-		b.取别名
-		c.增加begin()/end()家口
-4.迭代器失效
-5.举例：vector，list
-6.如何解决：
-	在可能造成迭代器失效的地方都重新给迭代器赋值
-*/
-
-/*
 容器简介：一些模板类的集合，和普通模板类不同的是，容器封装了组织数据的方法和算法
 分类：
 	1.序列式容器：底层数据的存储是线性的，这类容器对存储的元素不会排序
@@ -93,6 +22,7 @@ vector和list的区别：
 	STL中使用的是 deque双端队列
 */
 
+
 /*
 堆的概念：
 	将集合中的数据放置在一维数组中(完全二叉树)，必须满足：如果树中任意节点比其子节点都大，则是大堆
@@ -101,7 +31,7 @@ vector和list的区别：
 优先级队列模板参数列表：
 	template<class T, class Container = vector<T>, class Com = less<T>>
 	priority_queue<int, vector<int>, greater<int>> ar;创建一个小堆
-	priority_queue<int, vector<int>, Less> ar;		  创建一个大堆
+	priority_queue<int, vector<int>, less<int>> ar;		  创建一个大堆
 	prio
 class priority;
 问题：
@@ -120,12 +50,13 @@ class priority;
 接口：
 	构造：
 	priority_queue();
-	priority_queue(first, last);	左闭右开
+	priority_queue(first, last);
 	操作：
 	void push(const T& data);
 	void pop();
 	const T& top()const; 获取堆顶元素，不能修改，const修饰
 */
+
 /*
 创建堆：
 	1.找调整位置：(size - 1) / 2 ；--->size=nums.size()-1;
@@ -133,9 +64,6 @@ class priority;
 	3.进入调整函数，记录当前父节点位置，然后向下调整
 		左孩子：left = root * 2 + 1； 
 问题：为啥在删除操作的时候，不直接 while(child > 0 && .....);
-
-1.理解什么是仿函数，怎么使用仿函数
-2.什么是函数指针，怎么使用
 
 模拟实现：
 	容量适配器:
@@ -176,12 +104,13 @@ STL实现：stack、queue和priority_queue使用的是deque双端队列
 	 2.向上调整，直到根节点或者小于父节点
 */
 #include <iostream>
-#include <algorithm>
-#include <list>
+#include <queue>
 using namespace std;
 int main()
 {
-	list<int> l1{ 1,2,3 };
-	auto it = find(l1.begin(), l1.end(), 2);
+	priority_queue<int, vector<int>, greater<int>> q;
+	q.push(10);
+	q.push(1);
+
 	return 0;
 }
