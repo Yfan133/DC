@@ -191,7 +191,7 @@
 //};
 //void Test1()
 //{
-//	// 默认按照大堆的方法Less
+//	// 默认按照大堆的方法less
 //	priority_queue<int, vector<int>> q;
 //	// 建立小堆
 //	priority_queue<int, vector<int>, greater<int>> q1;

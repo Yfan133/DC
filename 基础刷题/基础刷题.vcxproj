@@ -175,11 +175,13 @@
     <ClCompile Include="最后一个单词的长度.cpp" />
     <ClCompile Include="最小公倍数.cpp" />
     <ClCompile Include="最近公共祖先.cpp" />
+    <ClCompile Include="最长公共前缀.cpp" />
     <ClCompile Include="有序数组中出现次数超过25的元素.cpp" />
     <ClCompile Include="有序数组的平方.cpp" />
     <ClCompile Include="杨辉三角的变形.cpp" />
     <ClCompile Include="求最大连续bit数.cpp" />
     <ClCompile Include="环路检测.cpp" />
+    <ClCompile Include="盛最多水的容器.cpp" />
     <ClCompile Include="相同的树.cpp" />
     <ClCompile Include="种花问题.cpp" />
     <ClCompile Include="移除元素.cpp" />
