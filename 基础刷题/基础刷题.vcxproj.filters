@@ -198,5 +198,11 @@
     <ClCompile Include="最长公共前缀.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="四数之和.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="删除链表的倒数N个节点.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
