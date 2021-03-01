@@ -121,10 +121,23 @@ STL实现：stack、queue和priority_queue使用的是deque双端队列
 模板分离编译：
 
 
+*/
 
 
 
+/*
+C++的文件IO流 <fstream>
+	1.定义一个文件流对象
+		ifstream file 只输入
+		ofstream file 只输出
+		fstream  file 既可以输入又可以输出
+	2.
 
-
-
+字符串操作：<sstream>
+	stringstream ss;
+	ss << a;
+	string s;
+	ss >> s;
+	下一次转化之前要清空ss，否则转化失败
+clear()方法：只会清空stringstream内部状态，不会清空内容
 */
