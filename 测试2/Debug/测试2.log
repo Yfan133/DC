@@ -1,3 +1,2 @@
-﻿  test.c
-D:\vs2019file\测试2\test.c(6,6): warning C4013: “gets”未定义；假设外部返回 int
+﻿  main.cpp
   测试2.vcxproj -> D:\vs2019file\测试2\Debug\测试2.exe
