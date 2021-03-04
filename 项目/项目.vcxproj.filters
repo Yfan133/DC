@@ -26,5 +26,8 @@
     <ClCompile Include="在线OJ项目.cpp">
       <Filter>头文件</Filter>
     </ClCompile>
+    <ClCompile Include="文件压缩.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

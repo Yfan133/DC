@@ -253,6 +253,8 @@ void QuickSortNoR(int* ar, int left, int right)//不用递归实现快速排序
 		}
 	}
 }
+
+
 //归并排序(二路归并)
 void _MergeSort(int* ar, int left, int right, int* tmp)
 {
