@@ -1,0 +1,2 @@
+D:\vs2019file\文件压缩\Debug\文件压缩.exe
+D:\vs2019file\文件压缩\Debug\文件压缩.pdb

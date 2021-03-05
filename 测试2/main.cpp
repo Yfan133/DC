@@ -28,51 +28,68 @@
 //    return 0;
 //}
 //// 转化是指：其它类型到string，若转化过一次，
+#include <string>
 #include <iostream>
-#include <queue>
 using namespace std;
-class MedianFinder {
-public:
-    /** initialize your data structure here. */
-    // 1.左手一只大根堆，右手一只小根堆
-    priority_queue<int, vector<int>, less<int>> Q1;     // 大根堆，用于存放一半较小的数
-    priority_queue<int, vector<int>, greater<int>> Q2;  // 小根堆，用于存放一半较大的数
-    int flag = 0;
-    MedianFinder() {}
-
-    void addNum(int num) {
-        if (flag & 1)
-        {
-            // 奇数个：往小根堆里插数据，先取大根堆中的最大值
-            Q1.push(num);
-            num = Q1.top();
-            Q1.pop();
-            Q2.push(num);
-        }
-        else
-        {
-            // 偶数个：往大根堆里插数据，先取小根堆中的最小值
-            Q2.push(num);
-            num = Q2.top();
-            Q2.pop();
-            Q1.push(num);
-        }
-        flag ^= 1;
-    }
-
-    double findMedian() {
-        double ans = (double)Q1.top() + (double)Q2.top();
-        return ans / 2;
-    }
+struct Node
+{
+	Node(int val = 0)
+		: _val(val)
+		, _left(nullptr)
+		, _right(nullptr)
+	{}
+	int _val;
+	Node* _left;
+	Node* _right;
 };
+void dfs(Node* root, string& str)
+{
+	// 到达叶节点
+	if (root->_left == nullptr && root->_right == nullptr)
+	{
+		cout << str << endl;
+		// str.pop_back();
+		return;
+	}
+	// 遍历左树
+	if (root->_left)
+	{
+		str.push_back('0');
+		dfs(root->_left, str);
+		str.pop_back();
+	}
+	if (root->_right)
+	{
+		str.push_back('1');
+		dfs(root->_right, str);
+		str.pop_back();
+	}
+	// if (!str.empty())
+	//	str.pop_back();
+}
+int Tree()
+{
+	Node* root = new Node(18);
+	Node* l1 = new Node(9);
+	Node* r1 = new Node(9);
+	Node* r2 = new Node(4);
+	Node* r3 = new Node(5);
+	Node* r4 = new Node(1);
+	Node* r5 = new Node(3);
+	root->_left = l1;
+	root->_right = r1;
+	r1->_left = r2;
+	r1->_right = r3;
+	r2->_left = r4;
+	r2->_right = r5;
+	string ans;
+	dfs(root, ans);
+	return 1;
+}
+
+
 int main()
 {
-    MedianFinder m;
-    m.addNum(1);
-    m.addNum(2);
-    double k =m.findMedian();
-    m.addNum(3);
-    int p = m.findMedian();
-    return 0;
+	Tree();
+	return 0;
 }
-// 37互娱
