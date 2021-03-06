@@ -204,5 +204,8 @@
     <ClCompile Include="删除链表的倒数N个节点.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="数据流的中位数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
