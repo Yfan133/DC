@@ -38,7 +38,7 @@ public:
 		}
 	}
 	// 创建哈夫曼树
-	Node* CreateTree(std::vector<T>& vec)
+	Node* CreateTree(std::vector<T>& vec, const T& UnValid)
 	{
 		// 1.遍历数组元素构建 N 颗根节点，将 N 颗树保存到小堆中
 		std::priority_queue<Node*, std::vector<Node*>, Compare> Q;
@@ -46,7 +46,7 @@ public:
 		{
 			// 只构造元素出现频率不为 0 的元素
 			// 动态构造一个匿名对象，并插入小堆中
-			if (!val)
+			if (val != UnValid)
 				Q.push(new Node(val));
 		}
 		// 2.每次从小堆中取两个最小的元素构建一颗新树，根节点为两个值的和

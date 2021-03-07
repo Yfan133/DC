@@ -5,14 +5,15 @@
 #include <vector>
 
 typedef unsigned long long ulg;
+typedef unsigned char uch;
 struct CharInf
 {
 	CharInf(const ulg& times);
 	CharInf operator+(const CharInf& ch)const;
 	bool operator>(const CharInf& ch)const;
-	bool operator!();
+	bool operator!=(const CharInf& ch)const;
 	
-	char _ch;				// 字符类型
+	uch _ch;				// 字符类型
 	ulg _times;				// 出现频率
 	std::string _encode;	// 字符对应二进制编码
 };
@@ -22,6 +23,8 @@ class HuffmanZip
 public:
 	HuffmanZip();
 	void Reduce(const std::string& filePath);
+	void UnReduce(const std::string& filePath);
+	void WriteHeadInf(FILE* fpout, const std::string& filePath);
 	void CheckVec()
 	{
 		for (auto ch : ch_vec)
