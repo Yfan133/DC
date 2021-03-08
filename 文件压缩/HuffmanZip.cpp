@@ -3,8 +3,7 @@
 
 ////////////////////////////////////////////// 每个字符的结构体类型
 CharInf::CharInf(const ulg& times = 0)
-	: _ch(0)
-	, _times(times)
+	: _times(times)
 {}
 CharInf CharInf::operator+(const CharInf& ch)const
 {
@@ -30,12 +29,12 @@ HuffmanZip::HuffmanZip()
 void HuffmanZip::Reduce(const std::string& filePath)
 {
 	// 1.打开文件，并统计每个字符出现的次数
-	FILE* fpin = fopen(filePath.c_str(), "r+");
+	FILE* fpin = fopen(filePath.c_str(), "rb");
 	if (fpin == nullptr)
 	{
 		std::cout << "打开文件失败" << std::endl;
 	}
-	char buf[1024];
+	uch buf[1024];
 	size_t length;
 	while (length = fread(buf, 1, 1024, fpin))
 	{
@@ -55,7 +54,7 @@ void HuffmanZip::Reduce(const std::string& filePath)
 	
 	rewind(fpin);			// 重新定位到文件首
 
-	FILE* fpout = fopen("Reduce.txt", "w");
+	FILE* fpout = fopen("Reduce.txt", "wb");
 	WriteHeadInf(fpout, filePath);
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -66,7 +65,7 @@ void HuffmanZip::Reduce(const std::string& filePath)
 		for (size_t i = 0; i < length; ++i)
 		{
 			std::string& Encode = ch_vec[buf[i]]._encode;
-			for (int j = 0; j < Encode.size(); ++j)
+			for (size_t j = 0; j < Encode.size(); ++j)
 			{
 				bitMap <<= 1;
 				if (Encode[j] == '1')
@@ -116,10 +115,13 @@ void HuffmanZip::HuffmanEncode(HuffmanNode<CharInf>* root, std::string& str)
 }
 void HuffmanZip::WriteHeadInf(FILE* fpout, const std::string& filePath)
 {
+	// 将哈夫曼树的信息也保存在压缩文件中，以便解压缩重建树
+	// 1.切分文件后缀
 	std::string fileStr;
 	fileStr = filePath.substr(filePath.find("."));
 	fileStr += "\n";
 	
+	// 2.记录叶节点个数
 	size_t length = 0;
 	
 	std::string chAppear;
@@ -137,14 +139,94 @@ void HuffmanZip::WriteHeadInf(FILE* fpout, const std::string& filePath)
 	fileStr += std::to_string(length);
 	fileStr += "\n";
 
+	// 3.将结果写入压缩文件
 	fwrite(fileStr.c_str(), 1, fileStr.size(), fpout);
 	fwrite(chAppear.c_str(), 1, chAppear.size(), fpout);
 }
+void HuffmanZip::UnReduce(const std::string& filePath)
+{
+	// 将压缩文件进行解压缩，并写入新的文件
+	// 1.打开文件，一行一行进行读取
+	FILE* fpin = fopen(filePath.c_str(), "rb");
+	
+	// 读取文件名
+	std::string filename("text2");
+	GetLine(fpin, filename);
 
+	// 读取字符数量
+	std::string size_str;
+	GetLine(fpin, size_str);
+	ulg ch_size = std::stoi(size_str);
+
+	// 读取全部字符
+	for (ulg i = 0; i < ch_size; i++)
+	{
+		// A,1
+		std::string ch_str;
+		GetLine(fpin, ch_str);
+		if (ch_str == "")
+		{
+			ch_str += '\n'; 
+			GetLine(fpin, ch_str);
+		}
+		ch_vec[uch(ch_str[0])]._times = std::stoi(ch_str.substr(2));
+	}
+
+	// 2.建立哈夫曼树，file_size == 根节点的权值
+	HuffmanTree<CharInf> hft;
+	HuffmanNode<CharInf>* root = hft.CreateTree(ch_vec, CharInf(0));
+
+	// 3.通过 最高位 & 0x80 ，如果结果为1，则cur往右走，否则往左走，如果到达叶节点则将字符输出到文件
+	ulg file_size = root->_val._times;
+	FILE* fpout = fopen(filename.c_str(), "wb");
+
+	uch buf[1024];
+	HuffmanNode<CharInf>* cur = root;
+	ulg length = 0;
+	while (length = fread(buf, 1, 1024, fpin))
+	{
+		for (ulg i = 0; i < length; ++i)
+		{
+			uch charBit = buf[i];
+			ulg bitCount = 8;
+			while (bitCount)
+			{
+				if (charBit & 0x80)
+					cur = cur->right;
+				else
+					cur = cur->left;
+				if (cur->left == nullptr && cur->right == nullptr)
+				{
+					fputc(cur->_val._ch, fpout);
+					cur = root;
+					// 4.每输出一次就让 file_size--，如果 file_size为0则后面的比特位已经无效，跳出循环
+					if (--file_size == 0)
+						break;
+				}
+				charBit <<= 1;
+				bitCount--;
+			}
+		}
+	}
+	// 5.关闭文件流指针
+	fclose(fpin);
+	fclose(fpout);
+}
+void HuffmanZip::GetLine(FILE* fpin, std::string& buf)
+{
+	while (!feof(fpin))
+	{
+		uch ch = fgetc(fpin);
+		if (ch == '\n')
+			break;
+		buf += ch;
+	}
+}
 int main()
 {
 	HuffmanZip hfz;
 	hfz.Reduce("text.txt");
 	hfz.CheckVec();
+	hfz.UnReduce("Reduce.txt");
 	return 0;
 }

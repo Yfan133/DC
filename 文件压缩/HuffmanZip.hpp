@@ -23,8 +23,9 @@ class HuffmanZip
 public:
 	HuffmanZip();
 	void Reduce(const std::string& filePath);
-	void UnReduce(const std::string& filePath);
 	void WriteHeadInf(FILE* fpout, const std::string& filePath);
+	void UnReduce(const std::string& filePath);
+	void GetLine(FILE* fpin, std::string& buf);
 	void CheckVec()
 	{
 		for (auto ch : ch_vec)
