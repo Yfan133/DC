@@ -142,6 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="929.cpp" />
+    <ClCompile Include="C++11.cpp" />
     <ClCompile Include="IO进阶.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map和set.cpp" />

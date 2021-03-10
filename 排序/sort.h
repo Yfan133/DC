@@ -290,6 +290,7 @@ void MergeSort(int* ar, int left, int right)
 	free(tmp);
 	tmp = NULL;
 }
+
 //»ùÊýÅÅÐò
 #include"slist.h"
 #define RADIX 10
@@ -347,9 +348,9 @@ void TestSort(int* ar, int left, int right)
 	//SelectSort(ar, left, right);
 	//BubbleSort(ar, left, right);
 	//BubbleSort_1(ar, left, right);
-	ShellInsert(ar, left, right);
+	// ShellInsert(ar, left, right);
 	//QuickSort(ar, left, right);
-	//MergeSort(ar, left, right);
+	MergeSort(ar, left, right);
 	//RadixSort(ar, left, right);
 	//QuickSortNoR(ar, left, right);
 }

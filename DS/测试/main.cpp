@@ -1,62 +1,82 @@
-﻿#include <iostream>
-#include <set>
-#include <vector>
-#include <string>
-#include <algorithm>
-#include <stdio.h>
-#include <string.h>
-#pragma warning(disable : 4996)
+﻿//#include <iostream>
+//#include <vector>
+//using namespace std;
+//class Sort
+//{
+//public:
+//    static int Quick2(vector<int>& arr, int left, int right)
+//    {
+//        int key = arr[left];
+//        while (left < right)
+//        {
+//            while (left < right && arr[right] >= key)
+//                right--;
+//            arr[left] = arr[right];
+//            while (left < right && arr[left] < key)
+//                left++;
+//            arr[right] = arr[left];
+//        }
+//        arr[left] = key;
+//        return left;
+//    }
+//    static int Quick1(vector<int>& arr, int left, int right)
+//    {
+//        // 优化：找一个中间值，防止单支树的情况
+//        int key = arr[left];
+//        int pos = left;
+//        for (int i = left + 1; i <= right; i++)
+//        {
+//            if (key > arr[i])
+//            {
+//                pos++;
+//                if (pos != i)
+//                    swap(arr[i], arr[pos]);
+//            }
+//        }
+//        swap(arr[left], arr[pos]);
+//        return pos;
+//    }
+//    static void QuickSort(vector<int>& arr, int left, int right)
+//    {
+//        // 优化：数据量较小时使用直接插入排序
+//        if (left >= right)
+//            return;
+//        int pos = Quick1(arr, left, right - 1);
+//        QuickSort(arr, left, pos);
+//        QuickSort(arr, pos + 1, right);
+//    }
+//};
+//int main()
+//{
+//    vector<int> arr = { 4,5,1,6,2,7,3,8 };
+//    Sort::QuickSort(arr, 0, arr.size());
+//    return 0;
+//}
+//
+#include <iostream>
 using namespace std;
 
-//#include <stdio.h>
-//#include <string.h>
-//#pragma warning(disable : 4996)
-//
-//#define fib(a, b) a + b
-string Add(string& a, string& b)
+class A
 {
-    string res;
-    int car = 0;
-    int i = a.size() - 1, j = b.size() - 1;
-    while (i >= 0 || j >= 0 || car)
-    {
-        int l = 0;
-        int r = 0;
-        if (i >= 0)
-            l = a[i] - '0';
-        if (j >= 0)
-            r = b[j] - '0';
-        int sum = l + r + car;
-        car = sum / 10;
-        res.push_back(sum % 10 + '0');
-        i--;
-        j--;
-    }
-    return res;
-}
+public:
+	void funa()
+	{
+		cout << "A" << endl;
+	}
+};
+class B : public A
+{
+public:
+	void funb()
+	{
+		cout << "B" << endl;
+	}
+};
 int main()
 {
-    // 两边之和大于第三边
-    string s1, s2, s3;
-    while (cin >> s1 >> s2)
-    {
-        if (s1.size() > s2.size() || s1 > s2)
-            swap(s1, s2);
-        cin >> s3;
-        if (s2.size() > s3.size() || s2 > s3)
-            swap(s2, s3);
-        string res = Add(s1, s2);
-        if (res.size() > s3.size())
-            cout << "Yes" << endl;
-        else if (res.size() == s3.size())
-        {
-            if (res > s3)
-                cout << "Yes" << endl;
-            else
-                cout << "No" << endl;
-        }
-        else
-            cout << "No" << endl;
-    }
-    return 0;
+	B b;
+	A* a = &b;
+	a->funa();
+	a->funb();
+	return 0;
 }
