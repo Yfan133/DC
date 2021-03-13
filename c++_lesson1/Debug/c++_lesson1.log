@@ -1,2 +1,7 @@
-﻿  main.cpp
+﻿  C++11.cpp
+D:\vs2019file\c++_lesson1\C++11.cpp(148,1): warning C4244: “+=”: 从“__int64”转换到“int”，可能丢失数据
+D:\vs2019file\c++_lesson1\C++11.cpp(150,1): warning C4244: “+=”: 从“__int64”转换到“int”，可能丢失数据
+D:\vs2019file\c++_lesson1\C++11.cpp(152,1): warning C4244: “+=”: 从“__int64”转换到“int”，可能丢失数据
+  main.cpp
+  正在生成代码...
   c++_lesson1.vcxproj -> D:\vs2019file\c++_lesson1\Debug\c++_lesson1.exe

@@ -3,7 +3,7 @@
 
 ////////////////////////////////////////////// 每个字符的结构体类型
 CharInf::CharInf(const ulg& times = 0)
-	: _times(times)
+	: _ch(0),_times(times)
 {}
 CharInf CharInf::operator+(const CharInf& ch)const
 {
@@ -226,7 +226,7 @@ int main()
 {
 	HuffmanZip hfz;
 	hfz.Reduce("text.txt");
-	hfz.CheckVec();
+	// hfz.CheckVec();
 	hfz.UnReduce("Reduce.txt");
 	return 0;
 }

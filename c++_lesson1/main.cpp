@@ -379,163 +379,16 @@ void TestMyPriorityQueue2()
 //	TestMyPriorityQueue2();
 //	return 0;
 //}
+#include <thread>
+#include <atomic>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#if 0
-// 模板函数里面：const T 和 T const 类型是一样的，若T是int*则，都是 int* const pt;
-template <class T>
-void Test(T const pt)
+unsigned long long a = 0;
+void func()
 {
-	*pt = 100;
-	//p = nullptr;
+
 }
 int main()
 {
-	int a = 2;
-	int* p = &a;
-	Test(p);
+
 	return 0;
 }
-#endif
-// 全特化：将所有模板参数都进行特化
-// 偏特化：只将部分模板参数进行特化，只要传的模板参数符合特化类型，则走偏特化版本，否则走类模板
-// 特点：1.部分参数实例化  2.模板参数限制更加严格，例如 class Date<T1*, T2*>，传参指针则走偏特化版本
-
-
-
-// 偏特化的应用：类型萃取
-class String
-{
-public:
-	// 构造
-	String(const char* str = "")
-	{
-		if (str == nullptr)
-			str = "";
-		_str = new char[strlen(str) + 1];
-		strcpy(_str, str);
-	}
-	// 拷贝构造
-	String(const String& s)
-		: _str(new char[strlen(s._str) + 1])
-	{
-		strcpy(_str, s._str);
-	}
-	// 析构
-	~String()
-	{
-		if (_str)
-		{
-			delete[] _str;
-			_str = nullptr;
-		}
-	}
-	// 赋值运算符重载:现代法
-	String& operator=(String s)
-	{
-		swap(_str, s._str);
-		return *this;
-	}
-private:
-	char* _str;
-};
-
-#if 0
-template <class T>
-void Copy(T& dst, const T& src, size_t size)
-{
-	// 内存拷贝：优点：效率高  缺点：设计内存资源管理是浅拷贝
-	memcpy(dst, src, size * sizeof(T));
-
-	// 深拷贝：优点：一定不会出错  缺点：效率太低
-	for (int i = 0; i < size; i++)
-		dst[i] = src[i];
-}
-#endif 
-
-// 类型萃取
-struct True_Type
-{};
-struct False_Type
-{};
-// 其它类型
-template <class T>
-struct TypeTraits
-{
-	typedef False_Type PODTYPE;
-};
-// 内置类型：偏特化处理
-template<>
-struct TypeTraits<int>
-{
-	typedef True_Type PODTYPE;
-};
-template<>
-struct TypeTraits<char>
-{
-	typedef True_Type PODTYPE;
-};
-template<>
-struct TypeTraits<double>
-{
-	typedef True_Type PODTYPE;
-};
-template<>
-struct TypeTraits<short>
-{
-	typedef True_Type PODTYPE;
-};
-
-template <class T>
-void Copy(T* dst, const T* src, size_t size, True_Type)
-{
-	// 内置类型
-	memcpy(dst, src, size * sizeof(T));
-}
-template <class T>
-void Copy(T* dst, const T* src, size_t size, False_Type)
-{
-	// 其他类型
-	for (size_t i = 0; i < size; i++)
-		dst[i] = src[i];
-}
-template <class T>
-void Copy(T* dst, const T* src, size_t size)
-{
-	Copy(dst, src, size, TypeTraits<T>::PODTYPE());
-}
-int main()
-{
-	int arr1[] = { 1,2,3,4 };
-	int arr2[4] = { 0 };
-	Copy(arr2, arr1, 4);
-
-	String s[] = { "111", "222", "333" };
-	String p[3];
-	Copy(p, s, 3);
-	return 0;
-}
-
-
-// 分离编译：一个项目由多个源文件共同实现，而每个源文件单独编译生成目标文件，最后将目标文件链接起来形成单一的可执行文件，称为分离编译模式
-// 若模板类型的声明和定义不在同一个文件中，则链接会找不到
-// 解决：1.显示实例化  2.将声明和定义放到一个 .hpp 文件中
