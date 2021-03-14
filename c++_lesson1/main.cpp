@@ -379,16 +379,17 @@ void TestMyPriorityQueue2()
 //	TestMyPriorityQueue2();
 //	return 0;
 //}
-#include <thread>
-#include <atomic>
-
-unsigned long long a = 0;
-void func()
-{
-
-}
+#include <memory>
 int main()
 {
 
+	const int a = 1;
+	cout << &a << endl;
+	cout << a << endl;
+	int* b = (int*)&a;
+	*b = 10;
+	cout << &a << endl;
+	cout << a << endl;
+	cout << *b << endl;
 	return 0;
 }
