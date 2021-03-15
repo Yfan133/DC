@@ -379,17 +379,15 @@ void TestMyPriorityQueue2()
 //	TestMyPriorityQueue2();
 //	return 0;
 //}
-#include <memory>
+//#include <memory>
+
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
 int main()
 {
-
-	const int a = 1;
-	cout << &a << endl;
-	cout << a << endl;
-	int* b = (int*)&a;
-	*b = 10;
-	cout << &a << endl;
-	cout << a << endl;
-	cout << *b << endl;
+	
 	return 0;
 }
