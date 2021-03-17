@@ -664,15 +664,50 @@ void Test7()
 	freeM<int> fm;
 	shared_ptr<int> sp((int*)malloc(sizeof(int)));
 }
+
 int main()
 {
-	// Test1();
-	// Test2();
-	// Test3();
-	// Test4();
-	// Test5();
-	// TestThread();
-	// Test6();
-	Test7();
+	string str;
+	cin >> str;
+
+	cout << '[';
+
+	int times = 1, car = 1;
+	bool first = true;
+	for (int i = 0; i < str.size(); ++i)
+	{
+		if (first)
+		{
+			cout << '[';
+			first = false;
+		}
+		if (str[i] >= '0' && str[i] <= '9')
+			cout << str[i];
+		else if (str[i] == ',')
+		{
+			if (--times == 0)
+			{
+				cout << "],";
+				car *= 2;
+				times = car;
+				first = true;
+			}
+			else if (str[i - 1] != '#')
+				cout << ',';
+		}
+	}
+	cout << "]]" << endl;
 	return 0;
 }
+//int main()
+//{
+//	// Test1();
+//	// Test2();
+//	// Test3();
+//	// Test4();
+//	// Test5();
+//	// TestThread();
+//	// Test6();
+//	Test7();
+//	return 0;
+//}
