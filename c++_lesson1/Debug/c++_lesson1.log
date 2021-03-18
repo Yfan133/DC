@@ -1,4 +1,7 @@
 ﻿  main.cpp
 D:\vs2019file\c++_lesson1\main.cpp(664,13): warning C4101: “fm”: 未引用的局部变量
-D:\vs2019file\c++_lesson1\main.cpp(677,20): warning C4018: “<”: 有符号/无符号不匹配
+D:\vs2019file\c++_lesson1\main.cpp(684,12): warning C4018: “<”: 有符号/无符号不匹配
+D:\vs2019file\c++_lesson1\main.cpp(684,31): warning C4018: “<”: 有符号/无符号不匹配
+D:\vs2019file\c++_lesson1\main.cpp(686,10): warning C4018: “>=”: 有符号/无符号不匹配
+D:\vs2019file\c++_lesson1\main.cpp(691,15): warning C4018: “>=”: 有符号/无符号不匹配
   c++_lesson1.vcxproj -> D:\vs2019file\c++_lesson1\Debug\c++_lesson1.exe
