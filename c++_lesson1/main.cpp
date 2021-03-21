@@ -664,9 +664,127 @@ void Test7()
 	freeM<int> fm;
 	shared_ptr<int> sp((int*)malloc(sizeof(int)));
 }
+int _QSort1(vector<int>& arr, int left, int right)
+{
+	int key = arr[left];
+	while (left < right)
+	{
+		while (left < right && arr[right] >= key)
+			--right;
+		arr[left] = arr[right];
+		while (left < right && arr[left] < key)
+			++left;
+		arr[right] = arr[left];
+	}
+	arr[left] = key;
+	return left;
+}
+int _QSort(vector<int>& arr, int left, int right)
+{
+	// 找三数中间值
+
+	int key = arr[left];
+	int pos = left;
+	for (int i = left + 1; i <= right; ++i)
+	{
+		if (arr[i] <= key)
+		{
+			++pos;
+			if (pos != i)
+				swap(arr[pos], arr[i]);
+		}
+	}
+	swap(arr[left], arr[pos]);
+	return pos;
+}
+#include <stack>
+void QuickSortNor(vector<int>& arr, int left, int right) 
+{
+	stack<int> stc;
+	stc.push(left);
+	stc.push(right);
+	while (!stc.empty())
+	{
+		int end = stc.top();
+		stc.pop();
+		int begin = stc.top();
+		stc.pop();
+
+		int pos = _QSort1(arr, begin, end - 1);
+		
+		if (begin < pos - 1)
+		{
+			stc.push(begin);
+			stc.push(pos);
+		}
+		if (end > pos + 1)
+		{
+			stc.push(pos + 1);
+			stc.push(end);
+		}
+	}
+}
+void QuickSort(vector<int>& arr, int left, int right)
+{
+	if (left >= right)
+		return;
+	int pos = _QSort1(arr, left, right - 1);
+	QuickSort(arr, left, pos);
+	QuickSort(arr, pos + 1, right);
+}
+
+void MergeSort(vector<int>& arr, int left, int right)
+{
+
+}
+class Solution {
+public:
+	int ans = 0;
+	void MergeSort(vector<int>& nums, int left, int right, vector<int>& tmp)
+	{
+		if (left >= right)
+			return;
+		int mid = left + (right - left) / 2;
+		MergeSort(nums, left, mid, tmp);
+		MergeSort(nums, mid + 1, right, tmp);
+
+		int begin1 = left, begin2 = mid + 1;
+		int pos = left;
+		while (begin1 <= mid && begin2 <= right)
+		{
+			if (nums[begin1] <= nums[begin2])
+				tmp[pos++] = nums[begin1++];
+			else
+			{
+				tmp[pos++] = nums[begin2++];
+				ans += (mid - begin1 + 1);
+			}
+		}
+		while (begin1 <= mid)
+			tmp[pos++] = nums[begin1++];
+		while (begin2 <= right)
+			tmp[pos++] = nums[begin2++];
+		for (int i = left; i <= right; ++i)
+			nums[i] = tmp[i];
+	}
+	int reversePairs(vector<int>& nums)
+	{
+		int n = nums.size();
+		vector<int> tmp(n);
+		MergeSort(nums, 0, n - 1, tmp);
+		return ans;
+	}
+};
 
 int main()
 {
+	vector<int> arr{ 9,5,10,2,3,5,1 };
+	Solution a;
+	int n = arr.size();
+	vector<int>tmp(n);
+	a.MergeSort(arr, 0, n - 1, tmp);
+	// QuickSort(arr, 0, arr.size());
+	// QuickSortNor(arr, 0, arr.size());
 	// Test1();
 	// Test2();
 	// Test3();
@@ -675,5 +793,6 @@ int main()
 	// TestThread();
 	// Test6();
 	// Test7();
+
 	return 0;
 }

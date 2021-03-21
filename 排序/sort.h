@@ -267,7 +267,7 @@ void _MergeSort(int* ar, int left, int right, int* tmp)
 	//ÔÙ²¢¹é
 	int begin1 = left, end1 = mid;
 	int begin2 = mid + 1, end2 = right;
-	int i = 0;
+	int i = left;
 	while (begin1 <= end1 && begin2 <= end2)
 	{
 		if (ar[begin1] <= ar[begin2])
@@ -279,7 +279,7 @@ void _MergeSort(int* ar, int left, int right, int* tmp)
 		tmp[i++] = ar[begin1++];
 	while (begin2 <= end2)
 		tmp[i++] = ar[begin2++];
-	memcpy(ar + left, tmp, sizeof(int) * (right - left + 1));
+	memcpy(ar + left, tmp + left, sizeof(int) * (right - left + 1));
 }
 void MergeSort(int* ar, int left, int right)
 {
