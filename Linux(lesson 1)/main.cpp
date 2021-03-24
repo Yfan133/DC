@@ -1447,8 +1447,24 @@ CAS涉及三个操作数：
 互斥和同步是在push和pop操作内的，出了push和pop就不原子性了，因此可能先消费再生产
 在线oj项目，如果保活的机制，可以借用nginx实现，主要研究upstream
 */
-int main()
+#include <iostream>
+using namespace std;
+int main(int argc, char* argv[], char* env[])
 {
+	// c++中的argv[0]就是运行中的程序
+	for (int i = 0; i < argc; ++i)
+		cout << argv[i] << endl;
+
 	return 0;
 }
 
+/*
+为啥需要虚拟地址空间？
+	1.将空间连续化处理
+	2.保护物理内存，防止野指针或者越界指针修改内存，页表映射会检测
+
+页表：
+	1.页表中保存了虚拟地址和对应物理地址
+	2.页表中保存了read和write权限
+
+*/
