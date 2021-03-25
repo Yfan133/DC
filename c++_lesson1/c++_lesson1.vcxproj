@@ -152,9 +152,12 @@
     <ClCompile Include="继承.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="hashTable.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MTstr.h" />
+    <ClInclude Include="priority_que.h" />
+    <ClInclude Include="smartPtr.h" />
     <ClInclude Include="st.h" />
     <ClInclude Include="vc.h" />
   </ItemGroup>

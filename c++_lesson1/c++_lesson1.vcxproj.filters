@@ -59,5 +59,14 @@
     <ClInclude Include="List.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="hashTable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="smartPtr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="priority_que.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
