@@ -129,12 +129,65 @@ String Test2()
 	String s("oo");
 	return s;
 }
+//int main()
+//{
+//	String s1;
+//	String s2("qwer");
+//	s1 = s2;					// 赋值重载
+//	
+//	String s3 = String("op");	// 构造一个匿名对象并执行赋值重载 
+//	String s4 = Test2();		// 
+//}
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+bool CheckNums(int num, vector<int>& board)
+{
+	int sum = 0, tmp = num;
+	while (tmp)
+	{
+		int digit = tmp % 10;
+		tmp /= 10;
+		sum += board[digit];
+	}
+	return num == sum;
+}
+#include <iostream>
+#include <vector>
+using namespace std;
+
 int main()
 {
-	String s1;
-	String s2("qwer");
-	s1 = s2;					// 赋值重载
-	
-	String s3 = String("op");	// 构造一个匿名对象并执行赋值重载 
-	String s4 = Test2();		// 
+	int m, n;
+	while (cin >> m >> n)
+	{
+		if (m < 100 || n < 100 || m > 999 || n > 999)
+			continue;
+		vector<int> board(10, 0);
+		bool flag = false;
+		for (int i = 1; i <= 9; ++i)
+		{
+			board[i] = i * i * i;
+		}
+		for (int i = m; i <= n; ++i)
+		{
+			int sum = 0, tmp = i;
+			while (tmp)
+			{
+				int digit = tmp % 10;
+				tmp /= 10;
+				sum += board[digit];
+			}
+			if (i == sum)
+			{
+				flag = true;
+				cout << i << " ";
+			}
+		}
+		if (flag)
+			cout << endl;
+	}
+	return 0;
 }
