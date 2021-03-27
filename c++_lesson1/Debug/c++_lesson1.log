@@ -1,20 +1,2 @@
 ﻿  main.cpp
-D:\vs2019file\c++_lesson1\main.cpp(691,13): warning C4101: “fm”: 未引用的局部变量
-D:\vs2019file\c++_lesson1\main.cpp(783,35): warning C4805: “==”: 在操作中将类型“state”与类型“bool”混合不安全
-D:\vs2019file\c++_lesson1\main.cpp(781): message : 在编译 类 模板 成员函数“HashNode<K,V> *HashTable<K,V>::find(const K &)”时
-          with
-          [
-              K=int,
-              V=int
-          ]
-D:\vs2019file\c++_lesson1\main.cpp(822): message : 查看对正在编译的函数 模板 实例化“HashNode<K,V> *HashTable<K,V>::find(const K &)”的引用
-          with
-          [
-              K=int,
-              V=int
-          ]
-D:\vs2019file\c++_lesson1\main.cpp(809): message : 查看对正在编译的 类 模板 实例化“HashTable<int,int>”的引用
-D:\vs2019file\c++_lesson1\main.cpp(772,2): warning C4018: “<”: 有符号/无符号不匹配
-D:\vs2019file\c++_lesson1\main.cpp(765): message : 在编译 类 模板 成员函数“void HashTable<int,int>::checkCapacity(void)”时
-D:\vs2019file\c++_lesson1\main.cpp(748): message : 查看对正在编译的函数 模板 实例化“void HashTable<int,int>::checkCapacity(void)”的引用
   c++_lesson1.vcxproj -> D:\vs2019file\c++_lesson1\Debug\c++_lesson1.exe
