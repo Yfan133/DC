@@ -1,14 +1,7 @@
-#ifndef __MAIN_H_
-#define __MAIN_H_
+#pragma once
 
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<assert.h>
-#include<stdbool.h>
-#include<memory.h>
-#pragma warning(disable:4996)
 
-typedef int ElemType;
-
-#endif
+void test()
+{
+	a = 1;
+}

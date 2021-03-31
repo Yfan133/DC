@@ -139,55 +139,43 @@ String Test2()
 //	String s4 = Test2();		// 
 //}
 #include <iostream>
-#include <vector>
-
-using namespace std;
-
-bool CheckNums(int num, vector<int>& board)
-{
-	int sum = 0, tmp = num;
-	while (tmp)
-	{
-		int digit = tmp % 10;
-		tmp /= 10;
-		sum += board[digit];
-	}
-	return num == sum;
-}
-#include <iostream>
-#include <vector>
+#include <string>
 using namespace std;
 
 int main()
 {
-	int m, n;
-	while (cin >> m >> n)
+	int T;
+	cin >> T;
+	while (T--)
 	{
-		if (m < 100 || n < 100 || m > 999 || n > 999)
-			continue;
-		vector<int> board(10, 0);
-		bool flag = false;
-		for (int i = 1; i <= 9; ++i)
+		string str;
+		cin >> str;
+		int ans = 0;
+		// 1.每次都要判断是否结束，并且还有一次判断首部%
+		ans += str.size() + 1;
+		ans += str.size() + 1;
+		int i = 0;
+		if (str[i] == '%')
+			++i;
+		for (; i < str.size(); ++i)
 		{
-			board[i] = i * i * i;
+			++ans;
+			if (str[i] == 's')
+				ans += 1;
+			else if (str[i] == 'd')
+				ans += 2;
+			else if (str[i] == 'u')
+				ans += 3;
+			else if (str[i] == 'p')
+				ans += 4;
+			else if (str[i] == 'f')
+				ans += 5;
+			else if (str[i] >= '0' && str[i] <= '9')
+				ans += 6;
+			else if (str[i] == '%')
+				ans += 7;
 		}
-		for (int i = m; i <= n; ++i)
-		{
-			int sum = 0, tmp = i;
-			while (tmp)
-			{
-				int digit = tmp % 10;
-				tmp /= 10;
-				sum += board[digit];
-			}
-			if (i == sum)
-			{
-				flag = true;
-				cout << i << " ";
-			}
-		}
-		if (flag)
-			cout << endl;
+		cout << ans << endl;
 	}
 	return 0;
 }

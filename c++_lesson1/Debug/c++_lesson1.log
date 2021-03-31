@@ -1,2 +1,3 @@
 ﻿  main.cpp
+D:\vs2019file\c++_lesson1\main.cpp(77,25): warning C4244: “+=”: 从“double”转换到“float”，可能丢失数据
   c++_lesson1.vcxproj -> D:\vs2019file\c++_lesson1\Debug\c++_lesson1.exe
