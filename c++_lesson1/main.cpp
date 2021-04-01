@@ -67,19 +67,6 @@ union B
 	char b;
 	int a;
 };
-int main()
-{
-
-	float num = 0;
-
-	for (int i = 1; i < 25; i++)
-	{
-		num += pow(2, 128 - i);
-	}
-	printf("%lf\n", num);
- 	printf("%lf",FLT_MAX);
-	return 0;
-}
 /*
 1.类型强转
 	强转内置类型会生成临时变量，强转地址不会生成临时变量。
