@@ -43,30 +43,9 @@
 //}
 
 #include <iostream>
+#include <string>
 using namespace std;
-class A
-{
-public:
-	void test()
-	{
-		cout << "test" << endl;
-	}
-//private:
-	static void tq()
-	{
-		tt();
-	}
-	static void tt()
-	{
-		cout << "tt" << endl;
-	}
-	static int a;
-};
-union B
-{
-	char b;
-	int a;
-};
+
 /*
 1.类型强转
 	强转内置类型会生成临时变量，强转地址不会生成临时变量。

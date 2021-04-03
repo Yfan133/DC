@@ -1,7 +1,2 @@
 ﻿  main.cpp
-D:\vs2019file\DS\测试\main.cpp(165,24): warning C4244: “初始化”: 从“__int64”转换到“int”，可能丢失数据
-D:\vs2019file\DS\测试\main.cpp(168,18): warning C4244: “+=”: 从“__int64”转换到“int”，可能丢失数据
-D:\vs2019file\DS\测试\main.cpp(172,19): warning C4244: “-=”: 从“__int64”转换到“int”，可能丢失数据
-  test.c
-笔记.obj : warning LNK4204: “D:\vs2019file\DS\测试\Debug\vc142.pdb”缺少引用模块的调试信息；正在链接对象，如同没有调试信息一样
   测试.vcxproj -> D:\vs2019file\DS\测试\Debug\测试.exe
