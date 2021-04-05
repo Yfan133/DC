@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hashTable.h" />
+    <ClInclude Include="hashTable2.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MTstr.h" />

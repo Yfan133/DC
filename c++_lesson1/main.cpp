@@ -42,10 +42,47 @@
 //	return 0;
 //}
 
+// 开散列模拟实现
+//#include "hashTable2.h"
+//int main()
+//{
+//	HashTable<int, int, KofV<int>> ht;
+//
+//	ht.Insert(10);
+//	ht.Insert(7);
+//	ht.Insert(35);
+//	ht.Insert(12);
+//	ht.Insert(25);
+//	ht.Insert(4);
+//	ht.Insert(14);
+//	ht.Insert(11);
+//	ht.Insert(9);
+//
+//	HashNode<int>* cur = ht.find(12);
+//	cout << cur << endl;
+//	cur = ht.find(100);
+//	cout << cur << endl;
+//
+//	bool ret = ht.erase(12);
+//	ret = ht.erase(100);
+//	ret = ht.erase(25);
+//	return 0;
+//}
 #include <iostream>
-#include <string>
 using namespace std;
+class A
+{
+public:
 
+	static int a;
+};
+int A::a = 1;
+int main()
+{
+	
+
+	return 0;
+}
 /*
 1.类型强转
 	强转内置类型会生成临时变量，强转地址不会生成临时变量。
