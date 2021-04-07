@@ -1,4 +1,56 @@
-﻿
+﻿#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+
+double maxOfvec(vector<int> nums, int k)
+{
+	// 求max(1 - a[j]/a[i])，min(a[j]/a[i])，找最大的a[i]
+	// j - i < k，需要选择最大a[i]同时保证在要求范围内
+	double res = 0;
+	priority_queue<pair<int, int>> que;
+	for (int j = 0; j < nums.size(); ++j)
+	{
+		// 遍历数组将最大的数插入优先级队列
+		que.push(make_pair(nums[j], j));
+		while (!que.empty() && (j - que.top().second) >= k)
+		{
+			que.pop();
+		}
+		res = max(res, 1 - (double)nums[j] / (double)que.top().first);
+	}
+	return res;
+}
+
+int main()
+{
+	vector<int> nums = { 10,5,6,8 };
+	double res = maxOfvec(nums, 2);
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //#include <iostream>
 //#pragma warning(disable:4996)
 //using namespace std;

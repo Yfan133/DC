@@ -1,8 +1,9 @@
-#pragma once
-#include "a.h"
-#include <stdio.h>
-void test()
+#ifndef _TEST_H_
+#define _TEST_H_
+//#pragma once
+int add(int x, int y)
 {
-	a = 1;
-	printf("%d", a);
+	return x - y;
 }
+
+#endif
