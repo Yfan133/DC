@@ -472,7 +472,12 @@ http协议格式
 	4.http协议使用的是 80 端口，https使用的是 443 端口
 */
 
+
+
 /*
+主配置文件：nginx.conf
+配套配置文件：nginx.conf.default
+
 nginx：
 	查看：yum list | grep nginx
 	安装：yum install -y nginx
@@ -483,15 +488,20 @@ nginx：
 		启动：systemctl start nginx
 		重启：systemctl restart nginx，重启之后看到 nginx 的 PID 不同
 		关闭：systemctl stop nginx
-	3.守护进程：初衷：要求后台服务器不停机工作
-		1.父进程：是守护进程，子进程：被创建出来之后去进程替换，完成 http 服务
-		2.守护进程要一直关注子进程的状态(子进程是否还在运行)：通过共享内存：子进程一直往共享内存中写，父进程从中读，若某一时刻父进程读到的值没有变化，则说明子进程出问题了，父进程重新去fork子进程然后继续进程替换。
-		3.若此时子进程挂掉，则守护进程重新fork子进程，继续进程替换
-			画个图(守护进程的工作机制)
+
+	3.守护进程：初衷：要求后台服务器不停机工作,
+		举例：
+			1.父进程：是守护进程，子进程：被创建出来之后去进程替换成 http 服务器，完成 http 服务
+			2.守护进程要一直关注子进程的状态(子进程是否还在运行)：通过共享内存：子进程一直往共享内存中写，父进程从中读，若某一时刻父进程读到的值没有变化，则说明子进程出问题了，父进程重新去fork子进程然后继续进程替换。
+			3.若此时子进程挂掉，则守护进程重新fork子进程，继续进程替换
+				画个图(守护进程的工作机制)
+
 	3.进程模型
 		master：守护进程
 		worker：被守护进程(子进程)
-		看一个现象：kill 一个worker进程之后，又出现另一个进程，它的父进程就是master。守护进程重新拉起来了一个进程
+		看一个现象：
+			1.kill 一个worker进程之后，又出现另一个进程，它的父进程就是master。守护进程重新拉起来了一个进程
+			2.kill 一个master进程之后，报错：Operation not permitted，不允许操作
 		ps -ef | grep nginx 看到 pid 和 ppid
 		ps -aux | grep mysql，mysql 中，mysql_safe 是守护进程
 		问题：
@@ -499,6 +509,12 @@ nginx：
 				守护进程监听之后才创建出子进程，子进程拷贝父进程PCB(里面有文件描述符：侦听套接字)，子进程调用accept之后就和客户端进行通信。
 			2.有多个worker进程时，连接池怎么保证负载均衡？(每一个work进程获取的连接大致都相等)
 				nginx的连接池
+			3.多个worker进程是竞争关系，
+
+			4.修改nginx.conf：http服务器必须连接上nginx，增加upstream：则nginx会向上链接http服务器
+			5.修改defalte.conf：修改路径，收到这个路径时向我们指定的ip和端口转发
+			6.修改权重：在ip和端口后面增加 weight = x，也就给这个服务器转发两次
+
 
 		浏览器 --》nginx --》http 服务器
 			  《--	 	《--
