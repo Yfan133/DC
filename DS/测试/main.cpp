@@ -1,30 +1,25 @@
 ﻿#include <iostream>
 #include <vector>
 using namespace std;
-
-class A
+int minStep(int n)
 {
-public:
-	virtual void test() = 0;
-	virtual ~A()
+	vector<int> dp(n + 1);
+	for (int i = 1; i <= n; ++i)
 	{
-		cout << "~A" << endl;
+		int step = INT_MAX;
+		if (i % 3 == 0)
+			step = min(step, dp[i / 3]);
+		if (i % 2 == 0)
+			step = min(step, dp[i / 2]);
+		step = min(step, dp[i - 1]);
+		step += 1;
+		dp[i] = step;
 	}
-};
-class B :public A
-{
-	virtual void test()
-	{
-		cout << "hello" << endl;
-	}
-	~B()
-	{
-		cout << "~B" << endl;
-	}
-};
+	return dp[n];
+}
 int main()
 {
-	A* a = new B;
-	delete a;
+	int n = 10;
+	int res = minStep(n);
 	return 0;
 }
