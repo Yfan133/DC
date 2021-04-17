@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="一次编辑.cpp" />
     <ClCompile Include="两个链表的第一个公共节点.cpp" />
+    <ClCompile Include="两数相加.cpp" />
     <ClCompile Include="二叉树中的最长交错路径.cpp" />
     <ClCompile Include="二进制中1的个数.cpp" />
     <ClCompile Include="二进制插入.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="搜索旋转排序数组2.cpp" />
     <ClCompile Include="数据流的中位数.cpp" />
     <ClCompile Include="旋转数组.cpp" />
+    <ClCompile Include="无重复字符的最长子串.cpp" />
     <ClCompile Include="日期转换.cpp" />
     <ClCompile Include="最后一个单词的长度.cpp" />
     <ClCompile Include="最小公倍数.cpp" />
